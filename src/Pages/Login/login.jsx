@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import ForgotPassword from '../ForgotPassword';
+
 import axios from 'axios';
 
 const adminEmail = 'admin@example.com';
