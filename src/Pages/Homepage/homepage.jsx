@@ -1,162 +1,116 @@
-// import React from "react";
-
-// const Home = () => {
-//   return (
-//     <div className="bg-[#efe3b8] flex flex-row justify-center w-full">
-//       <div className="bg-[#efe3b8] overflow-hidden w-[1020px] h-[600px] relative">
-//         {/* Your home component content goes here */}
-//         <div className="absolute w-[252px] h-[292px] top-[106px] left-[76px]">
-//           <img className="w-[250px] absolute h-[248px] top-0 left-0" alt="Rectangle" src="rectangle-27.svg" />
-//           <div className="absolute top-[275px] left-[8px] [font-family:'Inter-Regular',Helvetica] font-normal text-black text-[14px] tracking-[0] leading-[normal]">
-//             Skin care
-//           </div>
-//         </div>
-//         <div className="absolute w-[252px] h-[274px] top-[158px] left-[367px]">
-//           <img
-//             className="w-[250px] object-cover absolute h-[248px] top-0 left-0"
-//             alt="Rectangle"
-//             src="rectangle-28.png"
-//           />
-//           <div className="absolute top-[257px] left-0 [font-family:'Inter-Regular',Helvetica] font-normal text-black text-[14px] tracking-[0] leading-[normal]">
-//             MakeUp
-//           </div>
-//         </div>
-//         <div className="absolute w-[250px] h-[275px] top-[106px] left-[675px]">
-//           <img
-//             className="w-[248px] object-cover absolute h-[248px] top-0 left-0"
-//             alt="Rectangle"
-//             src="rectangle-29.png"
-//           />
-//           <div className="absolute top-[258px] left-[10px] [font-family:'Inter-Regular',Helvetica] font-normal text-black text-[14px] tracking-[0] leading-[normal]">
-//             Fragrances
-//           </div>
-//         </div>
-//         <div className="absolute w-[1044px] h-[131px] top-[470px] left-0">
-//           <div className="absolute top-[43px] left-[874px] [font-family:'Inter-Regular',Helvetica] font-normal text-[#efe3b8] text-[12px] tracking-[0] leading-[normal]">
-//             Ngong Lane
-//           </div>
-//           <div className="top-[90px] absolute left-[874px] [font-family:'Inter-Regular',Helvetica] font-normal text-[#efe3b8] text-[12px] tracking-[0] leading-[normal]">
-//             Celestialskin@gmail.com
-//           </div>
-//           <div className="top-[67px] absolute left-[874px] [font-family:'Inter-Regular',Helvetica] font-normal text-[#efe3b8] text-[12px] tracking-[0] leading-[normal]">
-//             0720856222
-//           </div>
-//           <footer className="absolute w-[1044px] h-[131px] top-0 left-0 bg-transparent">
-//             <div className="relative w-[1020px] h-[131px] bg-variable-collection-dark-mode">
-//               <div className="absolute top-[21px] left-[874px] [font-family:'Inter-Regular',Helvetica] font-normal text-[#efe3b8] text-[14px] tracking-[0] leading-[normal]">
-//                 ADDRRESS
-//               </div>
-//               <div className="absolute top-[24px] left-[507px] [font-family:'Inter-Regular',Helvetica] font-normal text-[#efe3b8] text-[14px] tracking-[0] leading-[normal]">
-//                 ABOUT US
-//               </div>
-//               <div className="absolute top-[21px] left-[707px] [font-family:'Inter-Regular',Helvetica] font-normal text-[#efe3b8] text-[14px] tracking-[0] leading-[normal]">
-//                 SHOP
-//               </div>
-//               <div className="absolute top-[46px] left-[510px] [font-family:'Inter-Regular',Helvetica] font-normal text-[#efe3b8] text-[12px] tracking-[0] leading-[normal]">
-//                 Home
-//               </div>
-//               <div className="absolute top-[69px] left-[507px] [font-family:'Inter-Regular',Helvetica] font-normal text-[#efe3b8] text-[12px] tracking-[0] leading-[normal]">
-//                 Contact us
-//               </div>
-//               <p className="absolute top-[35px] left-[30px] [font-family:'Inter-Regular',Helvetica] font-normal text-[#efe3b8] text-[20px] tracking-[0] leading-[normal]">
-//                 <span className="[font-family:'Inter-Regular',Helvetica] font-normal text-[#efe3b8] text-[20px] tracking-[0]">
-//                   Celestial Skins <br />
-//                 </span>
-//                 <span className="text-[14px]">Beauty Shop</span>
-//               </p>
-//               <div className="absolute top-[45px] left-[874px] [font-family:'Inter-Regular',Helvetica] font-normal text-[#efe3b8] text-[12px] tracking-[0] leading-[normal]">
-//                 Ngong Lane
-//               </div>
-//               <div className="top-[92px] absolute left-[874px] [font-family:'Inter-Regular',Helvetica] font-normal text-[#efe3b8] text-[12px] tracking-[0] leading-[normal]">
-//                 Celestialskin@gmail.com
-//               </div>
-//               <div className="top-[69px] absolute left-[874px] [font-family:'Inter-Regular',Helvetica] font-normal text-[#efe3b8] text-[12px] tracking-[0] leading-[normal]">
-//                 0720856222
-//               </div>
-//               <div className="absolute top-[46px] left-[706px] [font-family:'Inter-Regular',Helvetica] font-normal text-[#efe3b8] text-[12px] tracking-[0] leading-[normal]">
-//                 Scents
-//               </div>
-//               <div className="absolute top-[69px] left-[708px] [font-family:'Inter-Regular',Helvetica] font-normal text-[#efe3b8] text-[12px] tracking-[0] leading-[normal]">
-//                 Makeup
-//               </div>
-//               <div className="absolute top-[92px] left-[705px] [font-family:'Inter-Regular',Helvetica] font-normal text-[#efe3b8] text-[12px] tracking-[0] leading-[normal]">
-//                 Skin Care
-//               </div>
-//             </div>
-//           </footer>
-//         </div>
-//         <div className="absolute w-[906px] h-[67px] top-[9px] left-[19px]">
-//           <img className="absolute w-[15px] h-[18px] top-[16px] left-[880px]" alt="Vector" src="image.svg" />
-//           <img className="absolute w-[18px] h-[12px] top-[22px] left-[752px]" alt="Vector" src="vector-2.svg" />
-//           <img className="absolute w-[22px] h-[20px] top-[18px] left-[791px]" alt="Vector" src="vector.svg" />
-//           <img className="absolute w-[844px] h-[3px] top-[61px] left-[60px] object-cover" alt="Line" src="line-1.svg" />
-//           <div className="absolute w-[474px] h-[40px] top-[8px] left-[205px] bg-[#efe3b8] rounded-[15px] border border-solid border-black">
-//             <p className="absolute top-[12px] left-[44px] [font-family:'Inter-Regular',Helvetica] font-normal text-black text-[12px] tracking-[0] leading-[normal]">
-//               Search for beauty Brands and Products
-//             </p>
-//             <img className="absolute w-[18px] h-[18px] top-[13px] left-[14px]" alt="Vector" src="vector-3.svg" />
-//           </div>
-//           <img
-//             className="absolute w-[57px] h-[67px] top-0 left-0 object-cover"
-//             alt="Celestial skins high"
-//             src="celestial-skins-high-resolution-logo-black-transparent-1.png"
-//           />
-//           <img className="absolute w-[22px] h-[19px] top-[15px] left-[836px]" alt="Vector" src="vector-4.svg" />
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Home;
-
-
-
-
-
 import React from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
+import { FaSearch, FaCartPlus } from 'react-icons/fa';
+import { IoMenu, IoMoonSharp } from 'react-icons/io5';
+import { PiSignOutBold } from 'react-icons/pi';
 
-const Homepage = () => {
+const MenuComponent = () => <div>Menu Component</div>;
+const CartComponent = () => <div>Cart Component</div>;
+const ModeComponent = () => <div>Dark Mode Component</div>;
+const SignOutComponent = () => <div>SignOut Component</div>;
+const SkinCareComponent = () => <div>Skin Care Component</div>;
+const MakeUpComponent = () => <div>Make Up Component</div>;
+const FragranceComponent = () => <div>Fragrance Component</div>;
+
+function Navbar() {
   return (
-    <div style={{ backgroundColor: '#EFE3B8', minHeight: '100vh', padding: '0px' }}>
-      <div className="grid grid-cols-3 gap-4">
-        <div className="col-span-2">
-          <div className="relative bg-yellow-100 p-4 rounded">
-            <input
-              type="text"
-              placeholder="Search for beauty Brands and Products"
-              className="w-full p-2 rounded border border-gray-300"
-            />
-            <button className="absolute right-4 top-4">
-              <img src="path/to/search-icon.png" alt="Search" />
-            </button>
+    <>
+      <div className="bg-[#efe3b8] py-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between">
+          <div className="flex items-center w-full lg:w-auto mb-4 lg:mb-0">
+            <img src="/src/Pages/Logo/logo.png" alt="Logo" className="h-10 w-auto" />
+          </div>
+
+          <div className="relative flex-grow flex justify-center w-full lg:w-auto">
+            <div className="relative w-full max-w-lg">
+              <input
+                className="w-full h-[40px] bg-[#efe3b8] rounded-[15px] border border-solid border-black pl-10 pr-4 [font-family:'Inter-Regular',Helvetica] font-normal text-black text-[12px]"
+                placeholder="Search for beauty Brands and Products"
+              />
+              <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black text-lg" />
+            </div>
+          </div>
+
+          <div className="flex space-x-4 items-center mt-4 lg:mt-0">
+            <Link to="/menu" className="text-black cursor-pointer text-2xl">
+              <IoMenu />
+            </Link>
+            <Link to="/cart" className="text-black cursor-pointer text-2xl">
+              <FaCartPlus />
+            </Link>
+            <Link to="/mode" className="text-black cursor-pointer text-2xl">
+              <IoMoonSharp />
+            </Link>
+            <Link to="/signout" className="text-black cursor-pointer text-2xl">
+              <PiSignOutBold />
+            </Link>
           </div>
         </div>
-        <div className="flex items-center space-x-4">
-          <button>
-            <img src="path/to/cart-icon.png" alt="Cart" />
-          </button>
-          <button>
-            <img src="path/to/user-icon.png" alt="User" />
-          </button>
-        </div>
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ backgroundColor: '#FFFFCC', padding: '20px', borderRadius: '8px', marginBottom: '20px' }}>
-          <h2>Skincare</h2>
-          <img src="path/to/skin-care.jpg" alt="Skin care" style={{ width: '100%' }} />
-        </div>
-        <div style={{ backgroundColor: '#FFFFCC', padding: '20px', borderRadius: '8px', marginBottom: '20px' }}>
-          <h2>Makeup</h2>
-          <img src="path/to/makeup.jpg" alt="Makeup" style={{ width: '100%' }} />
-        </div>
-        <div style={{ backgroundColor: '#FFFFCC', padding: '20px', borderRadius: '8px', marginBottom: '20px' }}>
-          <h2>Fragrances</h2>
-          <img src="path/to/fragrances.jpg" alt="frangrances" style={{ width: '100%' }} />
-        </div>
-      </div>
-    </div>
-  );
-};
 
-export default Homepage;
+        <div className="flex flex-wrap justify-center lg:justify-between items-center mt-10 mx-4">
+          <div className="flex flex-col items-center mb-4 lg:mb-0">
+            <Link to="/skincare">
+              <img src="/src/Pages/Logo/skin care.png" alt="Skin Care" className="max-w-full h-auto" />
+            </Link>
+            <h2 className="mt-5">Skin Care</h2>
+          </div>
+          <div className="flex flex-col items-center mb-4 lg:mb-0">
+            <Link to="/makeup">
+              <img src="/src/Pages/Logo/makeup.png" alt="Make Up" className="max-w-full h-auto" />
+            </Link>
+            <h2 className="mt-7">Make Up</h2>
+          </div>
+          <div className="flex flex-col items-center">
+            <Link to="/fragrance">
+              <img src="/src/Pages/Logo/fragnaces.png" alt="Fragrance" className="max-w-full h-auto" />
+            </Link>
+            <h2 className="mt-7">Fragrance</h2>
+          </div>
+        </div>
+      </div>
+
+      <footer style={{ backgroundColor: '#A6603A', minHeight: '5vh' }}>
+        <div className="container mx-auto flex flex-col md:flex-row justify-around items-start p-4">
+          <div className="mb-4 md:mb-0">
+            <h1 className="text-3xl font-bold">Celestial Skins</h1>
+            <p>Beauty Shop</p>
+          </div>
+          <div className="w-full sm:w-auto mb-4 sm:mb-0">
+            <h3 className="font-bold mb-2">ABOUT US</h3>
+            <ul>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/contactus">Contact Us</Link></li>
+            </ul>
+          </div>
+          <div className="w-full sm:w-auto mb-4 sm:mb-0">
+            <h3 className="font-bold mb-2">SHOP</h3>
+            <ul>
+              <li className="mb-1"><Link to="/scents" className="hover:underline">Scents</Link></li>
+              <li className="mb-1"><Link to="/makeup" className="hover:underline">Makeup</Link></li>
+              <li><Link to="/skincare" className="hover:underline">Skin Care</Link></li>
+            </ul>
+          </div>
+          <div className="w-full sm:w-auto">
+            <h3 className="font-bold mb-2">ADDRESS</h3>
+            <p>Ngong Lane</p>
+            <p>0720856222</p>
+            <p>Celestialskin@gmail.com</p>
+          </div>
+        </div>
+      </footer>
+
+      <Routes>
+        <Route path="/menu" element={<MenuComponent />} />
+        <Route path="/cart" element={<CartComponent />} />
+        <Route path="/mode" element={<ModeComponent />} />
+        <Route path="/signout" element={<SignOutComponent />} />
+        <Route path="/skincare" element={<SkinCareComponent />} />
+        <Route path="/makeup" element={<MakeUpComponent />} />
+        <Route path="/fragrance" element={<FragranceComponent />} />
+      </Routes>
+    </>
+  );
+}
+
+export default Navbar;
+

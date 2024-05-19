@@ -34,8 +34,8 @@ const Signup = () => {
   };
 
   return (
-    <div className="bg-[#efe3b8] flex justify-center items-center min-h-screen p-4">
-      <div className="bg-[#efe3b8] w-full max-w-[1020px] h-auto p-8 relative">
+    <div className="bg-[#efe3b8] min-h-screen flex justify-center items-center">
+    <div className="max-w-lg w-full p-8">
         <div className="flex flex-col items-center mb-8">
           <img
             className="w-[57px] h-[67px] mb-4"
@@ -51,7 +51,7 @@ const Signup = () => {
         </div>
         <div className="space-y-6">
           <div>
-            <label className="[font-family:'Inter-Regular',Helvetica] text-black text-[16px]" htmlFor="username">
+            <label className="[font-family:'Inter-Regular',Helvetica] text-black text-[16px] flex" htmlFor="username">
               Username
             </label>
             <input
@@ -63,7 +63,7 @@ const Signup = () => {
             />
           </div>
           <div>
-            <label className="[font-family:'Inter-Regular',Helvetica] text-black text-[16px]" htmlFor="email">
+            <label className="[font-family:'Inter-Regular',Helvetica] text-black text-[16px] flex" htmlFor="email">
               Email
             </label>
             <input
@@ -75,13 +75,15 @@ const Signup = () => {
             />
           </div>
           <div>
-            <label className="[font-family:'Inter-Regular',Helvetica] text-black text-[16px]" htmlFor="password">
+            <label className="[font-family:'Inter-Regular',Helvetica] text-black text-[16px] flex" htmlFor="password">
               Password
             </label>
             <input
               id="password"
               type="password"
-              className="block w-full h-[50px] bg-[#efe3b8] border border-solid border-[#a6603a] mt-2 px-4"
+              // className="block w-full h-[50px] bg-[#efe3b8] border border-solid border-[#a6603a] mt-2 px-4"
+              // 
+              className="block w-full h-12 bg-[#efe3b8] border border-solid border-[#a6603a] mt-2 px-4"
               value={password}
               onChange={handleInputChange(setPassword)}
             />
@@ -106,3 +108,10 @@ const Signup = () => {
 };
 
 export default Signup;
+
+
+
+
+
+
+
