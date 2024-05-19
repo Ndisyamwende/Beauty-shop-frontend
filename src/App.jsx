@@ -4,6 +4,7 @@ import Signup from './Pages/Signup/signup';
 import Login from './Pages/Login/login';
 import Home from './Pages/Homepage/homepage'
 import Admin from './Pages/AdminPage.jsx/admin'
+import Sidebar from './Components/Sidebar/Sidebar';
 import './App.css';
 
 const PrivateRoute = ({ children, role }) => {

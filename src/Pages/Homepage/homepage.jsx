@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import SearchBar from '../Components/Searchbar'; // Import the SearchBar component
-import Footer from '../Components/Footer'; // Import the Footer component
+//import SearchBar from '../Components/Searchbar'; // Import the SearchBar component
+import Footer from '../../Components/Footer/footer'; // Import the Footer component
 
 const Homepage = () => {
   const navigate = useNavigate();

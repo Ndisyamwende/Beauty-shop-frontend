@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { FaTachometerAlt, PiClipboardTextBold, FaUsers, FaUserPlus, FaEnvelope, FaMoon, FaSun, FaSignOutAlt } from 'react-icons/fa';
+import { FaTachometerAlt, FaBoxes, FaUsers, FaUserPlus, FaEnvelope, FaMoon, FaSun, FaSignOutAlt } from 'react-icons/fa';
 
 const Sidebar = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -13,7 +12,7 @@ const Sidebar = () => {
     backgroundColor: isDarkMode ? '#333' : '#A6603A',
     minHeight: '100vh',
     padding: '0px',
-    color: isDarkMode ? '#FFF' : '#000',
+    color: isDarkMode ? '#FFF' : '#000'
   };
 
   return (
@@ -24,34 +23,34 @@ const Sidebar = () => {
       <nav className="flex-1 p-4">
         <ul>
           <li className="mb-4">
-            <Link to="/dashboard" className="flex items-center p-2 hover:bg-gray-700 rounded">
+            <a href="#" className="flex items-center p-2 hover:bg-gray-700 rounded">
               <FaTachometerAlt className="mr-2" />
               Dashboard
-            </Link>
+            </a>
           </li>
           <li className="mb-4">
-            <Link to="/inventory" className="flex items-center p-2 hover:bg-gray-700 rounded">
-              <PiClipboardTextBold className="mr-2" />
+            <a href="#" className="flex items-center p-2 hover:bg-gray-700 rounded">
+              <FaBoxes className="mr-2" />
               Inventory
-            </Link>
+            </a>
           </li>
           <li className="mb-4">
-            <Link to="/customers" className="flex items-center p-2 hover:bg-gray-700 rounded">
+            <a href="#" className="flex items-center p-2 hover:bg-gray-700 rounded">
               <FaUsers className="mr-2" />
               Customers
-            </Link>
+            </a>
           </li>
           <li className="mb-4">
-            <Link to="/new-hire" className="flex items-center p-2 hover:bg-gray-700 rounded">
+            <a href="#" className="flex items-center p-2 hover:bg-gray-700 rounded">
               <FaUserPlus className="mr-2" />
               New Hire
-            </Link>
+            </a>
           </li>
           <li className="mb-4">
-            <Link to="/messages" className="flex items-center p-2 hover:bg-gray-700 rounded">
+            <a href="#" className="flex items-center p-2 hover:bg-gray-700 rounded">
               <FaEnvelope className="mr-2" />
               Messages
-            </Link>
+            </a>
           </li>
         </ul>
       </nav>
@@ -64,9 +63,10 @@ const Sidebar = () => {
           <FaSignOutAlt className="mr-2" />
           Logout
         </button>
+        
       </div>
     </div>
   );
-};
+}
 
 export default Sidebar;
