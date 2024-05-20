@@ -12,7 +12,7 @@ const SkinCareComponent = () => <div>Skin Care Component</div>;
 const MakeUpComponent = () => <div>Make Up Component</div>;
 const FragranceComponent = () => <div>Fragrance Component</div>;
 
-function Navbar() {
+function Homepage() {
   return (
     <>
       <div className="bg-[#efe3b8] py-4">
@@ -111,6 +111,4 @@ function Navbar() {
     </>
   );
 }
-
-export default Navbar;
-
+export default Homepage;

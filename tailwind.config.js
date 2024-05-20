@@ -5,8 +5,19 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        md: "0 0 10px rgba(0, 0, 0, 0.1)",
+      },
+      colors: {
+        "dark-mode": "#A6603A",
+        "light-mode": "#F0E68C",
+      },
+      fontFamily: {
+        body: "Open Sans",
+      },
+    },
   },
   plugins: [],
-}
+};
 
