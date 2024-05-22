@@ -12,7 +12,7 @@ const Footer = () => {
         <div className="w-full sm:w-auto mb-4 sm:mb-0">
           <h3 className="font-bold mb-2">ABOUT US</h3>
           <ul>
-            <li><Link to="/">Home</Link></li>
+            <li><Link to="/ho">Home</Link></li>
             <li><Link to="/contactus">Contact Us</Link></li>
           </ul>
         </div>
@@ -20,7 +20,7 @@ const Footer = () => {
           <h3 className="font-bold mb-2">SHOP</h3>
           <ul>
             <li className="mb-1"><Link to="/scents" className="hover:underline">Scents</Link></li>
-            <li className="mb-1"><Link to="/makeup" className="hover:underline">Makeup</Link></li>
+            <li className="mb-1"><Link to="/mak" className="hover:underline">Makeup</Link></li>
             <li><Link to="/skincare" className="hover:underline">Skin Care</Link></li>
           </ul>
         </div>

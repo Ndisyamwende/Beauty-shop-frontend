@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const AdminCustomer = () => {
+export const Customer = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {

@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-export const Hiring = () => {
+export const NewHire = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    username: "",
     email: "",
     department: "Administrative ",
     role: "employee",
@@ -20,7 +20,7 @@ export const Hiring = () => {
 
     const token = localStorage.getItem("token");
 
-    fetch("http://127.0.0.1:5500/user", {
+    fetch("http://127.0.0.1:5000/user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ export const Hiring = () => {
       });
 
     setFormData({
-      name: "",
+      username: "",
       email: "",
       department: "Administrative ",
       role: "employee",
