@@ -3,9 +3,13 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Signup from './Pages/Signup/signup';
 import Login from './Pages/Login/login';
 import Home from './Pages/Homepage/homepage'
-import Admin from './Pages/AdminPage.jsx/admin'
+// import Admin from './Pages/AdminPage.jsx/admin'
 import Sidebar from './Components/Sidebar/Sidebar';
+import { AdminProduct } from './Pages/AdminPage.jsx/AdminProduct';
+import MyCart from './Pages/Mycart/MyCart';
+
 import './App.css';
+
 
 const PrivateRoute = ({ children, role }) => {
   const token = localStorage.getItem('token');
@@ -27,10 +31,10 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route
-          path="/home"
+          path="/mycart"
           element={
             <PrivateRoute role="user">
-              <Home />
+              <MyCart />
             </PrivateRoute>
           }
         />
@@ -38,7 +42,7 @@ function App() {
           path="/admin"
           element={
             <PrivateRoute role="admin">
-              <Admin />
+              <AdminProduct/>
             </PrivateRoute>
           }
         />

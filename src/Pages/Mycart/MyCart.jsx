@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Cart = () => {
+const MyCart = () => {
   const [cartItems, setCartItems] = useState([
     { id: 1, name: 'Highlighter', price: 500, quantity: 1, image: 'https://images.unsplash.com/photo-1597764693661-c3e6fd3d40f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDV8fGhpcmxpZ2h0ZXJ8ZW58MHx8fHwxNjU3OTkxMTM5&ixlib=rb-1.2.1&q=80&w=400' },
     { id: 2, name: 'Foundation', price: 1500, quantity: 1, image: 'https://images.unsplash.com/photo-1512317347087-5b9107cd24b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fGZvdW5kYXRpb258ZW58MHx8fHwxNjU3OTkxMTE1&ixlib=rb-1.2.1&q=80&w=400' },
@@ -26,6 +26,52 @@ const Cart = () => {
   const handleCheckout = () => {
     navigate('/checkout');
   };
+
+
+
+
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+
+  //   if (!token) {
+  //     console.error("Token not found");
+  //     return;
+  //   }
+
+  //   console.log("Using token:", token);
+
+  //   fetch("http://127.0.0.1:5500/orderitem", {
+  //     method: "GET",
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   })
+  //     .then((response) => {
+  //       console.log("Response status:", response.status);
+  //       console.log("Response headers:", response.headers);
+
+  //       if (!response.ok) {
+  //         throw new Error(`HTTP error! status: ${response.status}`);
+  //       }
+  //       return response.json();
+  //     })
+  //     .then((data) => {
+  //       console.log("Fetched data:", data);
+
+  //       if (data && data.users) {
+  //         const filteredUsers = data.users.filter(
+  //           (user) => user.role === "user"
+  //         );
+  //         setUsers(filteredUsers);
+  //       } else {
+  //         console.error("Unexpected data format:", data);
+  //       }
+  //     })
+  //     .catch((error) => console.error("Error fetching data:", error));
+  // }, []);
+
+
 
   return (
     <div className="flex justify-center p-8 bg-yellow-100 min-h-screen">
@@ -70,4 +116,5 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default MyCart;
+
