@@ -70,7 +70,7 @@ const Messages = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 text-black bg-light-mode min-h-screen">
       <h1 className="text-2xl font-bold mb-4">Contact Messages</h1>
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
@@ -99,8 +99,12 @@ const Messages = () => {
           <tbody className="bg-white divide-y divide-gray-200">
             {contacts.map((contact) => (
               <tr key={contact.id}>
-                <td className="px-6 py-4 whitespace-nowrap text-left">{contact.name}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-left">{contact.email}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-left">
+                  {contact.name}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-left">
+                  {contact.email}
+                </td>
                 <td className="px-6 py-4 whitespace-nowrap text-right">
                   <button
                     onClick={() => handleView(contact)}
@@ -128,7 +132,7 @@ const Messages = () => {
               <strong>Message:</strong> {viewContact.message}
             </p>
             <p>
-              <strong>Replied:</strong> {viewContact.replied ? 'Yes' : 'No'}
+              <strong>Replied:</strong> {viewContact.replied ? "Yes" : "No"}
             </p>
             <div className="mt-4 flex justify-end">
               <button
