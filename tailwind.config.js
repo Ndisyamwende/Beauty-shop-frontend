@@ -9,7 +9,7 @@ export default {
       },
       colors: {
         "dark-mode": "#A6603A",
-        "light-mode": "#F0E68C",
+        "light-mode": "#efe3b8",
       },
       fontFamily: {
         body: "Open Sans",

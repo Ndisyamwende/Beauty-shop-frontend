@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
-import Modal from "react-modal";
+ import Modal from "react-modal";
+
 
 Modal.setAppElement("#root");
 
@@ -61,14 +62,47 @@ export const AdminProduct = () => {
     setIsModalOpen(true);
   };
 
-  const handleSaveProduct = () => {
-    // Save product logic here
-    setIsModalOpen(false);
+  const handleSaveProduct = (event) => {
+    event.preventDefault();
+    const token = localStorage.getItem("token");
+
+    fetch("http://127.0.0.1:5500/product", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(formData),
+    }).then((response) => {
+      if (response.ok) {
+        setShowLeaveModal(false);
+        fetchLeaves(token);
+      } else {
+        console.error(`Error: ${response.status}`);
+      }
+    });
   };
 
-  const handleDeleteProduct = (id) => {
-    // Delete product logic here
-  };
+function handleDeleteProduct() {
+  const token = localStorage.getItem("token");
+
+  fetch(`http://127.0.0.1:5500/products/${product.id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      onDelete(employee.id);
+    })
+    .catch((error) => {
+      console.error("There was a problem with the fetch operation: ", error);
+    });
+}
+
 
   const handleEditProduct = (product) => {
     // Edit product logic here

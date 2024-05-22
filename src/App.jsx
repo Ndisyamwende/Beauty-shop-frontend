@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Signup from './Pages/Signup/signup';
 import Login from './Pages/Login/login';
 import Home from './Pages/Homepage/homepage'
-import Admin from './Pages/AdminPage.jsx/admin'
-import Sidebar from './Components/Sidebar/Sidebar';
+// import Admin from './Pages/AdminPage.jsx/admin'
+import { AdminProduct } from './Pages/AdminPage.jsx/AdminProduct';
+// import Sidebar from './Components/Sidebar/Sidebar';
 import './App.css';
 
 const PrivateRoute = ({ children, role }) => {
@@ -38,7 +39,7 @@ function App() {
           path="/admin"
           element={
             <PrivateRoute role="admin">
-              <Admin />
+              <AdminProduct />
             </PrivateRoute>
           }
         />
