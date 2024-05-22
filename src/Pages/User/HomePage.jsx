@@ -1,24 +1,26 @@
 import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FaSearch, FaCartPlus } from 'react-icons/fa';
 import { IoMenu, IoMoonSharp } from 'react-icons/io5';
 import { PiSignOutBold } from 'react-icons/pi';
-
-const MenuComponent = () => <div>Menu Component</div>;
-const CartComponent = () => <div>Cart Component</div>;
-const ModeComponent = () => <div>Dark Mode Component</div>;
-const SignOutComponent = () => <div>SignOut Component</div>;
-const SkinCareComponent = () => <div>Skin Care Component</div>;
-const MakeUpComponent = () => <div>Make Up Component</div>;
-const FragranceComponent = () => <div>Fragrance Component</div>;
+// import ProductList from './ProductList';
+// import { products as SampleProducts } from '../Products/Product list/data';
+import MyCart from './MyCart';
 
 function Homepage() {
+  // const [products, setProducts] = useState(SampleProducts);
+
+  const addToCart = (product, quantity) => {
+    console.log(`Added ${quantity} of ${product.name} to the cart.`);
+    // Add the product to the cart logic here
+  };
+
   return (
     <>
       <div className="bg-[#efe3b8] py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between">
           <div className="flex items-center w-full lg:w-auto mb-4 lg:mb-0">
-            <img src="/src/Pages/Logo/logo.png" alt="Logo" className="h-10 w-auto" />
+            <img src="/src/assets/images/logo.png" alt="Logo" className="h-10 w-auto" />
           </div>
 
           <div className="relative flex-grow flex justify-center w-full lg:w-auto">
@@ -50,19 +52,19 @@ function Homepage() {
         <div className="flex flex-wrap justify-center lg:justify-between items-center mt-10 mx-4">
           <div className="flex flex-col items-center mb-4 lg:mb-0">
             <Link to="/skincare">
-              <img src="/src/Pages/Logo/skin care.png" alt="Skin Care" className="max-w-full h-auto" />
+              <img src="/src/assets/images/careskin.png" alt="Skin Care" className="max-w-full h-auto" />
             </Link>
             <h2 className="mt-5">Skin Care</h2>
           </div>
           <div className="flex flex-col items-center mb-4 lg:mb-0">
-            <Link to="/makeup">
-              <img src="/src/Pages/Logo/makeup.png" alt="Make Up" className="max-w-full h-auto" />
+            <Link to="/makeups">
+              <img src="/src/assets/images/makeup.png" alt="Make Up" className="max-w-full h-auto" />
             </Link>
             <h2 className="mt-7">Make Up</h2>
           </div>
           <div className="flex flex-col items-center">
             <Link to="/fragrance">
-              <img src="/src/Pages/Logo/fragnaces.png" alt="Fragrance" className="max-w-full h-auto" />
+              <img src="/src/assets/images/frag.png" alt="Fragrance" className="max-w-full h-auto" />
             </Link>
             <h2 className="mt-7">Fragrance</h2>
           </div>
@@ -98,17 +100,8 @@ function Homepage() {
           </div>
         </div>
       </footer>
-
-      <Routes>
-        <Route path="/menu" element={<MenuComponent />} />
-        <Route path="/cart" element={<CartComponent />} />
-        <Route path="/mode" element={<ModeComponent />} />
-        <Route path="/signout" element={<SignOutComponent />} />
-        <Route path="/skincare" element={<SkinCareComponent />} />
-        <Route path="/makeup" element={<MakeUpComponent />} />
-        <Route path="/fragrance" element={<FragranceComponent />} />
-      </Routes>
     </>
   );
 }
+
 export default Homepage;
