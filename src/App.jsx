@@ -1,15 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Signup from './Pages/Signup/signup';
-import Login from './Pages/Login/login';
-import Home from './Pages/Homepage/homepage'
-// import Admin from './Pages/AdminPage.jsx/admin'
-import Sidebar from './Components/Sidebar/Sidebar';
-import { AdminProduct } from './Pages/AdminPage.jsx/AdminProduct';
-import MyCart from './Pages/Mycart/MyCart';
+import Signup from './Authentiction/Signup';
+import Login from './Authentiction/Login';
+import Homepage from './Pages/User/HomePage';
+import Sidebar from './Components/Admin/Sidebar';
+import MyCart from './Pages/User/MyCart';
+import { NewHire } from './Pages/Admin/NewHire';
+import { Inventory } from './Pages/Admin/Inventory';
+import { Customer } from './Pages/Admin/Customer';
+
+
 
 import './App.css';
-
 
 const PrivateRoute = ({ children, role }) => {
   const token = localStorage.getItem('token');
@@ -22,7 +24,6 @@ const PrivateRoute = ({ children, role }) => {
   return children;
 };
 
-
 function App() {
   return (
     <Router>
@@ -34,21 +35,21 @@ function App() {
           path="/mycart"
           element={
             <PrivateRoute role="user">
-              <MyCart />
+              <Home />
             </PrivateRoute>
           }
         />
         <Route
-          path="/admin"
+          path="/admin/*"
           element={
             <PrivateRoute role="admin">
-              <AdminProduct/>
+              <Admin />
             </PrivateRoute>
           }
         />
       </Routes>
     </Router>
-  );
+    );
 }
 
 export default App;

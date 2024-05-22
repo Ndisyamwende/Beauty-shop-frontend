@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Modal from "react-modal";
+import Footer from "../../Components/User/Footer";
 
 Modal.setAppElement("#root");
 
-export const AdminProduct = () => {
+export const Inventory = () => {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState("All");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,8 +27,8 @@ export const AdminProduct = () => {
 
     console.log("Using token:", token);
 
-    fetch("http://127.0.0.1:5500/product", {
-      method: "GET",
+    fetch("http://127.0.0.1:5000/products", {
+      method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -213,6 +214,9 @@ export const AdminProduct = () => {
           </form>
         </div>
       </Modal>
+      <div>
+        
+      </div>
     </div>
   );
 };

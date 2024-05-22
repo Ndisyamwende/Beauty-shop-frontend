@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
 import axios from 'axios';
 
 const adminEmail = 'admin@example.com';
@@ -39,7 +38,7 @@ const Login = () => {
   return (
     <div className="bg-[#efe3b8] min-h-screen flex justify-center items-center">
       <div className="max-w-lg w-full p-8">
-        <img className="w-16 h-16 mx-auto mb-8" alt="Celestial skins high" src='/src/Pages/Logo/logo.png' />
+        <img className="w-16 h-16 mx-auto mb-8" alt="Celestial skins high" src='/src/assets/images/logo.png' />
         <div className="mb-8 text-center">
           <p className="text-3xl font-black text-black">Welcome back</p>
           <p className="text-base">Don’t have an account yet?{' '}
@@ -48,7 +47,7 @@ const Login = () => {
         </div>
         <div className="space-y-6">
           <div>
-            <label className="text-black text-lg" htmlFor="email">Email</label>
+            <label className="text-black text-lg flex" htmlFor="email">Email</label>
             <input
               id="email"
               className="block w-full h-12 bg-[#efe3b8] border border-solid border-[#a6603a] mt-2 px-4"
@@ -58,7 +57,7 @@ const Login = () => {
             />
           </div>
           <div>
-            <label className="text-black text-lg" htmlFor="password">Password</label>
+            <label className="text-black text-lg flex" htmlFor="password">Password</label>
             <input
               id="password"
               type="password"
@@ -81,7 +80,6 @@ const Login = () => {
             <input type="checkbox" />
             <span className="ml-2">Remember me</span>
           </label>
-          {/* <a href="#" className="text-[#a6603a]">Forgot password?</a> */}
           <div className="text-[#a6603a]">
           <Link to="/forgot-password">Forgot password?</Link>
           </div>
@@ -92,3 +90,8 @@ const Login = () => {
 };
 
 export default Login;
+
+
+
+
+
