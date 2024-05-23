@@ -6,40 +6,40 @@ import Navbar from '../../Components/User/Navbar';
 const products = [
   {
     id: 1,
-    name: 'Highlighter',
+    name: 'Moisturizer',
     price: 500,
     gender: 'female',
-    image: '/src/assets/images/Highlighter.png',
-    description: 'Add a touch of glow with our highlighter.'
+    image: '/src/assets/images/muisturizers.png',
+    description: 'Moiturize your skin.'
   },
   {
     id: 2,
-    name: 'Lipstick',
+    name: 'serum',
     price: 1000,
     gender: 'female',
-    image: '/src/assets/images/lipstck.png',
-    description: 'Perfect your pout with our lipstick.'
+    image: '/src/assets/images/serum.png',
+    description: 'Perfect your skin with serum.'
   },
   {
     id: 3,
-    name: 'Foundation',
+    name: 'Sunscreen',
     price: 1500,
     gender: 'female',
-    image: '/src/assets/images/foundation.png',
-    description: 'Achieve flawless skin with our foundation.'
+    image: '/src/assets/images/sunscreen.png',
+    description: 'Protect you skin from the uv sunlight with sunscreen.'
   },
   {
     id: 4,
-    name: 'Blush',
+    name: 'Cleanser',
     price: 700,
     gender: 'female',
-    image: '/src/assets/images/brush.png',
-    description: 'Add a rosy tint to your cheeks with our blush.'
+    image: '/src/assets/images/cleansers.png',
+    description: 'Add a rosy tint to your cheeks with our cleanser.'
   },
-  // Add more products as needed
+  
 ];
 
-const MakeUp = ({ addToCart }) => {
+const SkinCare = ({ addToCart }) => {
   const [sortGender, setSortGender] = useState('');
 
   const handleSortChange = (event) => {
@@ -56,7 +56,7 @@ const MakeUp = ({ addToCart }) => {
       <Navbar />
       <div>
         <div className='flex flex-col sm:flex-row justify-between items-center mb-4'>
-          <h1 className='text-2xl font-bold text-[#a87c3b]'>MakeUp</h1>
+          <h1 className='text-2xl font-bold text-[#a87c3b]'>SkinCare</h1>
           <div className='flex items-center mt-2 sm:mt-0'>
             <label htmlFor='gender-sort' className='mr-2 text-[#a87c3b]'>Sort by Gender:</label>
             <select
@@ -91,5 +91,10 @@ const MakeUp = ({ addToCart }) => {
   );
 };
 
-export default MakeUp;
+export default SkinCare;
+
+
+
+
+
 

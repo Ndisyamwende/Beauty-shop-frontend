@@ -17,6 +17,7 @@ import CustomerContact from './Pages/User/Contact';
 import Messages from './Pages/Admin/Messages';
 import ProductList from './Pages/User/MakeUp';
 import Dashboard from './Pages/Admin/DashBoard';
+import SkinCare from './Pages/User/SkinCare';
 
 
 
@@ -100,6 +101,20 @@ function App() {
             </PrivateRoute>
           }
         />
+
+
+
+          <Route
+          path="/skincare"
+          element={
+            <PrivateRoute role="user">
+              <SkinCare />
+            </PrivateRoute>
+          }
+        />
+
+
+
       </Routes>
     </Router>
     );

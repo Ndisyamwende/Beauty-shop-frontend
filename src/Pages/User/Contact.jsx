@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Footer from '../../Components/User/Footer';
+import Navbar from '../../Components/User/Navbar';
 
 const CustomerContact = () => {
   const [name, setName] = useState('');
@@ -32,6 +33,8 @@ const CustomerContact = () => {
   };
 
   return (
+    <div>
+      <Navbar/>
     <div>
       <div className="min-h-screen bg-[#f5e3b3] flex items-center justify-center">
         <div className="bg-[#f5e3b3] flex flex-col md:flex-row items-center justify-center p-8 rounded-lg shadow-lg space-y-6 md:space-y-0 md:space-x-6">
@@ -89,6 +92,7 @@ const CustomerContact = () => {
         </div>
       </div>
       <Footer />
+    </div>
     </div>
   );
 };

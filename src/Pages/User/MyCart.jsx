@@ -31,6 +31,13 @@ const MyCart = () => {
   };
 
   return (
+
+
+
+
+
+
+    
     <div>
       <div className="flex justify-center p-8 bg-yellow-100 min-h-screen">
         <div className="w-full max-w-5xl flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-8">
