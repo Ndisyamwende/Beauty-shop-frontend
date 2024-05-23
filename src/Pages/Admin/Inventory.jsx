@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Modal from "react-modal";
-import Footer from "../../Components/User/Footer";
+
 
 Modal.setAppElement("#root");
 
 export const Inventory = () => {
+  
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState("All");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,8 +28,8 @@ export const Inventory = () => {
 
     console.log("Using token:", token);
 
-    fetch("http://127.0.0.1:5000/products", {
-      method: "POST",
+    fetch("http://127.0.0.1:5500/product", {
+      method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -62,17 +63,68 @@ export const Inventory = () => {
     setIsModalOpen(true);
   };
 
-  const handleSaveProduct = () => {
-    // Save product logic here
-    setIsModalOpen(false);
+  const handleSaveProduct = (event) => {
+    event.preventDefault(); // Prevents default form submission behavior
+    const token = localStorage.getItem("token");
+
+    fetch("http://127.0.0.1:5000/product", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(newProduct),
+    })
+      .then((response) => {
+        if (response.ok) {
+          setIsModalOpen(false);
+          // Fetch updated products after adding a new product
+          fetchProducts(token);
+        } else {
+          console.error(`Error: ${response.status}`);
+        }
+      })
+      .catch((error) => console.error("Error saving product:", error));
   };
 
   const handleDeleteProduct = (id) => {
-    // Delete product logic here
+    const token = localStorage.getItem("token");
+
+    fetch(`http://127.0.0.1:5500/products/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        // Remove the deleted product from the state
+        setProducts(products.filter((product) => product.id !== id));
+      })
+      .catch((error) => {
+        console.error("Error deleting product:", error);
+      });
   };
 
-  const handleEditProduct = (product) => {
-    // Edit product logic here
+  const handleEditProduct = (id, product) => {
+    const token = localStorage.getItem("token");
+
+    fetch(`http://127.0.0.1:5500/products/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(product),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        // Update the product in the state
+        setProducts(products.map((p) => (p.id === id ? product : p)));
+      })
+      .catch((error) => console.error("Error editing product:", error));
   };
 
   return (
@@ -127,7 +179,9 @@ export const Inventory = () => {
                 <td className="p-[10px]">{product.stock}</td>
                 <td className="p-[10px]">{product.description}</td>
                 <td className="p-[10px] flex gap-2">
-                  <button onClick={() => handleEditProduct(product)}>
+                  <button
+                    onClick={() => handleEditProduct(product.id, product)}
+                  >
                     <FaEdit className="text-blue-500" />
                   </button>
                   <button onClick={() => handleDeleteProduct(product.id)}>
@@ -214,9 +268,6 @@ export const Inventory = () => {
           </form>
         </div>
       </Modal>
-      <div>
-        
-      </div>
     </div>
   );
 };
