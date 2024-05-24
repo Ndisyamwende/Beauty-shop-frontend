@@ -7,14 +7,21 @@ const CustomerContact = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!name || !email || !message) {
+      setError('All fields are required.');
+      return;
+    }
     try {
-      const response = await fetch('http://127.0.0.1:5000/contact', {
+      const token = localStorage.getItem("token");
+      const response = await fetch('https://beautyshop-backend-1.onrender.com/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({ name, email, message }),
       });
@@ -23,12 +30,14 @@ const CustomerContact = () => {
         setEmail('');
         setMessage('');
         setSubmitted(true);
+        setError(null);
         setTimeout(() => setSubmitted(false), 3000);
       } else {
-        console.error('Failed to submit form:', response.statusText);
+        const errorMessage = await response.json();
+        throw new Error(errorMessage);
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
+      setError(error.message);
     }
   };
 
@@ -86,6 +95,11 @@ const CustomerContact = () => {
             {submitted && (
               <div className="mt-4 text-[#865f3c] text-center">
                 Thank you for your submission!
+              </div>
+            )}
+            {error && (
+              <div className="mt-4 text-red-500 text-center">
+                {error}
               </div>
             )}
           </div>

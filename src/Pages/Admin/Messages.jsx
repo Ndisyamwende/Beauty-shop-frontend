@@ -1,23 +1,25 @@
-
 import React, { useState, useEffect } from 'react';
 
 const Messages = () => {
   const [contacts, setContacts] = useState([]);
   const [viewContact, setViewContact] = useState(null);
   const [replyMessage, setReplyMessage] = useState('');
+  const [fetchError, setFetchError] = useState(null);
 
   useEffect(() => {
     const fetchContacts = async () => {
       try {
-        const response = await fetch('http://your-flask-api-url.com/contacts');
+        const response = await fetch('https://your-actual-flask-api-url.com/contacts');
         if (response.ok) {
           const data = await response.json();
           setContacts(data.contacts);
         } else {
           console.error('Failed to fetch contacts:', response.statusText);
+          setFetchError('Failed to fetch contacts');
         }
       } catch (error) {
         console.error('Error fetching contacts:', error);
+        setFetchError('Error fetching contacts');
       }
     };
     fetchContacts();
@@ -29,7 +31,7 @@ const Messages = () => {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://your-flask-api-url.com/contacts/${id}`, {
+      await fetch(`https://your-actual-flask-api-url.com/contacts/${id}`, {
         method: 'DELETE',
       });
       const updatedContacts = contacts.filter((contact) => contact.id !== id);
@@ -46,7 +48,7 @@ const Messages = () => {
 
   const handleReply = async (id) => {
     try {
-      await fetch(`http://127.0.0.1:5000/contacts/${id}`, {
+      await fetch(`https://your-actual-flask-api-url.com/contacts/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -72,6 +74,11 @@ const Messages = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-4">Contact Messages</h1>
+      {fetchError && (
+        <div className="text-red-500 mb-4">
+          {fetchError}
+        </div>
+      )}
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
@@ -169,3 +176,5 @@ const Messages = () => {
 };
 
 export default Messages;
+
+

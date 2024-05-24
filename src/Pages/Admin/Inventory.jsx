@@ -15,7 +15,7 @@ export const Inventory = () => {
     name: "",
     gender: "",
     price: "",
-    stock: "",
+    quantity_available: "",
   });
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export const Inventory = () => {
 
     console.log("Using token:", token);
 
-    fetch("http://127.0.0.1:5500/product", {
+    fetch("http://127.0.0.1:5000/product", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -45,8 +45,8 @@ export const Inventory = () => {
       })
       .then((data) => {
         console.log("Fetched data:", data);
-        if (data && data.products) {
-          setProducts(data.products);
+        if (data && data) {
+          setProducts(data);
         } else {
           console.error("Unexpected data format:", data);
         }
@@ -79,7 +79,7 @@ export const Inventory = () => {
         if (response.ok) {
           setIsModalOpen(false);
           // Fetch updated products after adding a new product
-          fetchProducts(token);
+          // fetchProducts(token);
         } else {
           console.error(`Error: ${response.status}`);
         }
@@ -90,7 +90,7 @@ export const Inventory = () => {
   const handleDeleteProduct = (id) => {
     const token = localStorage.getItem("token");
 
-    fetch(`http://127.0.0.1:5500/products/${id}`, {
+    fetch(`https://beautyshop-backend-1.onrender.com/products/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -111,7 +111,7 @@ export const Inventory = () => {
   const handleEditProduct = (id, product) => {
     const token = localStorage.getItem("token");
 
-    fetch(`http://127.0.0.1:5500/products/${id}`, {
+    fetch(`https://beautyshop-backend-1.onrender.com/products/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -162,7 +162,7 @@ export const Inventory = () => {
               <th className="p-[10px]">Gender</th>
               <th className="p-[10px]">Price</th>
               <th className="p-[10px]">Description</th>
-              <th className="p-[10px]">Stock</th>
+              <th className="p-[10px]">quantity_available</th>
               <th className="p-[10px]">Action</th>
             </tr>
           </thead>
@@ -172,11 +172,11 @@ export const Inventory = () => {
                 key={product.id}
                 className="bg-white dark:bg-variant1-dark border-[6px]"
               >
-                <td className="p-[10px] capitalize">{product.image}</td>
+                <td className="p-[10px] capitalize"><img src={product.image} alt={product.name} height={50} width={50} /></td>
                 <td className="p-[10px] capitalize">{product.name}</td>
                 <td className="p-[10px]">{product.gender}</td>
                 <td className="p-[10px]">{product.price}</td>
-                <td className="p-[10px]">{product.stock}</td>
+                <td className="p-[10px]">{product.quantity_available}</td>
                 <td className="p-[10px]">{product.description}</td>
                 <td className="p-[10px] flex gap-2">
                   <button
@@ -252,10 +252,10 @@ export const Inventory = () => {
             />
             <input
               type="number"
-              placeholder="Stock"
-              value={newProduct.stock}
+              placeholder="quantity_available"
+              value={newProduct.quantity_available}
               onChange={(e) =>
-                setNewProduct({ ...newProduct, stock: e.target.value })
+                setNewProduct({ ...newProduct, quantity_available: e.target.value })
               }
               className="block w-full mb-2 p-2 border rounded"
             />
@@ -271,3 +271,4 @@ export const Inventory = () => {
     </div>
   );
 };
+

@@ -18,6 +18,7 @@ import Messages from './Pages/Admin/Messages';
 import ProductList from './Pages/User/MakeUp';
 import Dashboard from './Pages/Admin/DashBoard';
 import SkinCare from './Pages/User/SkinCare';
+import MakeUp from './Pages/User/MakeUp';
 
 
 
@@ -109,6 +110,18 @@ function App() {
           element={
             <PrivateRoute role="user">
               <SkinCare />
+            </PrivateRoute>
+          }
+        />
+
+
+
+
+<Route
+          path="/makup"
+          element={
+            <PrivateRoute role="user">
+              <MakeUp />
             </PrivateRoute>
           }
         />

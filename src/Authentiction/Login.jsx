@@ -12,7 +12,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:5000/login', { email, password });
+      const response = await axios.post('https://beautyshop-backend-1.onrender.com/login', { email, password });
       const { access_token, role } = response.data;
 
       localStorage.setItem('token', access_token);

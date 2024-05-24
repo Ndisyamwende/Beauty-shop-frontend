@@ -13,7 +13,7 @@ export const Customer = () => {
 
     console.log("Using token:", token);
 
-    fetch("http://127.0.0.1:5500/user", {
+    fetch("https://beautyshop-backend-1.onrender.com/user", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -31,8 +31,8 @@ export const Customer = () => {
       .then((data) => {
         console.log("Fetched data:", data);
 
-        if (data && data.users) {
-          const filteredUsers = data.users.filter(
+        if (data && data) {
+          const filteredUsers = data.filter(
             (user) => user.role === "user"
           );
           setUsers(filteredUsers);

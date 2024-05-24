@@ -1,16 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../../Components/User/Footer';
-import { Link } from 'react-router-dom';
 import CheckoutForm from './Checkout';
+import Navbar from '../../Components/User/Navbar';
 
 const MyCart = () => {
-  const [cartItems, setCartItems] = useState([
-    { id: 1, name: 'Highlighter', price: 500, quantity: 1, image: 'https://images.unsplash.com/photo-1557205465-f3762edea6d3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFrZXVwJTIwZm91bmRhdGlvbnxlbnwwfHwwfHx8MA%3D%3D' },
-    { id: 2, name: 'Foundation', price: 1500, quantity: 1, image: 'https://images.unsplash.com/photo-1547887538-047f814bfb64?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
-  ]);
+  const [cartItems, setCartItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      try {
+        const response = await fetch('https://beautyshop-backend-1.onrender.com/orderitem');
+        if (!response.ok) {
+          throw new Error('Failed to fetch cart items');
+        }
+        const data = await response.json();
+        setCartItems(data.order_items); // Assuming the response data has a key 'order_items'
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCartItems();
+  }, []);
 
   const incrementQuantity = (id) => {
     setCartItems(cartItems.map(item => item.id === id ? { ...item, quantity: item.quantity + 1 } : item));
@@ -30,14 +48,17 @@ const MyCart = () => {
     navigate('/checkout');
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
-
-
-
-
-
-
-    
+    <div>
+      <Navbar/>
     <div>
       <div className="flex justify-center p-8 bg-yellow-100 min-h-screen">
         <div className="w-full max-w-5xl flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-8">
@@ -77,11 +98,12 @@ const MyCart = () => {
               CHECKOUT (KSHS {totalAmount})
             </button>
             
-{/*    */}
           </div>
         </div>
       </div>
       <Footer />
+    </div>
+
     </div>
   );
 };
