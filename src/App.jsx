@@ -11,7 +11,7 @@ import { Customer } from './Pages/Admin/Customer';
 
 
 
-import './App.css';
+
 import CheckoutForm from './Pages/User/Checkout';
 import CustomerContact from './Pages/User/Contact';
 import Messages from './Pages/Admin/Messages';

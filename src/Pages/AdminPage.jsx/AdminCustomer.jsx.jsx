@@ -31,11 +31,8 @@ export const AdminCustomer = () => {
       .then((data) => {
         console.log("Fetched data:", data);
 
-        if (data && data.users) {
-          const filteredUsers = data.users.filter(
-            (user) => user.role === "user"
-          );
-          setUsers(filteredUsers);
+        if (Array.isArray(data)) {
+          setUsers(data);
         } else {
           console.error("Unexpected data format:", data);
         }
@@ -44,7 +41,7 @@ export const AdminCustomer = () => {
   }, []);
 
   return (
-    <div className="bg-light-mode min-h-screen p-4">
+    <div className="bg-light-mode ">
       <h1 className="text-Heading font-bold text-2xl text-center py-3">
         CUSTOMERS
       </h1>
@@ -55,7 +52,7 @@ export const AdminCustomer = () => {
             className="bg-white dark:bg-variant1-dark p-2 shadow-md text-center"
           >
             <div className="text-[18px] font-body bg-white dark:bg-variant1-dark text-secondary p-2 capitalize">
-              {user.name}
+              {user.email} {/* Display email if name is not available */}
             </div>
             <div className="text-[14px] font-body bg-white dark:bg-variant1-dark text-Heading dark:text-primary-light p-2 capitalize">
               {user.email}
@@ -70,7 +67,6 @@ export const AdminCustomer = () => {
         <table className="w-full mx-auto text-left text-Heading">
           <thead className="text-[18px] font-body bg-secondary text-black">
             <tr className="border-[6px] border-dark-mode bg-dark-mode">
-              <th className="p-[10px]">Name</th>
               <th className="p-[10px]">Email</th>
               <th className="p-[10px]">Address</th>
             </tr>
@@ -78,7 +74,6 @@ export const AdminCustomer = () => {
           <tbody className="text-[16px] font-normal text-Heading">
             {users.map((user) => (
               <tr key={user.id} className=" border-[6px]">
-                <td className="p-[10px] capitalize">{user.name}</td>
                 <td className="p-[10px] capitalize">{user.email}</td>
                 <td className="p-[10px]">{user.address}</td>
               </tr>

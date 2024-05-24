@@ -6,72 +6,62 @@ import {
 } from "react-icons/bs";
 
 function Dashboard() {
-  const [productsCount, setProductsCount] = useState(0);
-  const [categoriesCount, setCategoriesCount] = useState(0);
-  const [customersCount, setCustomersCount] = useState(0);
+  const [productsCount, setProductsCount] = useState(12); // Replace with actual API logic
+  const [categoriesCount, setCategoriesCount] = useState(3); // Replace with actual API logic
+  const [customersCount, setCustomersCount] = useState(5); // Replace with actual API logic
   const [latestOrders, setLatestOrders] = useState([]);
   const [dailySales, setDailySales] = useState(0);
   const [monthlySales, setMonthlySales] = useState(0);
 
   useEffect(() => {
-    // Fetch product, category, and customer counts
-    // Replace these with actual API endpoints and logic
-    setProductsCount(12);
-    setCategoriesCount(3);
-    setCustomersCount(5);
+    const token = localStorage.getItem("token");
 
-    // Dummy data for testing
-    const dummyOrders = [
-      {
-        id: 1,
-        timestamp: "2024-05-20T12:34:56",
-        total_amount: 1500,
-        shipping_address: "123 Main St",
-        payment_method: "Mpesa",
+    if (!token) {
+      console.error("Token not found");
+      return;
+    }
+
+    fetch("http://127.0.0.1:5000/orders", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
       },
-      {
-        id: 2,
-        timestamp: "2024-05-21T09:21:34",
-        total_amount: 2200,
-        shipping_address: "456 Elm St",
-        payment_method: "Visa card",
-      },
-      {
-        id: 3,
-        timestamp: "2024-05-22T14:45:12",
-        total_amount: 3000,
-        shipping_address: "789 Oak St",
-        payment_method: "Mpesa",
-      },
-    ];
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setLatestOrders(data);
 
-    setLatestOrders(dummyOrders);
+        const today = new Date().toISOString().split("T")[0];
+        const firstDayOfMonth = new Date(
+          new Date().getFullYear(),
+          new Date().getMonth(),
+          1
+        )
+          .toISOString()
+          .split("T")[0];
 
-    // Calculate sales for the dummy data
-    const today = new Date().toISOString().split("T")[0];
-    const firstDayOfMonth = new Date(
-      new Date().getFullYear(),
-      new Date().getMonth(),
-      1
-    )
-      .toISOString()
-      .split("T")[0];
+        let dailyTotal = 0;
+        let monthlyTotal = 0;
 
-    let dailyTotal = 0;
-    let monthlyTotal = 0;
+        data.forEach((order) => {
+          const orderDate = order.timestamp.split("T")[0];
+          if (orderDate === today) {
+            dailyTotal += order.total_amount;
+          }
+          if (orderDate >= firstDayOfMonth) {
+            monthlyTotal += order.total_amount;
+          }
+        });
 
-    dummyOrders.forEach((order) => {
-      const orderDate = order.timestamp.split("T")[0];
-      if (orderDate === today) {
-        dailyTotal += order.total_amount;
-      }
-      if (orderDate >= firstDayOfMonth) {
-        monthlyTotal += order.total_amount;
-      }
-    });
-
-    setDailySales(dailyTotal);
-    setMonthlySales(monthlyTotal);
+        setDailySales(dailyTotal);
+        setMonthlySales(monthlyTotal);
+      })
+      .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
   return (

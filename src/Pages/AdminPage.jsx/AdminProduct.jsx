@@ -86,7 +86,7 @@ export const AdminProduct = () => {
 function handleDeleteProduct() {
   const token = localStorage.getItem("token");
 
-  fetch(`http://127.0.0.1:5500/products/${product.id}`, {
+  fetch(`http://127.0.0.1:5500/products/${products.id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
