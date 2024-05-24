@@ -1,10 +1,8 @@
-
-
-
 import React, { useState } from 'react';
 
 function ProductCard({ product, addToCart }) {
   const [showPopup, setShowPopup] = useState(false);
+  const defaultImage = "path/to/placeholder/image.jpg"; // Add path to a placeholder image
 
   const handleAddToCartClick = () => {
     setShowPopup(true);
@@ -16,7 +14,7 @@ function ProductCard({ product, addToCart }) {
 
   return (
     <div className="p-4 bg-white rounded shadow hover:shadow-lg">
-      <img src={product.image} alt={product.name} className="w-full h-48 object-cover rounded mb-4" />
+      <img src={product.image || defaultImage} alt={product.name} className="w-full h-48 object-cover rounded mb-4" />
       <h3 className="text-lg font-semibold">{product.name}</h3>
       <p className="text-gray-700">{product.description}</p>
       <button
@@ -29,7 +27,7 @@ function ProductCard({ product, addToCart }) {
       {showPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded shadow-lg max-w-sm w-full">
-            <img src={product.image} alt={product.name} className="w-full h-48 object-cover rounded mb-4" />
+            <img src={product.image || defaultImage} alt={product.name} className="w-full h-48 object-cover rounded mb-4" />
             <h3 className="text-xl font-semibold">{product.name}</h3>
             <p className="text-gray-700">{product.description}</p>
             <button
