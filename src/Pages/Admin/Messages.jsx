@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 
 const Messages = () => {
@@ -46,7 +45,7 @@ const Messages = () => {
 
   const handleReply = async (id) => {
     try {
-      await fetch(`http://127.0.0.1:5000/contacts/${id}`, {
+      await fetch(`http://your-flask-api-url.com/contacts/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
