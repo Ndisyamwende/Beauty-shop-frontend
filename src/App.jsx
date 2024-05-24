@@ -52,76 +52,7 @@ function App() {
           path="/admin/*"
           element={
             <PrivateRoute role="admin">
-              <div className="flex">
-                <Sidebar />
-                <div className="flex-1 p-4">
-                  <Routes>
-                    <Route path="dashboard" element={<Dashboard />} />
-                    <Route path="inventory" element={<Inventory />} />
-                    <Route path="customers" element={<Customer />} />
-                    <Route path="new-hire" element={<NewHire />} />
-                    <Route path="messages" element={<Messages/>} />
-                 
-                  </Routes>
-                  
-                   </div>
-              </div>
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/cart"
-          element={
-            <PrivateRoute role="user">
-              <MyCart />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/contactus"
-          element={
-            <PrivateRoute role="user">
-              <CustomerContact/>
-            </PrivateRoute>
-          }
-        />
-           <Route
-          path="/ho"
-          element={
-            <PrivateRoute role="user">
-              <Homepage/>
-            </PrivateRoute>
-          }
-        />
-        
-         <Route
-          path="/makeups"
-          element={
-            <PrivateRoute role="user">
-              <ProductList />
-            </PrivateRoute>
-          }
-        />
-
-
-
-          <Route
-          path="/skincare"
-          element={
-            <PrivateRoute role="user">
-              <SkinCare />
-            </PrivateRoute>
-          }
-        />
-
-
-
-
-<Route
-          path="/makup"
-          element={
-            <PrivateRoute role="user">
-              <MakeUp />
+              <Admin />
             </PrivateRoute>
           }
         />
@@ -134,7 +65,3 @@ function App() {
 }
 
 export default App;
-
-
-
-

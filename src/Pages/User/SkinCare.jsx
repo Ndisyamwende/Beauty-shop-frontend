@@ -92,9 +92,3 @@ const SkinCare = ({ addToCart }) => {
 };
 
 export default SkinCare;
-
-
-
-
-
-

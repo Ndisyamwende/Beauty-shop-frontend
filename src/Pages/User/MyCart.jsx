@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../../Components/User/Footer';
 import CheckoutForm from './Checkout';
-import Navbar from '../../Components/User/Navbar';
 
 const MyCart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -58,8 +57,6 @@ const MyCart = () => {
 
   return (
     <div>
-      <Navbar/>
-    <div>
       <div className="flex justify-center p-8 bg-yellow-100 min-h-screen">
         <div className="w-full max-w-5xl flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-8">
           <div className="flex-1 bg-yellow-100 p-6 shadow-md rounded-lg border border-gray-300">
@@ -102,8 +99,6 @@ const MyCart = () => {
         </div>
       </div>
       <Footer />
-    </div>
-
     </div>
   );
 };
