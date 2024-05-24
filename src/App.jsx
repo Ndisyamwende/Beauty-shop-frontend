@@ -9,18 +9,13 @@ import { NewHire } from './Pages/Admin/NewHire';
 import { Inventory } from './Pages/Admin/Inventory';
 import { Customer } from './Pages/Admin/Customer';
 import SkinCare from './Pages/User/SkinCare';
-
-
-
-
+import Fragrances from './Pages/User/Fragrances'; // Import Fragrances page
 import CheckoutForm from './Pages/User/Checkout';
 import CustomerContact from './Pages/User/Contact';
 import Messages from './Pages/Admin/Messages';
 import ProductList from './Pages/User/MakeUp';
 import Dashboard from './Pages/Admin/DashBoard';
-// import SkinCare from './Pages/User/SkinCare';
-
-
+import MakeUp from './Pages/User/MakeUp';
 
 const PrivateRoute = ({ children, role }) => {
   const token = localStorage.getItem('token');
@@ -60,11 +55,9 @@ function App() {
                     <Route path="inventory" element={<Inventory />} />
                     <Route path="customers" element={<Customer />} />
                     <Route path="new-hire" element={<NewHire />} />
-                    <Route path="messages" element={<Messages/>} />
-                 
+                    <Route path="messages" element={<Messages />} />
                   </Routes>
-                  
-                   </div>
+                </div>
               </div>
             </PrivateRoute>
           }
@@ -81,31 +74,27 @@ function App() {
           path="/contactus"
           element={
             <PrivateRoute role="user">
-              <CustomerContact/>
+              <CustomerContact />
             </PrivateRoute>
           }
         />
-           <Route
+        <Route
           path="/ho"
           element={
             <PrivateRoute role="user">
-              <Homepage/>
+              <Homepage />
             </PrivateRoute>
           }
         />
-        
-         <Route
+        <Route
           path="/makeups"
           element={
             <PrivateRoute role="user">
-              <ProductList />
+              <MakeUp />
             </PrivateRoute>
           }
         />
-
-
-
-          <Route
+        <Route
           path="/skincare"
           element={
             <PrivateRoute role="user">
@@ -113,12 +102,17 @@ function App() {
             </PrivateRoute>
           }
         />
-
-
-
+        <Route
+          path="/fragrances"
+          element={
+            <PrivateRoute role="user">
+              <Fragrances /> {/* Add Fragrances route */}
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </Router>
-    );
+  );
 }
 
 export default App;

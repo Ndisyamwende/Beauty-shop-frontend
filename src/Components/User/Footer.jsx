@@ -19,8 +19,8 @@ const Footer = () => {
         <div className="w-full sm:w-auto mb-4 sm:mb-0">
           <h3 className="font-bold mb-2">SHOP</h3>
           <ul>
-            <li className="mb-1"><Link to="/scents" className="hover:underline">Scents</Link></li>
-            <li className="mb-1"><Link to="/mak" className="hover:underline">Makeup</Link></li>
+            <li className="mb-1"><Link to="/fragrances" className="hover:underline">Fragrances</Link></li>
+            <li className="mb-1"><Link to="/makeup" className="hover:underline">Makeup</Link></li>
             <li><Link to="/skincare" className="hover:underline">Skin Care</Link></li>
           </ul>
         </div>

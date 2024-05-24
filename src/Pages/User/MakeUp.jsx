@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import ProductCard from './ProdctCard';
 import Footer from '../../Components/User/Footer';
 import Navbar from '../../Components/User/Navbar';
 
 const MakeUp = ({ addToCart }) => {
   const [products, setProducts] = useState([]);
-  const [sortGender, setSortGender] = useState('');
+  const [sortCategory, setSortCategory] = useState('');
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -38,36 +39,37 @@ const MakeUp = ({ addToCart }) => {
   }, []);
 
   const handleSortChange = (event) => {
-    setSortGender(event.target.value);
+    setSortCategory(event.target.value);
   };
 
-  const filteredProducts = sortGender
-    ? products.filter((product) => product.gender === sortGender)
+  const filteredProducts = sortCategory
+    ? products.filter((product) => product.category === sortCategory)
     : products;
 
   return (
     <div>
-      <div className="bg-[#efe3b8] p-5">
+      <div className="bg-[#f4f4f4] p-5">
         <Navbar />
         <div>
           <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
-            <h1 className="text-2xl font-bold text-[#a87c3b]">MakeUp</h1>
+            <h1 className="text-2xl font-bold text-[#333]">MakeUp</h1>
             <div className="flex items-center mt-2 sm:mt-0">
-              <label htmlFor="gender-sort" className="mr-2 text-[#a87c3b]">
-                Sort by Gender:
+              <label htmlFor="category-sort" className="mr-2 text-[#333]">
+                Sort by Category:
               </label>
               <select
-                id="gender-sort"
-                value={sortGender}
+                id="category-sort"
+                value={sortCategory}
                 onChange={handleSortChange}
-                className="px-4 py-2 border rounded border-[#a87c3b] text-[#a87c3b] bg-[#f5e9d3]"
+                className="px-4 py-2 border rounded border-[#333] text-[#333] bg-[#e9e9e9]"
               >
                 <option value="">All</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                <option value="face">Face</option>
+                <option value="eyes">Eyes</option>
+                <option value="lips">Lips</option>
               </select>
             </div>
-            <div className="text-lg font-semibold text-[#a87c3b] mt-2 sm:mt-0">
+            <div className="text-lg font-semibold text-[#333] mt-2 sm:mt-0">
               Showing All: {filteredProducts.length} Results
             </div>
           </div>

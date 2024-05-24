@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { FaSearch, FaCartPlus } from 'react-icons/fa';
 import { IoMenu, IoMoonSharp } from 'react-icons/io5';
 import { PiSignOutBold } from 'react-icons/pi';
-import MyCart from './MyCart';
 
 function Homepage() {
   const addToCart = (product, quantity) => {
@@ -59,7 +58,7 @@ function Homepage() {
             <h2 className="mt-7">Make Up</h2>
           </div>
           <div className="flex flex-col items-center">
-            <Link to="/fragrance">
+            <Link to="/fragrances">
               <img src="/src/assets/images/frag.png" alt="Fragrance" className="max-w-full h-auto" />
             </Link>
             <h2 className="mt-7">Fragrance</h2>
@@ -83,8 +82,8 @@ function Homepage() {
           <div className="w-full sm:w-auto mb-4 sm:mb-0">
             <h3 className="font-bold mb-2">SHOP</h3>
             <ul>
-              <li className="mb-1"><Link to="/scents" className="hover:underline">Scents</Link></li>
-              <li className="mb-1"><Link to="/makeup" className="hover:underline">Makeup</Link></li>
+              <li className="mb-1"><Link to="/fragrances" className="hover:underline">Fragrances</Link></li>
+              <li className="mb-1"><Link to="/makeups" className="hover:underline">MakeUp</Link></li>
               <li><Link to="/skincare" className="hover:underline">Skin Care</Link></li>
             </ul>
           </div>
