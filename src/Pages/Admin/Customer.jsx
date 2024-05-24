@@ -13,7 +13,7 @@ export const Customer = () => {
 
     console.log("Using token:", token);
 
-    fetch("http://127.0.0.1:5000/user", {
+    fetch("https://beautyshop-backend-1.onrender.com/user", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -31,8 +31,9 @@ export const Customer = () => {
       .then((data) => {
         console.log("Fetched data:", data);
 
-        if (data && Array.isArray(data)) {
-          setUsers(data);
+        if (Array.isArray(data)) {
+          const filteredUsers = data.filter((user) => user.role === "user");
+          setUsers(filteredUsers);
         } else {
           console.error("Unexpected data format:", data);
         }
@@ -74,9 +75,9 @@ export const Customer = () => {
           </thead>
           <tbody className="text-[16px] font-normal text-Heading">
             {users.map((user) => (
-              <tr key={user.id} className=" border-[6px]">
-                <td className="p-[10px] capitalize">{user.username}</td>
-                <td className="p-[10px]">{user.email}</td>
+              <tr key={user.id} className="border-[6px]">
+                <td className="p-[10px] capitalize">{user.name}</td>
+                <td className="p-[10px] capitalize">{user.email}</td>
                 <td className="p-[10px]">{user.address}</td>
               </tr>
             ))}
