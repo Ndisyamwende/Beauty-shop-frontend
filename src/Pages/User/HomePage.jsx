@@ -3,13 +3,8 @@ import { Link } from 'react-router-dom';
 import { FaSearch, FaCartPlus } from 'react-icons/fa';
 import { IoMenu, IoMoonSharp } from 'react-icons/io5';
 import { PiSignOutBold } from 'react-icons/pi';
-// import ProductList from './ProductList';
-// import { products as SampleProducts } from '../Products/Product list/data';
-import MyCart from './MyCart';
 
 function Homepage() {
-  // const [products, setProducts] = useState(SampleProducts);
-
   const addToCart = (product, quantity) => {
     console.log(`Added ${quantity} of ${product.name} to the cart.`);
     // Add the product to the cart logic here
@@ -26,7 +21,7 @@ function Homepage() {
           <div className="relative flex-grow flex justify-center w-full lg:w-auto">
             <div className="relative w-full max-w-lg">
               <input
-                className="w-full h-[40px] bg-[#efe3b8] rounded-[15px] border border-solid border-black pl-10 pr-4 [font-family:'Inter-Regular',Helvetica] font-normal text-black text-[12px]"
+                className="w-full h-[40px] bg-[#efe3b8] rounded-[15px] border border-solid border-black pl-10 pr-4 font-normal text-black text-[12px]"
                 placeholder="Search for beauty Brands and Products"
               />
               <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black text-lg" />
@@ -63,7 +58,7 @@ function Homepage() {
             <h2 className="mt-7">Make Up</h2>
           </div>
           <div className="flex flex-col items-center">
-            <Link to="/fragrance">
+            <Link to="/fragrances">
               <img src="/src/assets/images/frag.png" alt="Fragrance" className="max-w-full h-auto" />
             </Link>
             <h2 className="mt-7">Fragrance</h2>
@@ -87,8 +82,8 @@ function Homepage() {
           <div className="w-full sm:w-auto mb-4 sm:mb-0">
             <h3 className="font-bold mb-2">SHOP</h3>
             <ul>
-              <li className="mb-1"><Link to="/scents" className="hover:underline">Scents</Link></li>
-              <li className="mb-1"><Link to="/makeup" className="hover:underline">Makeup</Link></li>
+              <li className="mb-1"><Link to="/fragrances" className="hover:underline">Fragrances</Link></li>
+              <li className="mb-1"><Link to="/makeups" className="hover:underline">MakeUp</Link></li>
               <li><Link to="/skincare" className="hover:underline">Skin Care</Link></li>
             </ul>
           </div>

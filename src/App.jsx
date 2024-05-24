@@ -8,9 +8,9 @@ import MyCart from './Pages/User/MyCart';
 import { NewHire } from './Pages/Admin/NewHire';
 import { Inventory } from './Pages/Admin/Inventory';
 import { Customer } from './Pages/Admin/Customer';
-// import SkinCare from './Pages/User/SkinCare';
-// import Fragrances from './Pages/User/Fragrances';
-// import CheckoutForm from './Pages/User/Checkout';
+import SkinCare from './Pages/User/SkinCare';
+import Fragrances from './Pages/User/Fragrances'; // Import Fragrances page
+import CheckoutForm from './Pages/User/Checkout';
 import CustomerContact from './Pages/User/Contact';
 import Messages from './Pages/Admin/Messages';
 // import ProductList from './Pages/User/MakeUp';
@@ -91,15 +91,7 @@ function App() {
           path="/makeups"
           element={
             <PrivateRoute role="user">
-              <MakeUp />
-            </PrivateRoute>
-          }
-        />
-        {/* <Route
-          path="/skincare"
-          element={
-            <PrivateRoute role="user">
-              <SkinCare />
+              <ProductList />
             </PrivateRoute>
           }
         />
@@ -110,10 +102,14 @@ function App() {
               <Fragrances />
             </PrivateRoute>
           }
-        /> */}
+        /> 
       </Routes>
     </Router>
   );
 }
 
 export default App;
+
+
+
+
