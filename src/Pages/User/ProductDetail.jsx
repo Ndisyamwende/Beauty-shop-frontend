@@ -13,7 +13,9 @@ const ProductDetail = () => {
     // Fetch product details from the backend
     const fetchProductDetails = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:5500/products/${id}`);
+        const response = await axios.get(
+          ` http://127.0.0.1:5555/products/${id}`
+        );
         setProduct(response.data);
         setMainImage(response.data.image); // Set the main image to the product image
       } catch (err) {

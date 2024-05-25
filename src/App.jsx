@@ -9,6 +9,9 @@ import { NewHire } from './Pages/Admin/NewHire';
 import { Inventory } from './Pages/Admin/Inventory';
 import { Customer } from './Pages/Admin/Customer';
 import SkinCare from './Pages/User/SkinCare';
+import MakeUp from './Pages/User/MakeUp';
+import Beardgang from './Pages/User/Beard';
+import Fragrances from './Pages/User/Fragrances';
 
 
 
@@ -60,11 +63,9 @@ function App() {
                     <Route path="inventory" element={<Inventory />} />
                     <Route path="customers" element={<Customer />} />
                     <Route path="new-hire" element={<NewHire />} />
-                    <Route path="messages" element={<Messages/>} />
-                 
+                    <Route path="messages" element={<Messages />} />
                   </Routes>
-                  
-                   </div>
+                </div>
               </div>
             </PrivateRoute>
           }
@@ -81,44 +82,59 @@ function App() {
           path="/contactus"
           element={
             <PrivateRoute role="user">
-              <CustomerContact/>
+              <CustomerContact />
             </PrivateRoute>
           }
         />
-           <Route
-          path="/ho"
+        <Route
+          path="/home"
           element={
             <PrivateRoute role="user">
-              <Homepage/>
+              <Homepage />
             </PrivateRoute>
           }
         />
-        
-         <Route
-          path="/makeups"
+
+        <Route
+          path="/makeup"
           element={
             <PrivateRoute role="user">
-              <ProductList />
+              <MakeUp />
             </PrivateRoute>
           }
         />
 
+        <Route
+          path="/beardgang"
+          element={
+            <PrivateRoute role="user">
+              <Beardgang />
+            </PrivateRoute>
+          }
+        />
 
+        <Route
+          path="/fragrances"
+          element={
+            <PrivateRoute role="user">
+              <Fragrances />
+            </PrivateRoute>
+          }
+        />
 
-          <Route
+        <Route
           path="/skincare"
           element={
             <PrivateRoute role="user">
               <SkinCare />
             </PrivateRoute>
           }
+          
         />
-
-
 
       </Routes>
     </Router>
-    );
+  );
 }
 
 export default App;

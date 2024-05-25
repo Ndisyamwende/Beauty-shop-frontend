@@ -32,31 +32,31 @@ const Sidebar = () => {
       <nav className="flex-1 p-4">
         <ul>
           <li className="mb-4">
-            <Link to="/admin/dashboard" className="flex items-center  hover:bg-gray-700 rounded">
+            <Link to="/admin/dashboard" className="flex items-center  hover:bg-light-mode rounded">
               <FaTachometerAlt className="mr-2" />
               Dashboard
             </Link>
           </li>
           <li className="mb-4">
-            <Link to="/admin/inventory" className="flex items-center p-2 hover:bg-gray-700 rounded">
+            <Link to="/admin/inventory" className="flex items-center p-2 hover:bg-light-mode rounded">
               <FaBoxes className="mr-2" />
               Inventory
             </Link>
           </li>
           <li className="mb-4">
-            <Link to="/admin/customers" className="flex items-center p-2 hover:bg-gray-700 rounded">
+            <Link to="/admin/customers" className="flex items-center p-2 hover:bg-light-mode rounded">
               <FaUsers className="mr-2" />
               Customers
             </Link>
           </li>
           <li className="mb-4">
-            <Link to="/admin/new-hire" className="flex items-center p-2 hover:bg-gray-700 rounded">
+            <Link to="/admin/new-hire" className="flex items-center p-2 hover:bg-light-mode rounded">
               <FaUserPlus className="mr-2" />
               New Hire
             </Link>
           </li>
           <li className="mb-4">
-            <Link to="/admin/messages" className="flex items-center p-2 hover:bg-gray-700 rounded">
+            <Link to="/admin/messages" className="flex items-center p-2 hover:bg-light-mode rounded">
               <FaEnvelope className="mr-2" />
               Messages
             </Link>
@@ -64,11 +64,11 @@ const Sidebar = () => {
         </ul>
       </nav>
       <div className="p-4 border-t border-gray-700">
-        <button onClick={toggleTheme} className="flex items-center p-2 hover:bg-gray-700 rounded w-full">
+        <button onClick={toggleTheme} className="flex items-center p-2 hover:bg-light-mode rounded w-full">
           {isDarkMode ? <FaSun className="mr-2" /> : <FaMoon className="mr-2" />}
           {isDarkMode ? 'Light Mode' : 'Dark Mode'}
         </button>
-        <button onClick={handleLogout} className="flex items-center p-2 hover:bg-gray-700 rounded w-full mt-2">
+        <button onClick={handleLogout} className="flex items-center p-2 hover:bg-light-mode rounded w-full mt-2">
           <FaSignOutAlt className="mr-2" />
           Logout
         </button>

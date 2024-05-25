@@ -13,7 +13,9 @@ const MyCart = () => {
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const response = await fetch('https://beautyshop-backend-1.onrender.com/orderitem');
+        const response = await fetch(
+          " https://beautyshop-backend-1.onrender.com/orderitem');"
+        );
         if (!response.ok) {
           throw new Error('Failed to fetch cart items');
         }
@@ -43,9 +45,9 @@ const MyCart = () => {
 
   const totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-  const handleCheckout = () => {
-    navigate('/checkout');
-  };
+const handleCheckout = () => {
+  navigate("/checkout");
+};
 
   if (loading) {
     return <div>Loading...</div>;
@@ -91,7 +93,7 @@ const MyCart = () => {
            
             <button 
               onClick={handleCheckout}
-              className="mt-4 w-full py-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600">
+              className="mt-4 w-full py-2 bg-dark-mode text-white font-semibold rounded-md hover:bg-red-600">
               CHECKOUT (KSHS {totalAmount})
             </button>
             
