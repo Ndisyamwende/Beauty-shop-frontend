@@ -129,6 +129,7 @@ function App() {
               <SkinCare />
             </PrivateRoute>
           }
+          
         />
 
       </Routes>

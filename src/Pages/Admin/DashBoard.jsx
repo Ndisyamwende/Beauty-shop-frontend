@@ -6,7 +6,7 @@ import {
 } from "react-icons/bs";
 
 function Dashboard() {
-  const [productsCount, setProductsCount] = useState(12); // Replace with actual API logic
+  const [productsCount, setProductsCount] = useState(36); // Replace with actual API logic
   const [categoriesCount, setCategoriesCount] = useState(4); // Replace with actual API logic
   const [customersCount, setCustomersCount] = useState(0); // Initialize customers count
   const [latestOrders, setLatestOrders] = useState([]);
