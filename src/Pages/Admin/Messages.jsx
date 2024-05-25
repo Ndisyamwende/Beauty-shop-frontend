@@ -180,7 +180,7 @@ const Messages = () => {
   useEffect(() => {
     const fetchContacts = async () => {
       try {
-        const response = await fetch('http://your-flask-api-url.com/contacts');
+        const response = await fetch('https://beautyshop-backend-1.onrender.com/contacts');
         if (response.ok) {
           const data = await response.json();
           setContacts(data.contacts);

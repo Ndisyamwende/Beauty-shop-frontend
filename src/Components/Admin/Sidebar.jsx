@@ -10,7 +10,6 @@ const Sidebar = () => {
   };
 
   const handleLogout = () => {
-    // Logic to handle logout, e.g., clearing tokens, redirecting to login page
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     window.location.href = '/login';

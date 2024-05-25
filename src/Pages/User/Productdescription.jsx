@@ -13,7 +13,7 @@ const ProductDetail = () => {
     const fetchProductDetails = async () => {
       try {
         const response = await axios.get(
-          http://127.0.0.1:5500/products/${id}
+         ` http://127.0.0.1:5500/products/${id}`
         );
         setProduct(response.data);
         setMainImage(response.data.image); // Set the main image to the product image
@@ -31,7 +31,7 @@ const ProductDetail = () => {
 
   const handleAddToBag = async () => {
     try {
-      await axios.post("http://127.0.0.1:5500/orderitem", {
+      await axios.post("https://beautyshop-backend-1.onrender.com/orderitem", {
         productId: id,
         quantity,
       });

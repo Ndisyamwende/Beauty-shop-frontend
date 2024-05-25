@@ -1,81 +1,3 @@
-// import React from 'react';
-
-// const Checkout = () => {
-//   return (
-//     <div className="flex justify-center p-8 bg-yellow-100 min-h-screen">
-//       <div className="w-full max-w-5xl flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-8">
-//         <div className="flex-1 bg-yellow-100 p-6 shadow-md rounded-lg border border-gray-300">
-//           <h2 className="text-xl font-bold mb-4">ORDER CONFIRMATION</h2>
-//           <div className="space-y-4">
-//             <div className="flex items-center p-4 bg-yellow-100 border-t border-b border-gray-300">
-//               <div className="flex-1">
-//                 <h3 className="font-semibold">Customer Address</h3>
-//                 <p>Anna Kikoa<br />
-//                 Ngong Plaza | Nairobi - CBD, Ngong Plaza | +254 720856222</p>
-//               </div>
-//               <button className="text-blue-500">Change</button>
-//             </div>
-//             <div className="flex items-center p-4 bg-yellow-100 border-t border-b border-gray-300">
-//               <div className="flex-1">
-//                 <h3 className="font-semibold">Delivery Details</h3>
-//                 <p>Door Delivery<br />
-//                 Delivery between 09 May and 25 May</p>
-//               </div>
-//               <button className="text-blue-500">Change</button>
-//             </div>
-//             <div className="flex items-center p-4 bg-yellow-100 border-t border-b border-gray-300">
-//               <div className="flex-1">
-//                 <h3 className="font-semibold">Payment Method</h3>
-//                 <div className="flex items-center space-x-4 mt-2">
-//                   <div>
-//                     <input type="radio" id="mpesa" name="payment" value="mpesa" className="mr-2" />
-//                     <label htmlFor="mpesa">Mpesa</label>
-//                   </div>
-//                   <div>
-//                     <input type="radio" id="visa" name="payment" value="visa" className="mr-2" />
-//                     <label htmlFor="visa">Visa card</label>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//         <div className="w-full lg:w-1/3 bg-yellow-100 p-6 shadow-md rounded-lg border border-gray-300">
-//           <h3 className="font-semibold">ORDER SUMMARY</h3>
-//           <div className="flex justify-between mt-2">
-//             <span>Items total (1)</span>
-//             <span>KSHS 2000</span>
-//           </div>
-//           <div className="flex justify-between mt-2">
-//             <span>Delivery Fees</span>
-//             <span>KSHS 300</span>
-//           </div>
-//           <div className="flex justify-between mt-2">
-//             <span>Custom Fee</span>
-//             <span>KSHS 50</span>
-//           </div>
-//           <div className="flex justify-between font-bold mt-4">
-//             <span>TOTAL</span>
-//             <span>KSHS 2350</span>
-//           </div>
-//           <button className="mt-4 w-full py-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600">
-//             CONFIRM ORDER
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-
-// export default Checkout;
-
-
-
-
-
-
-
 import React, { useState, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
@@ -173,7 +95,7 @@ const CheckoutForm = () => {
         setShowPaymentSuccessPopup(true);
       }
     } else if (paymentMethod === 'mpesa') {
-      const response = await fetch('http://127.0.0.1:5000/payment', {
+      const response = await fetch('https://beautyshop-backend-1.onrender.com/payment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

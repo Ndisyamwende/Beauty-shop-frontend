@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import ProductCard from './ProdctCard';
 import Footer from '../../Components/User/Footer';
 import Navbar from '../../Components/User/Navbar';
+// import { ThemeContext } from '../../contexts/ThemeContext';
+import { ThemeContext } from '../../Components/User/ThemeContext';
 
 const products = [
   {
@@ -39,6 +41,7 @@ const products = [
 ];
 
 const Fragrances = ({ addToCart }) => {
+  const { darkTheme } = useContext(ThemeContext);
   const [sortGender, setSortGender] = useState('');
 
   const handleSortChange = (event) => {
@@ -50,38 +53,36 @@ const Fragrances = ({ addToCart }) => {
     : products;
 
   return (
-    <div>
-      <div className="bg-[#efe3b8] p-5">
-        <Navbar />
-        <div>
-          <div className='flex flex-col sm:flex-row justify-between items-center mb-4'>
-            <h1 className='text-2xl font-bold text-[#a87c3b]'>Fragrances</h1>
-            <div className='flex items-center mt-2 sm:mt-0'>
-              <label htmlFor='gender-sort' className='mr-2 text-[#a87c3b]'>Sort by Gender:</label>
-              <select
-                id='gender-sort'
-                value={sortGender}
-                onChange={handleSortChange}
-                className='px-4 py-2 border rounded border-[#a87c3b] text-[#a87c3b] bg-[#f5e9d3]'
-              >
-                <option value=''>All</option>
-                <option value='male'>Male</option>
-                <option value='female'>Female</option>
-              </select>
-            </div>
-            <div className='text-lg font-semibold text-[#a87c3b] mt-2 sm:mt-0'>
-              Showing All: {filteredProducts.length} Results
-            </div>
+    <div className={darkTheme ? 'bg-gray-900 text-white' : 'bg-[#efe3b8] text-black'}>
+      <Navbar />
+      <div className="p-5">
+        <div className='flex flex-col sm:flex-row justify-between items-center mb-4'>
+          <h1 className='text-2xl font-bold text-[#a87c3b]'>Fragrances</h1>
+          <div className='flex items-center mt-2 sm:mt-0'>
+            <label htmlFor='gender-sort' className='mr-2 text-[#a87c3b]'>Sort by Gender:</label>
+            <select
+              id='gender-sort'
+              value={sortGender}
+              onChange={handleSortChange}
+              className={`px-4 py-2 border rounded border-[#a87c3b] text-[#a87c3b] ${darkTheme ? 'bg-gray-700 text-white' : 'bg-[#f5e9d3] text-[#a87c3b]'}`}
+            >
+              <option value=''>All</option>
+              <option value='male'>Male</option>
+              <option value='female'>Female</option>
+            </select>
           </div>
-          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-            {filteredProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                addToCart={addToCart}
-              />
-            ))}
+          <div className='text-lg font-semibold text-[#a87c3b] mt-2 sm:mt-0'>
+            Showing All: {filteredProducts.length} Results
           </div>
+        </div>
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+          {filteredProducts.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              addToCart={addToCart}
+            />
+          ))}
         </div>
       </div>
       <Footer />
@@ -90,3 +91,4 @@ const Fragrances = ({ addToCart }) => {
 };
 
 export default Fragrances;
+

@@ -11,7 +11,7 @@ const Signup = () => {
 
   const handleSignup = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:8000/signup', { username, email, password });
+      const response = await axios.post('https://beautyshop-backend-1.onrender.com/signup', { username, email, password });
       const { access_token, role } = response.data;
       localStorage.setItem('token', access_token);
       localStorage.setItem('role', role);
@@ -80,9 +80,7 @@ const Signup = () => {
             </label>
             <input
               id="password"
-              type="password"
-              // className="block w-full h-[50px] bg-[#efe3b8] border border-solid border-[#a6603a] mt-2 px-4"
-              // 
+              type="password" 
               className="block w-full h-12 bg-[#efe3b8] border border-solid border-[#a6603a] mt-2 px-4"
               value={password}
               onChange={handleInputChange(setPassword)}
@@ -93,7 +91,7 @@ const Signup = () => {
             className="w-full h-[50px] bg-[#a6603a] rounded-[30px] flex items-center justify-center mt-4"
             onClick={handleSignup}
           >
-            <span className="[font-family:'Inter-ExtraBold',Helvetica] font-extrabold text-black text-[16px]">
+            <span className="[font-family:'Inter-ExtraBold',Helvetica] font-extrabold text-white text-[16px]">
               Sign Up
             </span>
           </button>
