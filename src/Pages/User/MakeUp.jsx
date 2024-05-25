@@ -16,8 +16,8 @@ const MakeUp = ({ addToCart }) => {
       }
 
       try {
-        const response = await fetch('http://127.0.0.1:8000/product', {
-          method: 'GET',
+        const response = await fetch(" http://127.0.0.1:5555/product", {
+          method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
           },

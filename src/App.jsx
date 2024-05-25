@@ -60,11 +60,9 @@ function App() {
                     <Route path="inventory" element={<Inventory />} />
                     <Route path="customers" element={<Customer />} />
                     <Route path="new-hire" element={<NewHire />} />
-                    <Route path="messages" element={<Messages/>} />
-                 
+                    <Route path="messages" element={<Messages />} />
                   </Routes>
-                  
-                   </div>
+                </div>
               </div>
             </PrivateRoute>
           }
@@ -81,21 +79,21 @@ function App() {
           path="/contactus"
           element={
             <PrivateRoute role="user">
-              <CustomerContact/>
+              <CustomerContact />
             </PrivateRoute>
           }
         />
-           <Route
+        <Route
           path="/ho"
           element={
             <PrivateRoute role="user">
-              <Homepage/>
+              <Homepage />
             </PrivateRoute>
           }
         />
-        
-         <Route
-          path="/makeups"
+
+        <Route
+          path="/makeup"
           element={
             <PrivateRoute role="user">
               <ProductList />
@@ -103,9 +101,25 @@ function App() {
           }
         />
 
+        <Route
+          path="/beardgang"
+          element={
+            <PrivateRoute role="user">
+              <ProductList />
+            </PrivateRoute>
+          }
+        />
 
+        <Route
+          path="/fragrances"
+          element={
+            <PrivateRoute role="user">
+              <ProductList />
+            </PrivateRoute>
+          }
+        />
 
-          <Route
+        <Route
           path="/skincare"
           element={
             <PrivateRoute role="user">
@@ -113,12 +127,9 @@ function App() {
             </PrivateRoute>
           }
         />
-
-
-
       </Routes>
     </Router>
-    );
+  );
 }
 
 export default App;

@@ -11,15 +11,11 @@ const Signup = () => {
 
   const handleSignup = async () => {
     try {
-<<<<<<< HEAD
-      const response = await axios.post("http://127.0.0.1:5500/signup", {
+      const response = await axios.post(" http://127.0.0.1:5555/signup", {
         username,
         email,
         password,
       });
-=======
-      const response = await axios.post('http://127.0.0.1:8000/signup', { username, email, password });
->>>>>>> 61ca407bb8a3f6d2ff5b8511007f573af1a0e7b1
       const { access_token, role } = response.data;
       localStorage.setItem("token", access_token);
       localStorage.setItem("role", role);

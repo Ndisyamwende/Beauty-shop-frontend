@@ -32,7 +32,7 @@ const Navbar = () => {
           <Link to="/mode" className="text-black cursor-pointer text-2xl">
             <IoMoonSharp />
           </Link>
-          <Link to="/signout" className="text-black cursor-pointer text-2xl">
+          <Link to="/login" className="text-black cursor-pointer text-2xl">
             <PiSignOutBold />
           </Link>
         </div>

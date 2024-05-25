@@ -123,11 +123,11 @@ const CustomerContact = () => {
     }
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch('https://beautyshop-backend-1.onrender.com/contact', {
-        method: 'POST',
+      const response = await fetch(" http://127.0.0.1:5555/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ name, email, message }),
       });

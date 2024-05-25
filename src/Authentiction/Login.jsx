@@ -12,11 +12,10 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-<<<<<<< HEAD
-      const response = await axios.post('http://127.0.0.1:5500/login', { email, password });
-=======
-      const response = await axios.post('http://127.0.0.1:8000/login', { email, password });
->>>>>>> 61ca407bb8a3f6d2ff5b8511007f573af1a0e7b1
+      const response = await axios.post(" http://127.0.0.1:5555/login", {
+        email,
+        password,
+      });
       const { access_token, role } = response.data;
 
       localStorage.setItem('token', access_token);

@@ -13,7 +13,7 @@ export const Customer = () => {
 
     console.log("Using token:", token);
 
-    fetch("https://beautyshop-backend-1.onrender.com/user", {
+    fetch(" http://127.0.0.1:5555/user", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -50,7 +50,7 @@ export const Customer = () => {
         {users.map((user) => (
           <div
             key={user.id}
-            className="bg-white dark:bg-variant1-dark p-2 shadow-md text-center"
+            className=" dark:bg-variant1-dark p-2 shadow-md text-center"
           >
             <div className="text-[18px] font-body bg-white dark:bg-variant1-dark text-secondary p-2 capitalize">
               {user.username} {/* Use username instead of name */}
@@ -76,7 +76,7 @@ export const Customer = () => {
           <tbody className="text-[16px] font-normal text-Heading">
             {users.map((user) => (
               <tr key={user.id} className="border-[6px]">
-                <td className="p-[10px] capitalize">{user.name}</td>
+                <td className="p-[10px] capitalize">{user.username}</td>
                 <td className="p-[10px] capitalize">{user.email}</td>
                 <td className="p-[10px]">{user.address}</td>
               </tr>
