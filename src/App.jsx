@@ -10,7 +10,7 @@ import { Inventory } from './Pages/Admin/Inventory';
 import { Customer } from './Pages/Admin/Customer';
 import SkinCare from './Pages/User/SkinCare';
 import Fragrances from './Pages/User/Fragrances'; // Import Fragrances page
-import CheckoutForm from './Pages/User/Checkout';
+import Checkout from './Pages/User/Checkout';
 import CustomerContact from './Pages/User/Contact';
 import Messages from './Pages/Admin/Messages';
 import ProductList from './Pages/User/MakeUp';
@@ -107,6 +107,14 @@ function App() {
           element={
             <PrivateRoute role="user">
               <Fragrances /> {/* Add Fragrances route */}
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/checkout"
+          element={
+            <PrivateRoute role="user">
+              <Checkout />
             </PrivateRoute>
           }
         />

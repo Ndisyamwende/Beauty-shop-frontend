@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaSearch, FaCartPlus } from 'react-icons/fa';
 import { IoMenu, IoMoonSharp } from 'react-icons/io5';
 import { PiSignOutBold } from 'react-icons/pi';
+import Navbar from '../../Components/User/Navbar';
 
 function Homepage() {
   const addToCart = (product, quantity) => {
@@ -12,6 +13,7 @@ function Homepage() {
 
   return (
     <>
+  
       <div className="bg-[#efe3b8] py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between">
           <div className="flex items-center w-full lg:w-auto mb-4 lg:mb-0">
