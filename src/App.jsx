@@ -9,6 +9,9 @@ import { NewHire } from './Pages/Admin/NewHire';
 import { Inventory } from './Pages/Admin/Inventory';
 import { Customer } from './Pages/Admin/Customer';
 import SkinCare from './Pages/User/SkinCare';
+import MakeUp from './Pages/User/MakeUp';
+import Beardgang from './Pages/User/Beard';
+import Fragrances from './Pages/User/Fragrances';
 
 
 
@@ -84,7 +87,7 @@ function App() {
           }
         />
         <Route
-          path="/ho"
+          path="/home"
           element={
             <PrivateRoute role="user">
               <Homepage />
@@ -96,7 +99,7 @@ function App() {
           path="/makeup"
           element={
             <PrivateRoute role="user">
-              <ProductList />
+              <MakeUp />
             </PrivateRoute>
           }
         />
@@ -105,7 +108,7 @@ function App() {
           path="/beardgang"
           element={
             <PrivateRoute role="user">
-              <ProductList />
+              <Beardgang />
             </PrivateRoute>
           }
         />
@@ -114,7 +117,7 @@ function App() {
           path="/fragrances"
           element={
             <PrivateRoute role="user">
-              <ProductList />
+              <Fragrances />
             </PrivateRoute>
           }
         />
@@ -127,6 +130,7 @@ function App() {
             </PrivateRoute>
           }
         />
+
       </Routes>
     </Router>
   );

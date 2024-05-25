@@ -7,8 +7,8 @@ import {
 
 function Dashboard() {
   const [productsCount, setProductsCount] = useState(12); // Replace with actual API logic
-  const [categoriesCount, setCategoriesCount] = useState(3); // Replace with actual API logic
-  const [customersCount, setCustomersCount] = useState(5); // Replace with actual API logic
+  const [categoriesCount, setCategoriesCount] = useState(4); // Replace with actual API logic
+  const [customersCount, setCustomersCount] = useState(0); // Initialize customers count
   const [latestOrders, setLatestOrders] = useState([]);
   const [dailySales, setDailySales] = useState(0);
   const [monthlySales, setMonthlySales] = useState(0);
@@ -21,7 +21,8 @@ function Dashboard() {
       return;
     }
 
-    fetch(" http://127.0.0.1:5555/orders", {
+    // Fetch latest orders
+    fetch("http://127.0.0.1:5555/orders", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -61,7 +62,29 @@ function Dashboard() {
         setDailySales(dailyTotal);
         setMonthlySales(monthlyTotal);
       })
-      .catch((error) => console.error("Error fetching data:", error));
+      .catch((error) => console.error("Error fetching orders:", error));
+
+    // Fetch users to count customers who are users
+    fetch("http://127.0.0.1:5555/user", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((users) => {
+        // Filter users who are customers (assuming you have a 'role' or similar property)
+        const customerUsers = users.filter((user) => user.role === "user");
+
+        // Count customer users
+        setCustomersCount(customerUsers.length);
+      })
+      .catch((error) => console.error("Error fetching users:", error));
   }, []);
 
   return (
@@ -106,7 +129,7 @@ function Dashboard() {
       </div>
 
       <div className="mt-5">
-        <h2 className="text-2xl font-bold mb-3">Latest Orders</h2>
+        <h2 className="text-xl font-bold mb-1">Latest Orders</h2>
         <div className="md:block hidden">
           <table className="min-w-full">
             <thead className="bg-dark-mode">

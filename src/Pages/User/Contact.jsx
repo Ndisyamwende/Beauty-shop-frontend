@@ -154,7 +154,7 @@ const CustomerContact = () => {
       <div className="min-h-screen bg-[#f5e3b3] flex items-center justify-center">
         <div className="bg-[#f5e3b3] flex flex-col md:flex-row items-center justify-center p-8 rounded-lg shadow-lg space-y-6 md:space-y-0 md:space-x-6">
           <div className="w-full md:w-auto">
-            <img src="/src/assets/images/lipstck.png" alt="Lipstick" className="w-full md:w-64 md:h-64 rounded-lg object-cover" />
+            <img src="/src/assets/Makeup/makeup3.png" alt="Lipstick" className="w-full md:w-64 md:h-64 rounded-lg object-cover" />
           </div>
           <div className="bg-[#f5e3b3] p-6 rounded-lg shadow-lg w-full md:w-auto">
             <h2 className="text-[#865f3c] text-2xl font-bold mb-4 text-center">

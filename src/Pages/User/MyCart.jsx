@@ -13,7 +13,9 @@ const MyCart = () => {
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const response = await fetch(" http://127.0.0.1:5555/orderitem");
+        const response = await fetch(
+          " https://beautyshop-backend-1.onrender.com/orderitem');"
+        );
         if (!response.ok) {
           throw new Error('Failed to fetch cart items');
         }
@@ -44,11 +46,7 @@ const MyCart = () => {
   const totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
 const handleCheckout = () => {
-  return (
-    <Link to="/checkout" className="bg-dark-mode">
-      Checkout
-    </Link>
-  );
+  navigate("/checkout");
 };
 
   if (loading) {

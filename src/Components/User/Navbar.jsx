@@ -9,7 +9,7 @@ const Navbar = () => {
     <div className="bg-[#efe3b8] py-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between">
         <div className="flex items-center w-full lg:w-auto mb-4 lg:mb-0">
-          <img src="/src/assets/images/logo.png" alt="Logo" className="h-10 w-auto" />
+          <img src="/src/assets/logo.png" alt="Logo" className="h-10 w-auto" />
         </div>
 
         <div className="relative flex-grow flex justify-center w-full lg:w-auto">
