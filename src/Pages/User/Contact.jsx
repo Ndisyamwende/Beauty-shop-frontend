@@ -45,7 +45,7 @@ const CustomerContact = () => {
   };
 
   return (
-    <div className={darkTheme ? 'bg-gray-900 text-white' : 'bg-[#f5e3b3] text-black'}>
+    <div className={darkTheme ? 'bg-[#854A2D] text-white' : 'bg-[#efe3b8] text-black'}>
       <Navbar/>
       <div className="min-h-screen flex items-center justify-center">
         <div className="flex flex-col md:flex-row items-center justify-center p-8 rounded-lg shadow-lg space-y-6 md:space-y-0 md:space-x-6">
@@ -53,7 +53,7 @@ const CustomerContact = () => {
             <img src="/src/assets/images/lipstck.png" alt="Lipstick" className="w-full md:w-64 md:h-64 rounded-lg object-cover" />
           </div>
           <div className="p-6 rounded-lg shadow-lg w-full md:w-auto">
-            <h2 className="text-[#865f3c] text-2xl font-bold mb-4 text-center">
+            <h2 className="text-black text-2xl font-bold mb-4 text-center">
               Reach Out to Us Today!
             </h2>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -89,7 +89,7 @@ const CustomerContact = () => {
               </div>
               <button
                 type="submit"
-                className="w-full py-2 rounded-md bg-[#a97c50] text-white font-bold hover:bg-[#865f3c] transition-colors duration-300"
+                className="w-full py-2 rounded-md bg-[#a97c50] text-black font-bold hover:bg-[#865f3c] transition-colors duration-300"
               >
                 {submitted ? 'Submitted!' : 'Send'}
               </button>

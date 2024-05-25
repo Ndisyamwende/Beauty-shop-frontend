@@ -54,7 +54,7 @@ const SkinCare = ({ addToCart }) => {
     : products;
 
   return (
-    <div className={darkTheme ? 'bg-gray-900 text-white' : 'bg-[#efe3b8] text-black'}>
+    <div className={darkTheme ? 'bg-[#854A2D] text-white' : 'bg-[#efe3b8] text-black'}>
       <Navbar />
       <div className="p-5">
         <div className='flex flex-col sm:flex-row justify-between items-center mb-4'>

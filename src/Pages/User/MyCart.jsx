@@ -58,7 +58,7 @@ const MyCart = () => {
   }
 
   return (
-    <div className={darkTheme ? 'bg-gray-900 text-white' : 'bg-yellow-100 text-black'}>
+    <div className={darkTheme ? 'bg-[#854A2D] text-white' : 'bg-[#efe3b8] text-black'}>
       <Navbar/>
       <div className="flex justify-center p-8 min-h-screen">
         <div className="w-full max-w-5xl flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-8">

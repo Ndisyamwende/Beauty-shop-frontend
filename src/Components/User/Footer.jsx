@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <footer style={{ backgroundColor: '#A6603A', minHeight: '5vh' }}>
+   
       <div className="container mx-auto flex flex-col md:flex-row justify-around items-start p-4">
         <div className="mb-4 md:mb-0">
           <h1 className="text-3xl font-bold">Celestial Skins</h1>
