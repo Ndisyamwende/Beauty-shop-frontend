@@ -6,7 +6,7 @@ import Modal from "./Modal";
 // import { ThemeContext } from '../../Components/User/ThemeContext';
 //import { ThemeContext } from "../../Components/User/ThemeContext";
 const Checkout = () => {
-  const { darkTheme } = useContext(ThemeContext);
+  //const { darkTheme } = useContext(ThemeContext);
   const [deliveryDetails, setDeliveryDetails] = useState({
     method: "Door Delivery",
     dateRange: "Delivery between 09 May and 25 May",
