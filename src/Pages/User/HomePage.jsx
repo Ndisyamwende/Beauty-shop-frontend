@@ -71,7 +71,7 @@ function Homepage() {
               <img
                 src="/src/assets/icons/Fragrancesicon.png"
                 alt="Fragrance"
-                className="max-w-full h-50 w-60"
+                className="max-w-full h-60 w-70"
               />
             </Link>
             <h2 className="mt-7">Fragrance</h2>

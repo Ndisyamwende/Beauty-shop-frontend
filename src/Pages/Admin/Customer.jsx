@@ -52,13 +52,13 @@ export const Customer = () => {
             key={user.id}
             className=" dark:bg-variant1-dark p-2 shadow-md text-center"
           >
-            <div className="text-[18px] font-body bg-white dark:bg-variant1-dark text-secondary p-2 capitalize">
+            <div className="text-[18px] font-body bg-dark-mode dark:bg-variant1-dark text-secondary p-2 capitalize">
               {user.username} {/* Use username instead of name */}
             </div>
-            <div className="text-[14px] font-body bg-white dark:bg-variant1-dark text-Heading dark:text-primary-light p-2 capitalize">
+            <div className="text-[14px] font-body bg-dark-mode dark:bg-variant1-dark text-Heading dark:text-primary-light p-2 capitalize">
               {user.email}
             </div>
-            <div className="text-[14px] font-body bg-white dark:bg-variant1-dark text-Heading dark:text-primary-light p-2">
+            <div className="text-[14px] font-body bg-dark-mode dark:bg-variant1-dark text-Heading dark:text-primary-light p-2">
               {user.address}
             </div>
           </div>
@@ -67,7 +67,7 @@ export const Customer = () => {
       <div className="hidden md:block">
         <table className="w-full mx-auto text-left text-Heading">
           <thead className="text-[18px] font-body bg-secondary text-black">
-            <tr className="border-[6px] border-dark-mode bg-dark-mode">
+            <tr className=" border-dark-mode bg-dark-mode">
               <th className="p-[10px]">Name</th>
               <th className="p-[10px]">Email</th>
               <th className="p-[10px]">Address</th>
@@ -75,7 +75,7 @@ export const Customer = () => {
           </thead>
           <tbody className="text-[16px] font-normal text-Heading">
             {users.map((user) => (
-              <tr key={user.id} className="border-[6px]">
+              <tr key={user.id} className="">
                 <td className="p-[10px] capitalize">{user.username}</td>
                 <td className="p-[10px] capitalize">{user.email}</td>
                 <td className="p-[10px]">{user.address}</td>

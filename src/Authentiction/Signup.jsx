@@ -43,7 +43,7 @@ const Signup = () => {
         <div className="flex flex-col items-center mb-8">
           <img
             className="w-[57px] h-[67px] mb-4"
-            src="/src/assets/images/logo.png"
+            src="/src/assets/logo.png"
             alt="Logo"
           />
           <p className="text-center [font-family:'Inter-Black',Helvetica] text-black text-[40px] mb-2">
