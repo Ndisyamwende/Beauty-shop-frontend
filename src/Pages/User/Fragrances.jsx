@@ -1,111 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProductCard from "./ProdctCard";
 import Footer from "../../Components/User/Footer";
 import Navbar from "../../Components/User/Navbar";
 
-const products = [
-  {
-    id: 19,
-    name: "Citrus Bloom Perfume",
-    gender: "Female",
-    description: "A refreshing perfume with notes of citrus and floral blooms.",
-    price: 4900,
-    quantity_available: 50,
-    image: "/src/assets/Fragrances/frag1.jpg",
-    categoryId: 3,
-  },
-  {
-    id: 20,
-    name: "Woody Spice Cologne",
-    gender: "Male",
-    description:
-      "A cologne with a blend of woody and spicy notes for a masculine scent.",
-    price: 5400,
-    quantity_available: 45,
-    image: "/src/assets/Fragrances/frag2.jpg",
-    categoryId: 3,
-  },
-  {
-    id: 21,
-    name: "Vanilla Blossom Perfume",
-    gender: "Female",
-    description: "A sweet and warm perfume with hints of vanilla and blossom.",
-    price: 5900,
-    quantity_available: 40,
-    image: "/src/assets/Fragrances/frag3.jpg",
-    categoryId: 3,
-  },
-  {
-    id: 22,
-    name: "Ocean Breeze Cologne",
-    gender: "Male",
-    description: "A fresh and aquatic cologne inspired by the ocean breeze.",
-    price: 5200,
-    quantity_available: 60,
-    image: "/src/assets/Fragrances/frag4.jpg",
-    categoryId: 3,
-  },
-  {
-    id: 23,
-    name: "Lavender Dream Perfume",
-    gender: "Female",
-    description: "A calming perfume with a blend of lavender and floral notes.",
-    price: 4700,
-    quantity_available: 55,
-    image: "/src/assets/Fragrances/frag5.jpg",
-    categoryId: 3,
-  },
-  {
-    id: 24,
-    name: "Amber Noir Cologne",
-    gender: "Male",
-    description: "A rich and deep cologne with notes of amber and musk.",
-    price: 5700,
-    quantity_available: 50,
-    image: "/src/assets/Fragrances/frag6.jpg",
-    categoryId: 3,
-  },
-  {
-    id: 25,
-    name: "Rose Petal Perfume",
-    gender: "Female",
-    description: "A delicate perfume with the essence of fresh rose petals.",
-    price: 4800,
-    quantity_available: 70,
-    image: "/src/assets/Fragrances/frag7.jpg",
-    categoryId: 3,
-  },
-  {
-    id: 26,
-    name: "Cedarwood Cologne",
-    gender: "Male",
-    description: "A bold cologne with the earthy scent of cedarwood.",
-    price: 5300,
-    quantity_available: 65,
-    image: "/src/assets/Fragrances/frag8.jpg",
-    categoryId: 3,
-  },
-  {
-    id: 27,
-    name: "Peony Bliss Perfume",
-    gender: "Female",
-    description: "A floral perfume with the fresh scent of peony blossoms.",
-    price: 5100,
-    quantity_available: 55,
-    image: "/src/assets/Fragrances/frag9.jpg",
-    categoryId: 3,
-  },
-];
 
 const Fragrances = ({ addToCart }) => {
+  const [products, setProducts] = useState([]);
   const [sortGender, setSortGender] = useState("");
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.error("Token not found");
+      return;
+    }
+
+    console.log("Using token:", token);
+
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:5555/product", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = await response.json();
+        const filteredProducts = data.filter(
+          (product) => product.id >= 31 && product.id <= 39
+        );
+        setProducts(filteredProducts);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const handleSortChange = (event) => {
     setSortGender(event.target.value);
   };
 
   const filteredProducts = sortGender
-    ? products.filter((product) => product.gender === sortGender)
+    ? products.filter(
+        (product) => product.gender.toLowerCase() === sortGender.toLowerCase()
+      )
     : products;
 
   return (

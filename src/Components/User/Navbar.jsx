@@ -9,6 +9,7 @@ const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const toggleSearch = () => {
     setShowSearch(!showSearch);
@@ -27,6 +28,8 @@ const Navbar = () => {
     // For now, we'll just close the modal
     setShowModal(false);
   };
+
+
 
   return (
     <div className="bg-[#efe3b8] py-4">
@@ -74,36 +77,36 @@ const Navbar = () => {
 
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white rounded-lg p-8">
+          <div className="bg-light-mode rounded-lg p-8">
             <h2 className="text-2xl mb-4">Change Personal Details</h2>
             <div className="mb-4">
-              <label className="block text-gray-700">Email</label>
+              <label className="block text-black">Email</label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded"
+                className="w-full p-2 bg-light-mode border border-solid border-dark-mode rounded"
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700">Password</label>
+              <label className="block text-black">Password</label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded"
+                className="w-full p-2 border border-solid border-dark-mode bg-light-mode rounded"
               />
             </div>
             <div className="flex justify-end space-x-4">
               <button
                 onClick={() => setShowModal(false)}
-                className="px-4 py-2 bg-gray-500 text-white rounded"
+                className="px-4 py-2 bg-light-mode Hoover:bg-dark-mode border border-solid border-dark-mode text-black rounded"
               >
                 Cancel
               </button>
               <button
                 onClick={handleSaveChanges}
-                className="px-4 py-2 bg-blue-500 text-white rounded"
+                className="px-4 py-2 bg-light-mode hoover:bg-dark-mode border border-solid border-dark-mode text-black rounded"
               >
                 Save Changes
               </button>

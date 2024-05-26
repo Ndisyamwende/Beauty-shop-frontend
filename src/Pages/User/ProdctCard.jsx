@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function ProductCard({ product, addToCart }) {
   const [showPopup, setShowPopup] = useState(false);
   const [error, setError] = useState(null);
-  const token = "your-auth-token"; // Replace with your actual token retrieval logic
+  const token = localStorage.getItem("token"); // Adjusted token retrieval logic
 
   const handleAddToCartClick = async () => {
     setShowPopup(true);
@@ -50,9 +50,8 @@ function ProductCard({ product, addToCart }) {
           alt={product.name}
           className="w-full h-48 object-cover rounded mb-4"
         />
-        <h3 className="text-lg font-bold">{product.name}</h3>
-        <p>{product.description}</p>
-        <p className="text-xl font-medium">KSHS {product.price}</p>
+        <h3 className="text-xl font-bold">{product.name}</h3>
+        <p className="text-medium font-medium">KSHS {product.price}</p>
       </Link>
       <button
         className="mt-2 px-4 py-2 bg-light-mode text-black rounded hover:bg-dark-mode order border-solid border-dark-mode"
@@ -74,7 +73,7 @@ function ProductCard({ product, addToCart }) {
                   className="w-full h-48 object-cover rounded mb-4"
                 />
                 <h3 className="text-xl font-semibold">{product.name}</h3>
-                <p className="text-black">KSHS {product.price}</p>
+                <p className="text-black ">KSHS {product.price}</p>
                 <button
                   className="mt-4 px-4 py-2 bg-dark-mode text-white rounded hover:bg-orange-950"
                   onClick={() => {
