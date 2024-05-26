@@ -6,8 +6,8 @@ import {
 } from "react-icons/bs";
 
 function Dashboard() {
-  const [productsCount, setProductsCount] = useState(36); // Replace with actual API logic
-  const [categoriesCount, setCategoriesCount] = useState(4); // Replace with actual API logic
+  const [productsCount, setProductsCount] = useState(0);
+  const [categoriesCount, setCategoriesCount] = useState(0); // Replace with actual API logic
   const [customersCount, setCustomersCount] = useState(0); // Initialize customers count
   const [latestOrders, setLatestOrders] = useState([]);
   const [dailySales, setDailySales] = useState(0);
@@ -85,6 +85,44 @@ function Dashboard() {
         setCustomersCount(customerUsers.length);
       })
       .catch((error) => console.error("Error fetching users:", error));
+
+    // Fetch products to count the number of products
+    fetch("http://127.0.0.1:5555/product", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((products) => {
+        // Count the number of products
+        setProductsCount(products.length);
+      })
+      .catch((error) => console.error("Error fetching products:", error));
+    
+    //fetch categories 
+fetch("http://127.0.0.1:5555/category", {
+  method: "GET",
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+})
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    // Count the number of categories
+    setCategoriesCount(data.length);
+  })
+  .catch((error) => console.error("Error fetching categories:", error));
   }, []);
 
   return (

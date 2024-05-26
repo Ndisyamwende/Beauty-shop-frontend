@@ -16,7 +16,8 @@ import Fragrances from './Pages/User/Fragrances';
 
 
 
-import CheckoutForm from './Pages/User/Checkout';
+
+import Checkout from './Pages/User/Checkout';
 import CustomerContact from './Pages/User/Contact';
 import Messages from './Pages/Admin/Messages';
 import ProductList from './Pages/User/MakeUp';
@@ -129,9 +130,16 @@ function App() {
               <SkinCare />
             </PrivateRoute>
           }
-          
         />
 
+        <Route
+          path="/checkout"
+          element={
+            <PrivateRoute role="user">
+              <Checkout />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </Router>
   );

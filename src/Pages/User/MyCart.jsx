@@ -14,7 +14,7 @@ const MyCart = () => {
     const fetchCartItems = async () => {
       try {
         const response = await fetch(
-          " https://beautyshop-backend-1.onrender.com/orderitem');"
+          " https://beautyshop-backend-1.onrender.com/orderitem"
         );
         if (!response.ok) {
           throw new Error('Failed to fetch cart items');

@@ -13,7 +13,7 @@ const products = [
     price: 2700,
     quantity_available: 95,
     image: "/src/assets/Makeup/Makeup1.jpg",
-    categoryId: 2,
+    categoryId: 1,
   },
   {
     id: 11,
@@ -24,7 +24,7 @@ const products = [
     price: 1900,
     quantity_available: 120,
     image: "/src/assets/Makeup/Makeup2.jpg",
-    categoryId: 2,
+    categoryId: 1,
   },
   {
     id: 12,
@@ -35,7 +35,7 @@ const products = [
     price: 3200,
     quantity_available: 85,
     image: "/src/assets/Makeup/Makeup3.jpg",
-    categoryId: 2,
+    categoryId: 1,
   },
   {
     id: 13,
@@ -46,7 +46,7 @@ const products = [
     price: 4230,
     quantity_available: 55,
     image: "/src/assets/Makeup/Makeup4.jpg",
-    categoryId: 2,
+    categoryId: 1,
   },
   {
     id: 14,
@@ -56,7 +56,7 @@ const products = [
     price: 2000,
     quantity_available: 70,
     image: "/src/assets/Makeup/Makeup5.jpg",
-    categoryId: 2,
+    categoryId: 1,
   },
   {
     id: 15,
@@ -66,7 +66,7 @@ const products = [
     price: 3200,
     quantity_available: 100,
     image: "/src/assets/Makeup/Makeup6.jpg",
-    categoryId: 2,
+    categoryId: 1,
   },
   {
     id: 16,
@@ -77,7 +77,7 @@ const products = [
     price: 2130,
     quantity_available: 65,
     image: "/src/assets/Makeup/Makeup7.jpg",
-    categoryId: 2,
+    categoryId: 1,
   },
   {
     id: 17,
@@ -88,7 +88,7 @@ const products = [
     price: 3200,
     quantity_available: 90,
     image: "/src/assets/Makeup/Makeup8.jpg",
-    categoryId: 2,
+    categoryId: 1,
   },
   {
     id: 18,
@@ -98,7 +98,7 @@ const products = [
     price: 1899,
     quantity_available: 80,
     image: "/src/assets/Makeup/Makeup9.jpg",
-    categoryId: 2,
+    categoryId: 1,
   },
 ];
 

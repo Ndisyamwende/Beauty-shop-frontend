@@ -13,7 +13,7 @@ const products = [
     price: 3500,
     quantity_available: 100,
     image: "/src/assets/Skincare/skincare1.jpg",
-    categoryId: 1,
+    categoryId: 3,
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ const products = [
     price: 4500,
     quantity_available: 50,
     image: "/src/assets/Skincare/skincare2.jpg",
-    categoryId: 1,
+    categoryId: 3,
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ const products = [
     price: 4300,
     quantity_available: 75,
     image: "/src/assets/Skincare/skincare3.jpg",
-    categoryId: 1,
+    categoryId: 3,
   },
   {
     id: 4,
@@ -46,7 +46,7 @@ const products = [
     price: 2000,
     quantity_available: 80,
     image: "/src/assets/Skincare/skincare4.jpg",
-    categoryId: 1,
+    categoryId: 3,
   },
   {
     id: 5,
@@ -57,7 +57,7 @@ const products = [
     price: 5000,
     quantity_available: 60,
     image: "/src/assets/Skincare/skincare5.jpg",
-    categoryId: 1,
+    categoryId: 3,
   },
   {
     id: 6,
@@ -67,7 +67,7 @@ const products = [
     price: 2030,
     quantity_available: 90,
     image: "/src/assets/Skincare/skincare6.jpg",
-    categoryId: 1,
+    categoryId: 3,
   },
   {
     id: 7,
@@ -77,7 +77,7 @@ const products = [
     price: 2304,
     quantity_available: 70,
     image: "/src/assets/Skincare/skincare7.jpg",
-    categoryId: 1,
+    categoryId: 3,
   },
   {
     id: 8,
@@ -88,7 +88,7 @@ const products = [
     price: 3200,
     quantity_available: 40,
     image: "/src/assets/Skincare/skincare8.jpg",
-    categoryId: 1,
+    categoryId: 3,
   },
   {
     id: 9,
@@ -98,7 +98,7 @@ const products = [
     price: 1700,
     quantity_available: 110,
     image: "/src/assets/Skincare/skincare9.jpg",
-    categoryId: 1,
+    categoryId: 3,
   },
 ];
 
