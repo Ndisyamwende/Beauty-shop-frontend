@@ -55,7 +55,7 @@ const Footer = () => {
         <div className="w-full sm:w-auto">
           <h3 className={`font-bold mb-2 ${darkTheme ? 'text-white' : 'text-black' }`}>ADDRESS</h3>
           <p className={darkTheme ? 'text-white' : 'text-black'}>Ngong Lane</p>
-          <p className={darkTheme ? 'text-white' : 'text-black'}>0720856222</p>
+          <p className={darkTheme ? 'text-white' : 'text-black'}>0779100618</p>
           <p className={darkTheme ? 'text-white' : 'text-black'}>Celestialskin@gmail.com</p>
         </div>
       </div>
