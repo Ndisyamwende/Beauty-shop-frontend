@@ -32,7 +32,7 @@ const ProductDetail = () => {
 
   const handleAddToBag = async () => {
     try {
-      await axios.post("http://127.0.0.1:8000/orderitem", {
+      await axios.post("https://beautyshop-backend-1.onrender.com/orderitem", {
         productId: id,
         quantity,
       });

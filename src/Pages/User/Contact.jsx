@@ -20,7 +20,7 @@ const CustomerContact = () => {
     }
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(" http://127.0.0.1:5555/contact", {
+      const response = await fetch(" https://beautyshop-backend-1.onrender.com/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,7 +45,7 @@ const CustomerContact = () => {
   };
 
   return (
-    <div className={darkTheme ? 'bg-[#854A2D] text-white' : 'bg-[#efe3b8] text-black'}>
+    <div className={darkTheme ? 'bg-[#A6603A] text-white' : 'bg-[#efe3b8] text-black'}>
       <Navbar/>
       <div className="min-h-screen flex items-center justify-center">
         <div className="flex flex-col md:flex-row items-center justify-center p-8 rounded-lg shadow-lg space-y-6 md:space-y-0 md:space-x-6">

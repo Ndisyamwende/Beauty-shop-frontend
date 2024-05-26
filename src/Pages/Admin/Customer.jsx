@@ -1,6 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { ThemeContext } from "../../Components/User/ThemeContext";
 
 export const Customer = () => {
+  const { darkTheme, toggleTheme } = useContext(ThemeContext);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -13,7 +15,7 @@ export const Customer = () => {
 
     console.log("Using token:", token);
 
-    fetch(" http://127.0.0.1:5555/user", {
+    fetch(" https://beautyshop-backend-1.onrender.com/user", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -44,7 +46,8 @@ export const Customer = () => {
   }, []);
 
   return (
-    <div className="bg-light-mode min-h-screen p-4">
+    // <div className="bg-light-mode min-h-screen p-4">
+    <div className={`min-h-screen p-4 ${darkTheme ? 'bg-dark-mode' : 'bg-light-mode'}`}>
       <h1 className="text-Heading font-bold text-2xl text-center py-3">
         CUSTOMERS
       </h1>

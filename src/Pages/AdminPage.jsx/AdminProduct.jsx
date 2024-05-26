@@ -27,7 +27,7 @@ export const AdminProduct = () => {
 
     console.log("Using token:", token);
 
-    fetch("http://127.0.0.1:5500/product", {
+    fetch("https://beautyshop-backend-1.onrender.com/product", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

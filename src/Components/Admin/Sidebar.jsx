@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useContext } from 'react';
 import { FaTachometerAlt, FaBoxes, FaUsers, FaUserPlus, FaEnvelope, FaMoon, FaSun, FaSignOutAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { ThemeContext } from '../User/ThemeContext';
 
 const Sidebar = () => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
-
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+  const { darkTheme, toggleTheme } = useContext(ThemeContext);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -16,15 +14,14 @@ const Sidebar = () => {
   };
 
   const sidebarStyle = {
-    backgroundColor: isDarkMode ? '#333' : '#A6603A',
+    backgroundColor: darkTheme ? '#333' : '#A6603A',
     minHeight: '100vh',
     padding: '0px',
-    color: isDarkMode ? '#FFF' : '#000'
+    color: darkTheme ? '#FFF' : '#000'
   };
 
   return (
     <div style={sidebarStyle}>
-       
       <div className="p-4 border-b border-gray-700">
         <h1 className="text-3xl font-bold">Welcome back Admin</h1>
       </div>
@@ -64,15 +61,13 @@ const Sidebar = () => {
       </nav>
       <div className="p-4 border-t border-gray-700">
         <button onClick={toggleTheme} className="flex items-center p-2 hover:bg-light-mode rounded w-full">
-          {isDarkMode ? <FaSun className="mr-2" /> : <FaMoon className="mr-2" />}
-          {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+          {darkTheme ? <FaSun className="mr-2" /> : <FaMoon className="mr-2" />}
+          {darkTheme ? 'Light Mode' : 'Dark Mode'}
         </button>
         <button onClick={handleLogout} className="flex items-center p-2 hover:bg-light-mode rounded w-full mt-2">
           <FaSignOutAlt className="mr-2" />
           Logout
         </button>
-
-        
       </div>
     </div>
   );

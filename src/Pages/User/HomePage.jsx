@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext} from "react";
 import { Link } from "react-router-dom";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Footer from "../../Components/User/Footer";
 import Navbar from "../../Components/User/Navbar";
+import { ThemeContext } from "../../Components/User/ThemeContext";
 
 function Homepage() {
+  const { darkTheme } = useContext(ThemeContext);
   const [categories, setCategories] = useState([]);
   const [currentId, setCurrentId] = useState(0);
 
@@ -38,8 +40,9 @@ function Homepage() {
 
   return (
     <>
-      <div className="bg-[#efe3b8] py-4">
-        <Navbar />
+
+          <div className={darkTheme ? 'bg-[#A6603A] text-white' : 'bg-[#efe3b8] text-[#3A1C0E]'}>
+      <Navbar />
 
         <section>
           <h1 className="font-bold text-center text-4xl mt-4">WELCOME TO CELESTIAL SKINS</h1>

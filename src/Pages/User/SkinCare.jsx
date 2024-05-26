@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import ProductCard from './ProdctCard';
 import Footer from '../../Components/User/Footer';
 import Navbar from '../../Components/User/Navbar';
+import { ThemeContext } from '../../Components/User/ThemeContext';
 
 const products = [
   {
@@ -103,6 +104,7 @@ const products = [
 ];
 
 const SkinCare = ({ addToCart }) => {
+  const { darkTheme } = useContext(ThemeContext);
   const [sortGender, setSortGender] = useState('');
 
   const handleSortChange = (event) => {
@@ -115,8 +117,8 @@ const SkinCare = ({ addToCart }) => {
 
   return (
     <div>
-      <div className="bg-[#efe3b8] p-5">
-        <Navbar />
+     <div className={darkTheme ? 'bg-[#A6603A] text-white' : 'bg-[#efe3b8] text-[#3A1C0E]'}>
+      <Navbar />
         <div>
           <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
             <h1 className="text-2xl font-bold text-black">SkinCare</h1>
