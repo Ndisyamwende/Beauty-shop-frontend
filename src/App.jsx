@@ -79,7 +79,7 @@ function App() {
           }
         />
         <Route
-          path="/ho"
+          path="/home"
           element={
             <PrivateRoute role="user">
               <Homepage />

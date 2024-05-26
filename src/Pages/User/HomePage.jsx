@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaSearch, FaCartPlus } from 'react-icons/fa';
 import { IoMenu, IoMoonSharp } from 'react-icons/io5';
 import { PiSignOutBold } from 'react-icons/pi';
-import Navbar from '../../Components/User/Navbar';
+
 
 function Homepage() {
   const addToCart = (product, quantity) => {
