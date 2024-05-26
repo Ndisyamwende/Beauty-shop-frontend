@@ -20,11 +20,11 @@ const CustomerContact = () => {
     }
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch('https://beautyshop-backend-1.onrender.com/contact', {
-        method: 'POST',
+      const response = await fetch(" http://127.0.0.1:5555/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ name, email, message }),
       });
@@ -50,7 +50,7 @@ const CustomerContact = () => {
       <div className="min-h-screen flex items-center justify-center">
         <div className="flex flex-col md:flex-row items-center justify-center p-8 rounded-lg shadow-lg space-y-6 md:space-y-0 md:space-x-6">
           <div className="w-full md:w-auto">
-            <img src="/src/assets/images/lipstck.png" alt="Lipstick" className="w-full md:w-64 md:h-64 rounded-lg object-cover" />
+            <img src="/src/assets/Makeup/makeup3.png" alt="Lipstick" className="w-full md:w-64 md:h-64 rounded-lg object-cover" />
           </div>
           <div className="p-6 rounded-lg shadow-lg w-full md:w-auto">
             <h2 className="text-black text-2xl font-bold mb-4 text-center">

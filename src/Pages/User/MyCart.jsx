@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Footer from '../../Components/User/Footer';
-import Navbar from '../../Components/User/Navbar';
-import { ThemeContext } from '../../Components/User/ThemeContext';
+import CheckoutForm from './Checkout';
 
 const MyCart = () => {
-  const { darkTheme } = useContext(ThemeContext);
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -15,12 +13,14 @@ const MyCart = () => {
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const response = await fetch('https://beautyshop-backend-1.onrender.com/orderitem');
+        const response = await fetch(
+          " https://beautyshop-backend-1.onrender.com/orderitem');"
+        );
         if (!response.ok) {
           throw new Error('Failed to fetch cart items');
         }
         const data = await response.json();
-        setCartItems(data.order_items);
+        setCartItems(data.order_items); // Assuming the response data has a key 'order_items'
       } catch (error) {
         setError(error.message);
       } finally {
@@ -45,9 +45,9 @@ const MyCart = () => {
 
   const totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-  const handleCheckout = () => {
-    navigate('/checkout');
-  };
+const handleCheckout = () => {
+  navigate("/checkout");
+};
 
   if (loading) {
     return <div>Loading...</div>;
@@ -58,15 +58,14 @@ const MyCart = () => {
   }
 
   return (
-    <div className={darkTheme ? 'bg-[#854A2D] text-white' : 'bg-[#efe3b8] text-black'}>
-      <Navbar/>
-      <div className="flex justify-center p-8 min-h-screen">
+    <div>
+      <div className="flex justify-center p-8 bg-yellow-100 min-h-screen">
         <div className="w-full max-w-5xl flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-8">
-          <div className="flex-1 p-6 shadow-md rounded-lg border border-gray-300">
+          <div className="flex-1 bg-yellow-100 p-6 shadow-md rounded-lg border border-gray-300">
             <h2 className="text-xl font-bold mb-4">CART ({cartItems.length})</h2>
             <div className="space-y-4">
               {cartItems.map(item => (
-                <div key={item.id} className="flex flex-col sm:flex-row items-center p-4 border-t border-b border-gray-300">
+                <div key={item.id} className="flex flex-col sm:flex-row items-center p-4 bg-yellow-100 border-t border-b border-gray-300">
                   <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded-md mr-4 mb-4 sm:mb-0" />
                   <div className="flex-1 mb-4 sm:mb-0">
                     <h3 className="font-semibold">{item.name.toUpperCase()}</h3>
@@ -84,7 +83,7 @@ const MyCart = () => {
               ))}
             </div>
           </div>
-          <div className="w-full lg:w-1/3 p-6 shadow-md rounded-lg border border-gray-300">
+          <div className="w-full lg:w-1/3 bg-yellow-100 p-6 shadow-md rounded-lg border border-gray-300">
             <h3 className="font-semibold">CART SUMMARY</h3>
             <div className="flex justify-between mt-2">
               <span>Subtotal</span>
@@ -92,17 +91,14 @@ const MyCart = () => {
             </div>
             <p className="text-sm text-gray-500 mt-2">Delivery fees not yet added</p>
            
-           <Link to="/checkout">
-             <button 
-                onClick={handleCheckout}
-                className="mt-4 w-full py-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600">
-                CHECKOUT (KSHS {totalAmount})
-              </button>
-           </Link>
+            <button 
+              onClick={handleCheckout}
+              className="mt-4 w-full py-2 bg-dark-mode text-white font-semibold rounded-md hover:bg-red-600">
+              CHECKOUT (KSHS {totalAmount})
+            </button>
             
           </div>
         </div>
-       
       </div>
       <Footer />
     </div>
@@ -110,4 +106,3 @@ const MyCart = () => {
 };
 
 export default MyCart;
-

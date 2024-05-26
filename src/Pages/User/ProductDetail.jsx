@@ -3,19 +3,21 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const ProductDetail = () => {
-  const { id } = useParams();
+  const { id } = useParams(); // Get the product ID from the URL
   const [product, setProduct] = useState(null);
   const [mainImage, setMainImage] = useState("");
   const [error, setError] = useState(null);
-  const [quantity] = useState(1);
+  const [quantity] = useState(1); // Assuming you want to add 1 item to the bag by default
 
   useEffect(() => {
-    
+    // Fetch product details from the backend
     const fetchProductDetails = async () => {
       try {
-        const response = await axios.get(`https://beautyshop-backend-1.onrender.com/products/${id}`);
+        const response = await axios.get(
+          ` http://127.0.0.1:5555/products/${id}`
+        );
         setProduct(response.data);
-        setMainImage(response.data.image);
+        setMainImage(response.data.image); // Set the main image to the product image
       } catch (err) {
         setError("Failed to fetch product details");
       }

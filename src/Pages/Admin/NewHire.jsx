@@ -23,7 +23,7 @@ export const NewHire = () => {
     const token = localStorage.getItem("token");
 
     try {
-      const response = await fetch("https://beautyshop-backend-1.onrender.com/user", {
+      const response = await fetch(" http://127.0.0.1:5555/user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
