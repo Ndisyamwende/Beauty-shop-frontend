@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Footer from '../../Components/User/Footer';
-import CheckoutForm from './Checkout';
-import Navbar from '../../Components/User/Navbar';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Footer from "../../Components/User/Footer";
+import Navbar from "../../Components/User/Navbar";
 
 const MyCart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -12,18 +11,13 @@ const MyCart = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchCartItems = async () => {
+    const fetchCartItems = () => {
       try {
-        const response = await fetch(
-          " https://beautyshop-backend-1.onrender.com/orderitem"
-        );
-        if (!response.ok) {
-          throw new Error('Failed to fetch cart items');
-        }
-        const data = await response.json();
-        setCartItems(data.order_items); // Assuming the response data has a key 'order_items'
+        // Retrieve the cart items from local storage
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        setCartItems(cart);
       } catch (error) {
-        setError(error.message);
+        setError("Failed to fetch cart items");
       } finally {
         setLoading(false);
       }
@@ -33,22 +27,37 @@ const MyCart = () => {
   }, []);
 
   const incrementQuantity = (id) => {
-    setCartItems(cartItems.map(item => item.id === id ? { ...item, quantity: item.quantity + 1 } : item));
+    const updatedCartItems = cartItems.map((item) =>
+      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+    );
+    setCartItems(updatedCartItems);
+    localStorage.setItem("cart", JSON.stringify(updatedCartItems));
   };
 
   const decrementQuantity = (id) => {
-    setCartItems(cartItems.map(item => item.id === id && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item));
+    const updatedCartItems = cartItems.map((item) =>
+      item.id === id && item.quantity > 1
+        ? { ...item, quantity: item.quantity - 1 }
+        : item
+    );
+    setCartItems(updatedCartItems);
+    localStorage.setItem("cart", JSON.stringify(updatedCartItems));
   };
 
   const removeItem = (id) => {
-    setCartItems(cartItems.filter(item => item.id !== id));
+    const updatedCartItems = cartItems.filter((item) => item.id !== id);
+    setCartItems(updatedCartItems);
+    localStorage.setItem("cart", JSON.stringify(updatedCartItems));
   };
 
-  const totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const totalAmount = cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
 
-const handleCheckout = () => {
-  navigate("/checkout");
-};
+  const handleCheckout = () => {
+    navigate("/checkout");
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -90,14 +99,14 @@ const handleCheckout = () => {
                   <div className="flex items-center space-x-2 mb-4 sm:mb-0">
                     <button
                       onClick={() => decrementQuantity(item.id)}
-                      className="px-2 py-1 bg-gray-200 border border-gray-400 rounded"
+                      className="px-2 py-1 bg-light-mode border border-solid border-dark-mode"
                     >
                       -
                     </button>
                     <span>{item.quantity}</span>
                     <button
                       onClick={() => incrementQuantity(item.id)}
-                      className="px-2 py-1 bg-gray-200 border border-gray-400 rounded"
+                      className="px-2 py-1 bg-light-mode border border-solid border-dark-mode"
                     >
                       +
                     </button>
@@ -123,7 +132,7 @@ const handleCheckout = () => {
 
             <button
               onClick={handleCheckout}
-              className="mt-4 w-full py-2 bg-dark-mode text-white font-semibold rounded-md hover:bg-red-600"
+              className="mt-4 w-full py-2 bg-dark-mode text-white font-semibold rounded-md hover:bg-orange-950"
             >
               CHECKOUT (KSHS {totalAmount})
             </button>
