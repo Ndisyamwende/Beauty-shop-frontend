@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { ThemeContext } from "../../Components/User/ThemeContext";
 
 const Messages = () => {
+  const { darkTheme, toggleTheme } = useContext(ThemeContext);
   const [contacts, setContacts] = useState([]);
   const [viewContact, setViewContact] = useState(null);
   const [replyMessage, setReplyMessage] = useState("");
@@ -60,7 +62,7 @@ const Messages = () => {
 
   const handleReply = async (id) => {
     try {
-      await fetch(`http://127.0.0.1:5555/contact/${id}`, {
+      await fetch(`https://beautyshop-backend-1.onrender.com/contact/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -84,7 +86,8 @@ const Messages = () => {
   };
 
   return (
-    <div className="bg-light-mode min-h-screen p-4">
+    // <div className="bg-light-mode min-h-screen p-4">
+    <div className={`min-h-screen p-4 ${darkTheme ? 'bg-dark-mode' : 'bg-light-mode'}`}>
       <h1 className="text-Heading font-bold text-2xl text-center py-3">
         Customer Messages
       </h1>

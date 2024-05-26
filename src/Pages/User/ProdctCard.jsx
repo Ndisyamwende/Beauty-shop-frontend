@@ -10,7 +10,7 @@ function ProductCard({ product, addToCart }) {
     setShowPopup(true);
 
     try {
-      const response = await fetch("http://127.0.0.1:5555/orderitem", {
+      const response = await fetch("https://beautyshop-backend-1.onrender.com/orderitem", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

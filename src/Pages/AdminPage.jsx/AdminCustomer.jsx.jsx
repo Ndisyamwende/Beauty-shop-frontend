@@ -13,7 +13,7 @@ export const AdminCustomer = () => {
 
     console.log("Using token:", token);
 
-    fetch("http://127.0.0.1:5500/user", {
+    fetch("https://beautyshop-backend-1.onrender.com/user", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

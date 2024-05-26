@@ -13,7 +13,7 @@ const ProductDetail = () => {
     const fetchProductDetails = async () => {
       try {
         const response = await axios.get(
-          `http://127.0.0.1:5500/products/${id}`
+          `https://beautyshop-backend-1.onrender.com/products/${id}`
         );
         setProduct(response.data);
         setMainImage(response.data.image); // Set the main image to the product image
