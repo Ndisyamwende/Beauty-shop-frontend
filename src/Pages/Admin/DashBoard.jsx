@@ -1,13 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import {
   BsFillArchiveFill,
   BsFillGrid3X3GapFill,
   BsPeopleFill,
 } from "react-icons/bs";
-import { ThemeContext } from "../../Components/User/ThemeContext";
 
 function Dashboard() {
-  const { darkTheme, toggleTheme } = useContext(ThemeContext);
   const [productsCount, setProductsCount] = useState(36); // Replace with actual API logic
   const [categoriesCount, setCategoriesCount] = useState(4); // Replace with actual API logic
   const [customersCount, setCustomersCount] = useState(0); // Initialize customers count
@@ -24,7 +22,7 @@ function Dashboard() {
     }
 
     // Fetch latest orders
-    fetch("https://beautyshop-backend-1.onrender.com/orders", {
+    fetch("http://127.0.0.1:5555/orders", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -67,7 +65,7 @@ function Dashboard() {
       .catch((error) => console.error("Error fetching orders:", error));
 
     // Fetch users to count customers who are users
-    fetch("http://127.0.0.1:5555/user", {
+    fetch("http://127.0.0.1:8000/user", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -90,10 +88,7 @@ function Dashboard() {
   }, []);
 
   return (
-
-  
-
-    <main className={`min-h-screen p-4 ${darkTheme ? 'bg-dark-mode' : 'bg-light-mode'}`}>
+    <main className="p-5 text-black bg-light-mode min-h-screen">
       <div className="flex justify-between items-center mb-5">
         <h3 className="text-xl font-bold">DASHBOARD</h3>
       </div>
@@ -174,7 +169,6 @@ function Dashboard() {
         </div>
       </div>
     </main>
-    
   );
 }
 

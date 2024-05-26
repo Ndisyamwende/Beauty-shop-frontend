@@ -6,48 +6,49 @@ import Navbar from "../../Components/User/Navbar";
 import { ThemeContext } from "../../Components/User/ThemeContext";
 
 function Homepage() {
-  // const [products, setProducts] = useState(SampleProducts);
+  const { darkTheme } = useContext(ThemeContext);
+  const [categories, setCategories] = useState([]);
+  const [currentId, setCurrentId] = useState(0);
 
-  const addToCart = (product, quantity) => {
-    console.log(`Added ${quantity} of ${product.name} to the cart.`);
-    // Add the product to the cart logic here
+  useEffect(() => {
+    const fetchedCategories = [
+      { id: 1, name: "Skin Care", image: "/src/assets/icons/Skincareicon.png" },
+      { id: 2, name: "Make Up", image: "/src/assets/icons/makeupicon.png" },
+      {
+        id: 3,
+        name: "Fragrance",
+        image: "/src/assets/icons/Fragrancesicon.png",
+      },
+      {
+        id: 4,
+        name: "Beard Gang",
+        image: "/src/assets/icons/Beardgangicon.jpg",
+      },
+    ];
+    setCategories(fetchedCategories);
+  }, []);
+
+  const handleNext = () => {
+    setCurrentIndex((prevId) => (prevId + 1) % categories.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? categories.length - 1 : prevIndex - 1
+    );
   };
 
   return (
     <>
-      <div className="bg-[#efe3b8] py-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between">
-          <div className="flex items-center w-full lg:w-auto mb-4 lg:mb-0">
-            <img src="/src/assets/images/logo.png" alt="Logo" className="h-10 w-auto" />
-          </div>
 
-          <div className="relative flex-grow flex justify-center w-full lg:w-auto">
-            <div className="relative w-full max-w-lg">
-              <input
-                className="w-full h-[40px] bg-[#efe3b8] rounded-[15px] border border-solid border-black pl-10 pr-4 [font-family:'Inter-Regular',Helvetica] font-normal text-black text-[12px]"
-                placeholder="Search for beauty Brands and Products"
-              />
-              <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black text-lg" />
-            </div>
-          </div>
+          <div className={darkTheme ? 'bg-[#A6603A] text-white' : 'bg-[#efe3b8] text-[#3A1C0E]'}>
+      <Navbar />
 
-          <div className="flex space-x-4 items-center mt-4 lg:mt-0">
-            <Link to="/menu" className="text-black cursor-pointer text-2xl">
-              <IoMenu />
-            </Link>
-            <Link to="/cart" className="text-black cursor-pointer text-2xl">
-              <FaCartPlus />
-            </Link>
-            <Link to="/mode" className="text-black cursor-pointer text-2xl">
-              <IoMoonSharp />
-            </Link>
-            <Link to="/signout" className="text-black cursor-pointer text-2xl">
-              <PiSignOutBold />
-            </Link>
-          </div>
-        </div>
-
-        <div className="flex flex-wrap justify-center lg:justify-between items-center mt-10 mx-4">
+        <section>
+          <h1 className="font-bold text-center text-4xl mt-4">WELCOME TO CELESTIAL SKINS</h1>
+          <h2 className=" text-center text-xl">The one stop shop for glowing skin</h2>
+          <h3>Browse by categories</h3>
+        <div className="flex flex-wrap justify-center lg:justify-between items-center mt-5 mx-4">
           <div className="flex flex-col items-center mb-4 lg:mb-0">
             <Link to="/skincare">
               <img
@@ -69,8 +70,12 @@ function Homepage() {
             <h2 className="mt-7">Make Up</h2>
           </div>
           <div className="flex flex-col items-center">
-            <Link to="/fragrance">
-              <img src="/src/assets/images/frag.png" alt="Fragrance" className="max-w-full h-auto" />
+            <Link to="/fragrances">
+              <img
+                src="/src/assets/icons/Fragrancesicon.png"
+                alt="Fragrance"
+                className="max-w-full h-50 w-60"
+              />
             </Link>
             <h2 className="mt-7">Fragrance</h2>
           </div>
@@ -85,22 +90,10 @@ function Homepage() {
             <h2 className="mt-7">Beard Gang</h2>
           </div>
           </div>
-          <div className="w-full sm:w-auto mb-4 sm:mb-0">
-            <h3 className="font-bold mb-2">SHOP</h3>
-            <ul>
-              <li className="mb-1"><Link to="/scents" className="hover:underline">Scents</Link></li>
-              <li className="mb-1"><Link to="/makeup" className="hover:underline">Makeup</Link></li>
-              <li><Link to="/skincare" className="hover:underline">Skin Care</Link></li>
-            </ul>
-          </div>
-          <div className="w-full sm:w-auto">
-            <h3 className="font-bold mb-2">ADDRESS</h3>
-            <p>Ngong Lane</p>
-            <p>0720856222</p>
-            <p>Celestialskin@gmail.com</p>
-          </div>
-        </div>
-      </footer>
+          </section>
+      </div>
+
+      <Footer />
     </>
   );
 }

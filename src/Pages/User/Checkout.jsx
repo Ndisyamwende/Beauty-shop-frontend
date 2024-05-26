@@ -1,15 +1,18 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../../Components/User/Footer';
 import Navbar from '../../Components/User/Navbar';
 import Modal from './Modal';
-// import { ThemeContext } from '../../Components/User/ThemeContext';
-import { ThemeContext } from '../../Components/User/ThemeContext';
+
 const Checkout = () => {
-  const { darkTheme } = useContext(ThemeContext);
+  const [customerDetails, setCustomerDetails] = useState({
+    name: '',
+    address: '',
+    phone: ''
+  });
   const [deliveryDetails, setDeliveryDetails] = useState({
     method: 'Door Delivery',
-    dateRange: 'Delivery between 09 May and 25 May',
+    dateRange: 'Delivery between 09 May and 25 May'
   });
   const [paymentMethod, setPaymentMethod] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,12 +21,29 @@ const Checkout = () => {
   const [visaDetails, setVisaDetails] = useState({
     cardNumber: '',
     expiryDate: '',
-    cvv: '',
+    cvv: ''
   });
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
   const [formErrors, setFormErrors] = useState({});
+  const [isEditingCustomer, setIsEditingCustomer] = useState(true);
+  const [isEditingDelivery, setIsEditingDelivery] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
 
-  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    const fetchCartItems = () => {
+      try {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        setCartItems(cart);
+      } catch (error) {
+        console.error("Failed to fetch cart items", error);
+      }
+    };
+
+    fetchCartItems();
+  }, []);
+
   const totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const deliveryFee = 300;
   const customFee = 50;
@@ -44,213 +64,293 @@ const Checkout = () => {
     return errors;
   };
 
-  const handleMpesaAmountChange = (e) => {
-    const amount = parseFloat(e.target.value);
-    setMpesaAmount(amount);
-    updateOrderTotal(orderItems, deliveryFee, customerFee, amount);
+  const validateVisa = () => {
+    const errors = {};
+    if (!visaDetails.cardNumber) {
+      errors.cardNumber = 'Card number is required.';
+    } else if (!/^\d{16}$/.test(visaDetails.cardNumber)) {
+      errors.cardNumber = 'Card number must be 16 digits.';
+    }
+    if (!visaDetails.expiryDate) {
+      errors.expiryDate = 'Expiry date is required.';
+    }
+    if (!visaDetails.cvv) {
+      errors.cvv = 'CVV is required.';
+    } else if (!/^\d{3,4}$/.test(visaDetails.cvv)) {
+      errors.cvv = 'CVV must be 3 or 4 digits.';
+    }
+    return errors;
   };
 
-  const handleCheckout = async (event) => {
-    event.preventDefault();
+  const handleMpesaPayment = async () => {
+    const errors = validateMpesa();
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
 
-    const customerDetails = {
-      name: customerName,
-      address: customerAddress,
-      city: customerCity,
-      deliveryInstructions: deliveryInstructions,
-      billingPostalZipcode: billingPostalZipcode,
+    setIsProcessingPayment(true);
+    setTimeout(() => {
+      setIsProcessingPayment(false);
+      confirmOrder();
+      setSuccessMessage(`Payment of Ksh ${finalTotal} was successful!`);
+    }, 2000);
+  };
+
+  const handleVisaPayment = async () => {
+    const errors = validateVisa();
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
+
+    setIsProcessingPayment(true);
+    setTimeout(() => {
+      setIsProcessingPayment(false);
+      confirmOrder();
+      setSuccessMessage(`Payment of Ksh ${finalTotal} was successful!`);
+    }, 2000);
+  };
+
+  const confirmOrder = () => {
+    const newOrderDetails = {
+      name: customerDetails.name,
+      address: customerDetails.address,
+      phone: customerDetails.phone,
+      deliveryDetails: deliveryDetails,
+      paymentMethod: paymentMethod,
+      items: cartItems,
+      totalAmount: totalAmount,
+      deliveryFee: deliveryFee,
+      customFee: customFee,
+      finalTotal: finalTotal,
     };
 
-    if (paymentMethod === 'card') {
-      if (!stripe || !elements) return;
-      const cardElement = elements.getElement(CardElement);
-      const { error, paymentMethod: paymentMethodResult } = await stripe.createPaymentMethod({
-        type: 'card',
-        card: cardElement,
-        billing_details: {
-          name: customerName,
-          address: {
-            postal_code: billingPostalZipcode,
-          },
-        },
-      });
+    setOrderDetails(newOrderDetails);
+    setIsModalOpen(true);
+  };
 
-      if (error) {
-        console.error(error);
-      } else {
-        console.log('Card payment successful:', paymentMethodResult);
-        setShowPaymentSuccessPopup(true);
-      }
-    } else if (paymentMethod === 'mpesa') {
-      const response = await fetch('http://127.0.0.1:5000/payment', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          phoneNumber,
-          amount: orderTotal,
-          customerDetails,
-        }),
-      });
+  const handleConfirmOrder = () => {
+    if (!paymentMethod) {
+      alert('Please select a payment method.');
+      return;
+    }
 
-      const responseData = await response.json();
-      console.log('M-Pesa payment response:', responseData);
-      setShowPaymentSuccessPopup(true);
+    if (paymentMethod === 'Mpesa') {
+      handleMpesaPayment();
+    } else if (paymentMethod === 'Visa card') {
+      handleVisaPayment();
     }
   };
 
-  const handleCustomerAddressSave = () => {
-    setShowCustomerAddressModal(false);
-    updateOrderTotal(orderItems, deliveryFee, customerFee, mpesaAmount);
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
-  const handleDeliveryDetailsSave = () => {
-    setShowDeliveryDetailsModal(false);
-    updateOrderTotal(orderItems, deliveryFee, customerFee, mpesaAmount);
+  const handleEditCustomerDetails = (e) => {
+    e.preventDefault();
+    setIsEditingCustomer(false);
   };
 
-  const updateOrderTotal = (items, deliveryFee, customerFee, mpesaAmount = null) => {
-    const itemsTotal = items.reduce((acc, item) => acc + item.price, 0);
-    const totalAmount = itemsTotal + deliveryFee + customerFee;
-    if (paymentMethod === 'mpesa' && mpesaAmount !== null) {
-      setOrderTotal(totalAmount + mpesaAmount);
-    } else {
-      setOrderTotal(totalAmount);
-    }
+  const handleEditDeliveryDetails = (e) => {
+    e.preventDefault();
+    setIsEditingDelivery(false);
   };
 
   return (
-    <div className="flex justify-center p-8 bg-yellow-100 min-h-screen">
-      <div className="w-full max-w-5xl flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-8">
-        <div className="flex-1 bg-yellow-100 p-6 shadow-md rounded-lg border border-gray-300">
-          <h2 className="text-xl font-bold mb-4">ORDER CONFIRMATION</h2>
-          <div className="space-y-4">
-            <div className="flex items-center p-4 bg-yellow-100 border-t border-b border-gray-300">
-              <div className="flex-1">
-                <h3 className="font-semibold">Customer Address</h3>
-                <p>{customerName}<br />
-                {customerAddress} | {phoneNumber}</p>
-              </div>
-              <button onClick={() => setShowCustomerAddressModal(true)} className="text-blue-500">Change</button>
+    <div>
+      <Navbar />
+      <div className="bg-[#efe3b8] p-5 min-h-screen">
+        <div className="max-w-5xl mx-auto bg-yellow-100 p-6 shadow-md rounded-lg border border-gray-300">
+          <h1 className="text-2xl font-bold mb-6 text-[#a87c3b]">Checkout</h1>
+          <div className="space-y-6">
+            <div className="p-4 border border-gray-300 rounded">
+              <h2 className="text-lg font-bold mb-2">1. CUSTOMER ADDRESS</h2>
+              {!isEditingCustomer ? (
+                <>
+                  <p>{customerDetails.name}</p>
+                  <p>{customerDetails.address}</p>
+                  <p>{customerDetails.phone}</p>
+                  <button onClick={() => setIsEditingCustomer(true)} className="text-sm text-blue-500 mt-2">Change</button>
+                </>
+              ) : (
+                <form onSubmit={handleEditCustomerDetails}>
+                  <input
+                    type="text"
+                    value={customerDetails.name}
+                    onChange={(e) => setCustomerDetails({ ...customerDetails, name: e.target.value })}
+                    placeholder="Name"
+                    className="w-full px-4 py-2 border rounded mb-2"
+                    required
+                  />
+                  <input
+                    type="text"
+                    value={customerDetails.address}
+                    onChange={(e) => setCustomerDetails({ ...customerDetails, address: e.target.value })}
+                    placeholder="Address"
+                    className="w-full px-4 py-2 border rounded mb-2"
+                    required
+                  />
+                  <input
+                    type="text"
+                    value={customerDetails.phone}
+                    onChange={(e) => setCustomerDetails({ ...customerDetails, phone: e.target.value })}
+                    placeholder="Phone"
+                    className="w-full px-4 py-2 border rounded mb-2"
+                    required
+                  />
+                  <button type="submit" className="mt-2 px-4 py-2 bg-green-500 text-white rounded">Save</button>
+                </form>
+              )}
             </div>
-            <div className="flex items-center p-4 bg-yellow-100 border-t border-b border-gray-300">
-              <div className="flex-1">
-                <h3 className="font-semibold">Delivery Details</h3>
-                <p>{deliveryAddress}<br />
-                {deliveryInstructions}</p>
-              </div>
-              <button onClick={() => setShowDeliveryDetailsModal(true)} className="text-blue-500">Change</button>
+            <div className="p-4 border border-gray-300 rounded">
+              <h2 className="text-lg font-bold mb-2">2. DELIVERY DETAILS</h2>
+              {!isEditingDelivery ? (
+                <>
+                  <p>{deliveryDetails.method}</p>
+                  <p>{deliveryDetails.dateRange}</p>
+                  <button onClick={() => setIsEditingDelivery(true)} className="text-sm text-blue-500 mt-2">Change</button>
+                </>
+              ) : (
+                <form onSubmit={handleEditDeliveryDetails}>
+                  <input
+                    type="text"
+                    value={deliveryDetails.method}
+                    onChange={(e) => setDeliveryDetails({ ...deliveryDetails, method: e.target.value })}
+                    placeholder="Delivery Method"
+                    className="w-full px-4 py-2 border rounded mb-2"
+                  />
+                  <input
+                    type="text"
+                    value={deliveryDetails.dateRange}
+                    onChange={(e) => setDeliveryDetails({ ...deliveryDetails, dateRange: e.target.value })}
+                    placeholder="Date Range"
+                    className="w-full px-4 py-2 border rounded mb-2"
+                  />
+                  <button type="submit" className="mt-2 px-4 py-2 bg-green-500 text-white rounded">Save</button>
+                </form>
+              )}
             </div>
-            <div className="flex items-center p-4 bg-yellow-100 border-t border-b border-gray-300">
-              <div className="flex-1">
-                <h3 className="font-semibold">Payment Method</h3>
-                <div className="flex items-center space-x-4 mt-2">
-                  <div>
-                    <input type="radio" id="mpesa" name="payment" value="mpesa" checked={paymentMethod === 'mpesa'} onChange={handlePaymentMethodChange} className="mr-2" />
-                    <label htmlFor="mpesa">Mpesa</label>
-                  </div>
-                  <div>
-                    <input type="radio" id="visa" name="payment" value="card" checked={paymentMethod === 'card'} onChange={handlePaymentMethodChange} className="mr-2" />
-                    <label htmlFor="visa">Visa card</label>
-                  </div>
+            <div className="p-4 border border-gray-300 rounded">
+              <h2 className="text-lg font-bold mb-2">3. PAYMENT METHOD</h2>
+              <div className="flex space-x-4">
+                <label className="flex items-center">
+                  <input
+                    type="radio"
+                    name="payment"
+                    value="Mpesa"
+                    checked={paymentMethod === 'Mpesa'}
+                    onChange={handlePaymentMethodChange}
+                    className="mr-2"
+                  />
+                  Mpesa
+                </label>
+                <label className="flex items-center">
+                  <input
+                    type="radio"
+                    name="payment"
+                    value="Visa card"
+                    checked={paymentMethod === 'Visa card'}
+                    onChange={handlePaymentMethodChange}
+                    className="mr-2"
+                  />
+                  Visa card
+                </label>
+              </div>
+              {paymentMethod === 'Mpesa' && (
+                <div className="mt-4">
+                  <input
+                    type="text"
+                    value={mpesaNumber}
+                    onChange={(e) => setMpesaNumber(e.target.value)}
+                    placeholder="Mpesa Number"
+                    className="w-full px-4 py-2 border rounded mb-2"
+                  />
+                  {formErrors.mpesaNumber && <p className="text-red-500 text-sm">{formErrors.mpesaNumber}</p>}
                 </div>
-              </div>
+              )}
+              {paymentMethod === 'Visa card' && (
+                <div className="mt-4 space-y-2">
+                  <input
+                    type="text"
+                    value={visaDetails.cardNumber}
+                    onChange={(e) => setVisaDetails({ ...visaDetails, cardNumber: e.target.value })}
+                    placeholder="Card Number"
+                    className="w-full px-4 py-2 border rounded mb-2"
+                  />
+                  {formErrors.cardNumber && <p className="text-red-500 text-sm">{formErrors.cardNumber}</p>}
+                  <input
+                    type="text"
+                    value={visaDetails.expiryDate}
+                    onChange={(e) => setVisaDetails({ ...visaDetails, expiryDate: e.target.value })}
+                    placeholder="Expiry Date"
+                    className="w-full px-4 py-2 border rounded mb-2"
+                  />
+                  {formErrors.expiryDate && <p className="text-red-500 text-sm">{formErrors.expiryDate}</p>}
+                  <input
+                    type="text"
+                    value={visaDetails.cvv}
+                    onChange={(e) => setVisaDetails({ ...visaDetails, cvv: e.target.value })}
+                    placeholder="CVV"
+                    className="w-full px-4 py-2 border rounded mb-2"
+                  />
+                  {formErrors.cvv && <p className="text-red-500 text-sm">{formErrors.cvv}</p>}
+                </div>
+              )}
             </div>
           </div>
-        </div>
-        <div className="w-full lg:w-1/3 bg-yellow-100 p-6 shadow-md rounded-lg border border-gray-300">
-          <h3 className="font-semibold">ORDER SUMMARY</h3>
-          {orderSummaryFetched && (
-            <>
-              <ul className="mb-2">
-                {orderItems.map((item, index) => (
-                  <li key={index} className="flex justify-between">
-                    <span>{item.name}</span>
-                    <span>KSHS {item.price}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="flex justify-between mb-2">
-                <span>Subtotal</span>
-                <span>KSHS {orderItems.reduce((acc, item) => acc + item.price, 0)}</span>
+          <div className="p-4 border border-gray-300 rounded mt-6">
+            <h2 className="text-lg font-bold mb-2">4. ORDER SUMMARY</h2>
+            <div className="space-y-2">
+              {cartItems.map((item, index) => (
+                <div key={index} className="flex justify-between items-center">
+                  <div className="flex items-center">
+                    <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded mr-4" />
+                    <span>{item.name} x {item.quantity}</span>
+                  </div>
+                  <span>Ksh {item.price * item.quantity}</span>
+                </div>
+              ))}
+              <div className="flex justify-between font-bold">
+                <span>Total Amount</span>
+                <span>Ksh {totalAmount}</span>
               </div>
-              <div className="flex justify-between mb-2">
+              <div className="flex justify-between">
                 <span>Delivery Fee</span>
-                <span>KSHS {deliveryFee}</span>
+                <span>Ksh {deliveryFee}</span>
               </div>
-              <div className="flex justify-between mb-2">
-                <span>Customer Fee</span>
-                <span>KSHS {customerFee}</span>
+              <div className="flex justify-between">
+                <span>Custom Fee</span>
+                <span>Ksh {customFee}</span>
               </div>
               <div className="flex justify-between font-bold">
-                <span>Total</span>
-                <span>KSHS {orderTotal}</span>
+                <span>Final Total</span>
+                <span>Ksh {finalTotal}</span>
               </div>
-              <button onClick={handleCheckout} className="w-full mt-4 bg-blue-500 text-white p-2 rounded">Place Order</button>
-            </>
-          )}
+            </div>
+          </div>
+          <button
+            onClick={handleConfirmOrder}
+            className="mt-4 px-4 py-2 bg-green-500 text-white rounded"
+            disabled={isProcessingPayment}
+          >
+            {isProcessingPayment ? 'Processing...' : 'Confirm Order'}
+          </button>
         </div>
       </div>
-
-      {showCustomerAddressModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg">
-            <h2 className="text-xl font-bold mb-4">Edit Customer Address</h2>
-            <input type="text" value={customerName} onChange={(e) => setCustomerName(e.target.value)} className="block w-full mb-2 p-2 border border-gray-300 rounded" placeholder="Name" />
-            <input type="text" value={customerAddress} onChange={(e) => setCustomerAddress(e.target.value)} className="block w-full mb-2 p-2 border border-gray-300 rounded" placeholder="Address" />
-            <input type="text" value={customerCity} onChange={(e) => setCustomerCity(e.target.value)} className="block w-full mb-2 p-2 border border-gray-300 rounded" placeholder="City" />
-            <input type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} className="block w-full mb-2 p-2 border border-gray-300 rounded" placeholder="Phone Number" />
-            <button onClick={handleCustomerAddressSave} className="bg-blue-500 text-white p-2 rounded">Save</button>
-          </div>
-        </div>
+      <Footer />
+      {isModalOpen && (
+        <Modal onClose={handleCloseModal} orderDetails={orderDetails} />
       )}
+     {successMessage && (
+        <div className="fixed inset-0 flex justify-center items-center z-50">
+          <div className="bg-green-500 text-white px-6 py-4 rounded-lg text-xl font-bold">
+             {successMessage}
+           </div>
+         </div>
+       )}
+     </div>
+   );
+ };
 
-      {showDeliveryDetailsModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg">
-            <h2 className="text-xl font-bold mb-4">Edit Delivery Details</h2>
-            <input type="text" value={deliveryAddress} onChange={(e) => setDeliveryAddress(e.target.value)} className="block w-full mb-2 p-2 border border-gray-300 rounded" placeholder="Delivery Address" />
-            <input type="text" value={deliveryCity} onChange={(e) => setDeliveryCity(e.target.value)} className="block w-full mb-2 p-2 border border-gray-300 rounded" placeholder="City" />
-            <input type="text" value={deliveryState} onChange={(e) => setDeliveryState(e.target.value)} className="block w-full mb-2 p-2 border border-gray-300 rounded" placeholder="State" />
-            <textarea value={deliveryInstructions} onChange={(e) => setDeliveryInstructions(e.target.value)} className="block w-full mb-2 p-2 border border-gray-300 rounded" placeholder="Delivery Instructions"></textarea>
-            <button onClick={handleDeliveryDetailsSave} className="bg-blue-500 text-white p-2 rounded">Save</button>
-          </div>
-        </div>
-      )}
-
-      {showPaymentSuccessPopup && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg">
-            <h2 className="text-xl font-bold mb-4">Payment Successful</h2>
-            <p>Your order has been placed successfully!</p>
-            <button onClick={() => setShowPaymentSuccessPopup(false)} className="bg-blue-500 text-white p-2 rounded mt-4">Close</button>
-          </div>
-        </div>
-      )}
-
-      {showMpesaModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg">
-            <h2 className="text-xl font-bold mb-4">M-Pesa Payment</h2>
-            <input type="number" value={mpesaAmount} onChange={handleMpesaAmountChange} className="block w-full mb-2 p-2 border border-gray-300 rounded" placeholder="Enter M-Pesa amount" />
-            <button onClick={() => setShowMpesaModal(false)} className="bg-blue-500 text-white p-2 rounded">Confirm</button>
-          </div>
-        </div>
-      )}
-
-      {showCardModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg">
-            <h2 className="text-xl font-bold mb-4">Card Payment</h2>
-            <CardElement className="block w-full mb-2 p-2 border border-gray-300 rounded" />
-            <input type="text" value={billingPostalZipcode} onChange={(e) => setBillingPostalZipcode(e.target.value)} className="block w-full mb-2 p-2 border border-gray-300 rounded" placeholder="Billing Postal Zipcode" />
-            <button onClick={() => setShowCardModal(false)} className="bg-blue-500 text-white p-2 rounded">Confirm</button>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
-
-export default Checkout;
+ export default Checkout;

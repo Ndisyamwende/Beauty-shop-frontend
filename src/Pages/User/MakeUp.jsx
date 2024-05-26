@@ -108,49 +108,53 @@ const MakeUp = ({ addToCart }) => {
   const [sortGender, setSortGender] = useState("");
 
   const handleSortChange = (event) => {
-    setSortCategory(event.target.value);
+    setSortGender(event.target.value);
   };
 
-  const filteredProducts = sortCategory
-    ? products.filter((product) => product.category === sortCategory)
+  const filteredProducts = sortGender
+    ? products.filter((product) => product.gender === sortGender)
     : products;
 
   return (
     <div>
-    <div>
-      <div className='flex justify-between items-center mb-4'>
-        <h1 className='text-2xl font-bold'>Make Up List</h1>
-        <div className='flex items-center'>
-          <label htmlFor='gender-sort' className='mr-2'>Sort by Gender:</label>
-          <select
-            id='gender-sort'
-            value={sortGender}
-            onChange={handleSortChange}
-            className='px-4 py-2 border rounded'
-          >
-            <option value=''>All</option>
-            <option value='male'>Male</option>
-            <option value='female'>Female</option>
-          </select>
-        </div>
-        <div className='text-lg font-semibold'>
-          Showing All: {filteredProducts.length} Results
+        <div className={darkTheme ? 'bg-[#A6603A] text-white' : 'bg-[#efe3b8] text-[#3A1C0E]'}>
+      <Navbar />
+        <div>
+          <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
+            <h1 className="text-2xl font-bold text-black">MakeUp</h1>
+            <div className="flex items-center mt-2 sm:mt-0">
+              <label htmlFor="gender-sort" className="mr-2 text-black">
+                Sort by Gender:
+              </label>
+              <select
+                id="gender-sort"
+                value={sortGender}
+                onChange={handleSortChange}
+                className="px-4 py-2 border rounded border-[#a87c3b] text-black bg-[#f5e9d3]"
+              >
+                <option value="">All</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+            <div className="text-lg font-semibold text-black mt-2 sm:mt-0">
+              Showing All: {filteredProducts.length} Results
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {filteredProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                addToCart={addToCart}
+              />
+            ))}
+          </div>
         </div>
       </div>
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-        {filteredProducts.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            addToCart={addToCart}
-          />
-        ))}
-      </div>
-    </div>
-
-    <Footer/>
+      <Footer />
     </div>
   );
 };
 
-export default ProductList;
+export default MakeUp;

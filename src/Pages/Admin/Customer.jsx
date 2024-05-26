@@ -15,10 +15,10 @@ export const Customer = () => {
 
     console.log("Using token:", token);
 
-    fetch(" https://beautyshop-backend-1.onrender.com/user", {
+    fetch("https://beautyshop-backend-1.onrender.com/user", {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`, // Corrected syntax for template literals
       },
     })
       .then((response) => {
@@ -26,15 +26,17 @@ export const Customer = () => {
         console.log("Response headers:", response.headers);
 
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          throw new Error(`HTTP error! status: ${response.status}`); // Corrected syntax for template literals
         }
         return response.json();
       })
       .then((data) => {
         console.log("Fetched data:", data);
 
-        if (Array.isArray(data)) {
-          const filteredUsers = data.filter((user) => user.role === "user");
+        if (data && data.users) {
+          const filteredUsers = data.users.filter(
+            (user) => user.role === "user"
+          );
           setUsers(filteredUsers);
         } else {
           console.error("Unexpected data format:", data);
@@ -44,8 +46,7 @@ export const Customer = () => {
   }, []);
 
   return (
-    // <div className="bg-light-mode min-h-screen p-4">
-    <div className={`min-h-screen p-4 ${darkTheme ? 'bg-dark-mode' : 'bg-light-mode'}`}>
+    <div className={`min-h-screen p-4 ${darkTheme ? 'bg-dark-mode' : 'bg-light-mode'}`}> {/* Corrected syntax for template literals */}
       <h1 className="text-Heading font-bold text-2xl text-center py-3">
         CUSTOMERS
       </h1>
@@ -53,7 +54,7 @@ export const Customer = () => {
         {users.map((user) => (
           <div
             key={user.id}
-            className=" dark:bg-variant1-dark p-2 shadow-md text-center"
+            className="dark:bg-variant1-dark p-2 shadow-md text-center"
           >
             <div className="text-[18px] font-body bg-white dark:bg-variant1-dark text-secondary p-2 capitalize">
               {user.username} {/* Use username instead of name */}
@@ -78,8 +79,8 @@ export const Customer = () => {
           </thead>
           <tbody className="text-[16px] font-normal text-Heading">
             {users.map((user) => (
-              <tr key={user.id} className=" border-[6px]">
-                <td className="p-[10px] capitalize">{user.name}</td>
+              <tr key={user.id} className="border-[6px]">
+                <td className="p-[10px] capitalize">{user.username}</td>
                 <td className="p-[10px] capitalize">{user.email}</td>
                 <td className="p-[10px]">{user.address}</td>
               </tr>

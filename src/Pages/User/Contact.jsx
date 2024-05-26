@@ -10,7 +10,8 @@ const CustomerContact = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
-
+  const [error, setError] = useState(null);
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!name || !email || !message) {
@@ -18,10 +19,12 @@ const CustomerContact = () => {
       return;
     }
     try {
-      const response = await fetch('http://127.0.0.1:5000/contact', {
-        method: 'POST',
+      const token = localStorage.getItem("token");
+      const response = await fetch(" https://beautyshop-backend-1.onrender.com/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token},`
         },
         body: JSON.stringify({ name, email, message }),
       });
@@ -42,9 +45,10 @@ const CustomerContact = () => {
   };
 
   return (
-    <div>
-      <div className="min-h-screen bg-[#f5e3b3] flex items-center justify-center">
-        <div className="bg-[#f5e3b3] flex flex-col md:flex-row items-center justify-center p-8 rounded-lg shadow-lg space-y-6 md:space-y-0 md:space-x-6">
+    <div className={darkTheme ? 'bg-[#A6603A] text-white' : 'bg-[#efe3b8] text-black'}>
+      <Navbar/>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="flex flex-col md:flex-row items-center justify-center p-8 rounded-lg shadow-lg space-y-6 md:space-y-0 md:space-x-6">
           <div className="w-full md:w-auto">
             <img src="/src/assets/Makeup/makeup3.png" alt="Lipstick" className="w-full md:w-64 md:h-64 rounded-lg object-cover" />
           </div>
@@ -104,7 +108,6 @@ const CustomerContact = () => {
         </div>
       </div>
       <Footer />
-    </div>
     </div>
   );
 };
