@@ -7,7 +7,10 @@ const ForgotPasswordRequest = () => {
 
   const handleRequestReset = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:5000/request-reset', { email });
+      const response = await axios.post(
+        " http://127.0.0.1:5555/request-reset",
+        { email }
+      );
       setMessage(response.data.success ? 'Reset link sent to your email.' : response.data.error);
     } catch (error) {
       setMessage(error.response?.data?.error || 'Error sending reset link.');

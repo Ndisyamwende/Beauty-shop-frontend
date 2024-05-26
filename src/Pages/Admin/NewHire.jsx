@@ -1,9 +1,14 @@
-import { useState } from "react";
+
+import { useState, useContext } from "react";
+import { ThemeContext } from "../../Components/User/ThemeContext";
+
 
 export const NewHire = () => {
+  const { darkTheme, toggleTheme } = useContext(ThemeContext);
   const [formData, setFormData] = useState({
     username: "",
     email: "",
+    department: "Administrative",
     department: "Administrative",
     role: "employee",
     password: "",
@@ -56,9 +61,11 @@ export const NewHire = () => {
 
   return (
     <div className="flex justify-center items-center bg-light-mode min-h-screen border border-solid-dark-mode">
-      <div className="max-w-md">
-        <div className="flex items-center justify-center mb-5">
-          <h1 className="text-xl font-bold text-Heading dark:text-primary-light">Hiring</h1>
+      <div className=" max-w-md">
+        <div className="flex items-center justify-center mb-[20px]">
+          <h1 className="text-xl font-bold text-Heading dark:text-primary-light">
+            Hiring
+          </h1>
         </div>
         <form onSubmit={handleSubmit} className="bg-light-mode shadow-md rounded p-5 w-[350px]">
           <h3 className="text-lg text-center font-bold mb-2 text-Heading dark:text-secondary">Add new hire</h3>

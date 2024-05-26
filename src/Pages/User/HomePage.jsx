@@ -1,11 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FaSearch, FaCartPlus } from 'react-icons/fa';
-import { IoMenu, IoMoonSharp } from 'react-icons/io5';
-import { PiSignOutBold } from 'react-icons/pi';
-
+import React, { useState, useEffect, useContext} from "react";
+import { Link } from "react-router-dom";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import Footer from "../../Components/User/Footer";
+import Navbar from "../../Components/User/Navbar";
+import { ThemeContext } from "../../Components/User/ThemeContext";
 
 function Homepage() {
+  // const [products, setProducts] = useState(SampleProducts);
+
   const addToCart = (product, quantity) => {
     console.log(`Added ${quantity} of ${product.name} to the cart.`);
     // Add the product to the cart logic here
@@ -13,7 +15,6 @@ function Homepage() {
 
   return (
     <>
-  
       <div className="bg-[#efe3b8] py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between">
           <div className="flex items-center w-full lg:w-auto mb-4 lg:mb-0">
@@ -23,7 +24,7 @@ function Homepage() {
           <div className="relative flex-grow flex justify-center w-full lg:w-auto">
             <div className="relative w-full max-w-lg">
               <input
-                className="w-full h-[40px] bg-[#efe3b8] rounded-[15px] border border-solid border-black pl-10 pr-4 font-normal text-black text-[12px]"
+                className="w-full h-[40px] bg-[#efe3b8] rounded-[15px] border border-solid border-black pl-10 pr-4 [font-family:'Inter-Regular',Helvetica] font-normal text-black text-[12px]"
                 placeholder="Search for beauty Brands and Products"
               />
               <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black text-lg" />
@@ -49,43 +50,46 @@ function Homepage() {
         <div className="flex flex-wrap justify-center lg:justify-between items-center mt-10 mx-4">
           <div className="flex flex-col items-center mb-4 lg:mb-0">
             <Link to="/skincare">
-              <img src="/src/assets/images/careskin.png" alt="Skin Care" className="max-w-full h-auto" />
+              <img
+                src="/src/assets/icons/Skincareicon.png"
+                alt="Skin Care"
+                className="max-w-full h-50 w-60"
+              />
             </Link>
             <h2 className="mt-5">Skin Care</h2>
           </div>
           <div className="flex flex-col items-center mb-4 lg:mb-0">
-            <Link to="/makeups">
-              <img src="/src/assets/images/makeup.png" alt="Make Up" className="max-w-full h-auto" />
+            <Link to="/makeup">
+              <img
+                src="/src/assets/icons/makeupicon.png"
+                alt="Make Up"
+                className="max-w-full h-50 w-60"
+              />
             </Link>
             <h2 className="mt-7">Make Up</h2>
           </div>
           <div className="flex flex-col items-center">
-            <Link to="/fragrances">
+            <Link to="/fragrance">
               <img src="/src/assets/images/frag.png" alt="Fragrance" className="max-w-full h-auto" />
             </Link>
             <h2 className="mt-7">Fragrance</h2>
           </div>
-        </div>
-      </div>
-
-      <footer style={{ backgroundColor: '#A6603A', minHeight: '5vh' }}>
-        <div className="container mx-auto flex flex-col md:flex-row justify-around items-start p-4">
-          <div className="mb-4 md:mb-0">
-            <h1 className="text-3xl font-bold">Celestial Skins</h1>
-            <p>Beauty Shop</p>
+          <div className="flex flex-col items-center">
+            <Link to="/beardgang">
+              <img
+                src="/src/assets/icons/Beardgangicon.jpg"
+                alt="beardgang"
+                className="max-w-full h-50 w-60"
+              />
+            </Link>
+            <h2 className="mt-7">Beard Gang</h2>
           </div>
-          <div className="w-full sm:w-auto mb-4 sm:mb-0">
-            <h3 className="font-bold mb-2">ABOUT US</h3>
-            <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/contactus">Contact Us</Link></li>
-            </ul>
           </div>
           <div className="w-full sm:w-auto mb-4 sm:mb-0">
             <h3 className="font-bold mb-2">SHOP</h3>
             <ul>
-              <li className="mb-1"><Link to="/fragrances" className="hover:underline">Fragrances</Link></li>
-              <li className="mb-1"><Link to="/makeups" className="hover:underline">MakeUp</Link></li>
+              <li className="mb-1"><Link to="/scents" className="hover:underline">Scents</Link></li>
+              <li className="mb-1"><Link to="/makeup" className="hover:underline">Makeup</Link></li>
               <li><Link to="/skincare" className="hover:underline">Skin Care</Link></li>
             </ul>
           </div>

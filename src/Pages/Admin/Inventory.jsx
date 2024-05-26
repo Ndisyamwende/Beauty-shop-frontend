@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Modal from "react-modal";
+import { ThemeContext } from "../../Components/User/ThemeContext";
 
 Modal.setAppElement("#root");
 
 export const Inventory = () => {
+  const { darkTheme, toggleTheme } = useContext(ThemeContext);
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState("All");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -52,78 +54,24 @@ export const Inventory = () => {
     setIsModalOpen(true);
   };
 
-  const handleSaveProduct = async (event) => {
-    event.preventDefault();
-    const token = localStorage.getItem("token");
-
-    try {
-      const response = await fetch("https://beautyshop-backend-1.onrender.com/product", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(newProduct),
-      });
-
-      if (response.ok) {
-        setIsModalOpen(false);
-        const data = await response.json();
-        setProducts((prevProducts) => [...prevProducts, data]);
-      } else {
-        console.error(`Error: ${response.status}`);
-      }
-    } catch (error) {
-      console.error("Error saving product:", error);
-    }
+  const handleSaveProduct = () => {
+    // Save product logic here
+    setIsModalOpen(false);
   };
 
-  const handleDeleteProduct = async (id) => {
-    const token = localStorage.getItem("token");
-
-    try {
-      const response = await fetch(`https://beautyshop-backend-1.onrender.com/product/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      setProducts(products.filter((product) => product.id !== id));
-    } catch (error) {
-      console.error("Error deleting product:", error);
-    }
+  const handleDeleteProduct = (id) => {
+    // Delete product logic here
   };
 
-  const handleEditProduct = async (id, updatedProduct) => {
-    const token = localStorage.getItem("token");
-
-    try {
-      const response = await fetch(`https://beautyshop-backend-1.onrender.com/product/${id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(updatedProduct),
-      });
-
-      if (response.ok) {
-        setProducts(products.map((p) => (p.id === id ? updatedProduct : p)));
-      } else {
-        console.error(`Error: ${response.status}`);
-      }
-    } catch (error) {
-      console.error("Error editing product:", error);
-    }
+  const handleEditProduct = (product) => {
+    // Edit product logic here
   };
 
   return (
     <div className="bg-light-mode min-h-screen p-4">
-      <h1 className="text-Heading font-bold text-2xl text-center py-3">INVENTORY</h1>
+      <h1 className="text-Heading font-bold text-2xl text-center py-3">
+        INVENTORY
+      </h1>
       <div className="flex justify-between items-center mb-4">
         <select
           value={category}
@@ -134,9 +82,9 @@ export const Inventory = () => {
             Category
           </option>
           <option value="All">All</option>
-          <option value="Makeup">Makeup</option>
-          <option value="Skin care">Skin care</option>
-          <option value="Fragrances">Fragrances</option>
+          <option value="Category1">Makeup</option>
+          <option value="Category2">Skin care</option>
+          <option value="Category3">Fragrances</option>
         </select>
         <button
           onClick={handleAddProduct}
@@ -159,22 +107,23 @@ export const Inventory = () => {
             </tr>
           </thead>
           <tbody className="text-[16px] font-normal text-Heading">
-            {products.map((product) => (
-              <tr key={product.id} className="bg-white dark:bg-variant1-dark border-[6px]">
-                <td className="p-[10px] capitalize">
-                  <img src={product.image} alt={product.name} height={50} width={50} />
-                </td>
+            {filteredProducts.map((product) => (
+              <tr
+                key={product.id}
+                className="bg-white dark:bg-variant1-dark border-[6px]"
+              >
+                <td className="p-[10px] capitalize">{product.image}</td>
                 <td className="p-[10px] capitalize">{product.name}</td>
                 <td className="p-[10px]">{product.gender}</td>
                 <td className="p-[10px]">{product.price}</td>
                 <td className="p-[10px]">{product.description}</td>
                 <td className="p-[10px]">{product.quantity_available}</td>
                 <td className="p-[10px] flex gap-2">
-                  <button onClick={() => handleEditProduct(product.id, product)}>
+                  <button onClick={() => handleEditProduct(product)}>
                     <FaEdit className="text-blue-500" />
                   </button>
                   <button onClick={() => handleDeleteProduct(product.id)}>
-                    <FaTrashAlt className="text-red-500" />
+                    <FaTrashAlt className="text-black" />
                   </button>
                 </td>
               </tr>
@@ -189,8 +138,10 @@ export const Inventory = () => {
         className="fixed inset-0 flex items-center justify-center z-50"
         overlayClassName="fixed inset-0 bg-black bg-opacity-75"
       >
-        <div className="rounded-lg p-8 max-w-lg w-full bg-white">
-          <h2 className="text-2xl font-bold mb-4">Add New Product</h2>
+        <div className="rounded-lg p-8 max-w-lg w-full">
+          <h2 className="text-2xl font-bold mb-4 text-white">
+            Add New Product
+          </h2>
           <form onSubmit={handleSaveProduct}>
             <input
               type="text"
@@ -229,12 +180,17 @@ export const Inventory = () => {
             />
             <input
               type="number"
-              placeholder="Quantity Available"
-              value={newProduct.quantity_available}
-              onChange={(e) => setNewProduct({ ...newProduct, quantity_available: e.target.value })}
+              placeholder="Stock"
+              value={newProduct.stock}
+              onChange={(e) =>
+                setNewProduct({ ...newProduct, stock: e.target.value })
+              }
               className="block w-full mb-2 p-2 border rounded"
             />
-            <button type="submit" className="bg-blue-500 text-white p-2 rounded-md mt-4">
+            <button
+              type="submit"
+              className="bg-blue-500 text-black p-2 rounded-md mt-4"
+            >
               Save
             </button>
           </form>
@@ -243,3 +199,7 @@ export const Inventory = () => {
     </div>
   );
 };
+
+
+
+
