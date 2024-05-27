@@ -20,19 +20,6 @@ const CustomerContact = () => {
     }
     try {
       const token = localStorage.getItem("token");
-<<<<<<< HEAD
-      const response = await fetch(
-        " https://beautyshop-backend-1.onrender.com/contact",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ name, email, message }),
-        }
-      );
-=======
       const response = await fetch(" https://beautyshop-backend-1.onrender.com/contact", {
         method: "POST",
         headers: {
@@ -41,7 +28,6 @@ const CustomerContact = () => {
         },
         body: JSON.stringify({ name, email, message }),
       });
->>>>>>> 4a8fafa6f468f8ecd08f5ec6218a9537e6d0ed0f
       if (response.ok) {
         setName('');
         setEmail('');

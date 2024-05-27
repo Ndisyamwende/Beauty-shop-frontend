@@ -51,7 +51,7 @@ const MakeUp = ({ addToCart }) => {
 
   return (
     <div>
-        <div className={darkTheme ? 'bg-[#A6603A] text-white' : 'bg-[#efe3b8] text-[#3A1C0E]'}>
+        <div >
       <Navbar />
         <div>
           <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
