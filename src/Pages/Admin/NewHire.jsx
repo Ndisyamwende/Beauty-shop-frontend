@@ -9,7 +9,6 @@ export const NewHire = () => {
     username: "",
     email: "",
     department: "Administrative",
-    department: "Administrative",
     role: "employee",
     password: "",
     image: "",

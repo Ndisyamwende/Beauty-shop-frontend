@@ -352,24 +352,28 @@ export const Inventory = () => {
     setIsModalOpen(true);
   };
 
- const handleSaveProduct = async (event) => {
-   event.preventDefault();
-   const token = localStorage.getItem("token");
-
-   try {
-     const response = await fetch("http://127.0.0.1:8000/product", {
-       method: "POST",
-       headers: {
-         "Content-Type": "application/json",
-         Authorization: `Bearer ${token}`,
-       },
-       body: JSON.stringify(newProduct),
-     });
-
-     if (!response.ok) {
-       console.error(`Error: ${response.status}`);
-       return;
-     }
+  const handleSaveProduct = async (productData) => {
+    // Ensure the gender field is valid
+    if (!['Man', 'Woman'].includes(productData.gender)) {
+      console.error('Invalid gender value');
+      return;
+    }
+  
+    try {
+      const response = await fetch('http://127.0.0.1:8000/product', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(productData),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      
 
      // Close the modal after saving
      setIsModalOpen(false);
@@ -385,12 +389,14 @@ export const Inventory = () => {
     const token = localStorage.getItem("token");
 
     try {
-      const response = await fetch(`http://127.0.0.1:5555/products/${id}`, {
+      const response = await fetch(`http://127.0.0.1:8000 /products/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
         },
+      
       });
+      
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -400,6 +406,7 @@ export const Inventory = () => {
       console.error("Error deleting product:", error);
     }
   };
+ 
 
 const handleEditProduct = async (id, updatedProduct) => {
   setIsModalOpen(true); // Open the modal for editing
@@ -416,7 +423,7 @@ const handleEditProduct = async (id, updatedProduct) => {
 
   try {
     const token = localStorage.getItem("token");
-    const response = await fetch(`http://127.0.0.1:5555/products/${id}`, {
+    const response = await fetch(`http://127.0.0.1:8000 /products/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

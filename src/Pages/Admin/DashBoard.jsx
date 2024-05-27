@@ -22,7 +22,7 @@ function Dashboard() {
     }
 
     // Fetch latest orders
-    fetch("http://127.0.0.1:5555/orders", {
+    fetch("http://127.0.0.1:8000/orders", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -63,6 +63,7 @@ function Dashboard() {
         setMonthlySales(monthlyTotal);
       })
       .catch((error) => console.error("Error fetching orders:", error));
+     
 
     // Fetch users to count customers who are users
     fetch("http://127.0.0.1:8000/user", {
