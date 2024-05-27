@@ -32,7 +32,7 @@ const Navbar = () => {
 
 
   return (
-    <div className="bg-[#efe3b8] py-4">
+    <div className={`py-4 ${darkTheme ? 'bg-[#A6603A]' : 'bg-[#efe3b8]'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between">
         <div className="flex items-center w-full lg:w-auto mb-4 lg:mb-0">
           <img src="/src/assets/logo.png" alt="Logo" className="h-10 w-auto" />
@@ -45,10 +45,10 @@ const Navbar = () => {
             } lg:block`}
           >
             <input
-              className="w-full h-[40px] bg-[#efe3b8] rounded-[15px] border border-solid border-black pl-10 pr-4 [font-family:'Inter-Regular',Helvetica] font-normal text-black text-[12px]"
+              className={`w-full h-[40px] ${darkTheme ? 'bg-[#A6603A] text-white border-black' : 'bg-[#efe3b8] text-black border-black'} rounded-[15px] border border-solid pl-10 pr-4 [font-family:'Inter-Regular',Helvetica] font-normal text-[12px]`}
               placeholder="Search for beauty Brands and Products"
             />
-            <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black text-lg" />
+            <FaSearch className={`absolute left-3 top-1/2 transform -translate-y-1/2 ${darkTheme ? 'text-white' : 'text-black'} text-lg`} />
           </div>
           {!showSearch && (
             <FaSearch

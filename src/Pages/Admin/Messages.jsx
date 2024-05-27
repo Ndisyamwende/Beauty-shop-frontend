@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { ThemeContext } from "../../Components/User/ThemeContext";
 import { ThemeContext } from "../../Components/User/ThemeContext";
 
 const Messages = () => {
-  const { darkTheme } = useContext(ThemeContext);
+  const { darkTheme, toggleTheme } = useContext(ThemeContext);
+  //const { darkTheme } = useContext(ThemeContext);
   const [contacts, setContacts] = useState([]);
   const [viewContact, setViewContact] = useState(null);
 

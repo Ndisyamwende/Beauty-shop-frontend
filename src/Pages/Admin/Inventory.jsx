@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Modal from "react-modal";
+import { ThemeContext } from "../../Components/User/ThemeContext";
 
 Modal.setAppElement("#root");
 
 export const Inventory = () => {
+  const { darkTheme, toggleTheme } = useContext(ThemeContext);
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState("All");
   const [isModalOpen, setIsModalOpen] = useState(false);

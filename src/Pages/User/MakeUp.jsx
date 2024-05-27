@@ -51,8 +51,8 @@ const MakeUp = ({ addToCart }) => {
 
   return (
     <div>
-      <div className="bg-[#efe3b8] p-5">
-        <Navbar />
+        <div className={darkTheme ? 'bg-[#A6603A] text-white' : 'bg-[#efe3b8] text-[#3A1C0E]'}>
+      <Navbar />
         <div>
           <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
             <h1 className="text-2xl font-bold text-black">MakeUp</h1>
@@ -78,3 +78,7 @@ const MakeUp = ({ addToCart }) => {
 };
 
 export default MakeUp;
+
+
+
+

@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useContext } from 'react';
 import { FaTachometerAlt, FaBoxes, FaUsers, FaUserPlus, FaEnvelope, FaMoon, FaSun, FaSignOutAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { ThemeContext } from '../User/ThemeContext';
 
 const Sidebar = () => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
-
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+  const { darkTheme, toggleTheme } = useContext(ThemeContext);
 
   const handleLogout = () => {
-    // Logic to handle logout, e.g., clearing tokens, redirecting to login page
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     window.location.href = '/login';
@@ -72,8 +69,6 @@ const Sidebar = () => {
           <FaSignOutAlt className="mr-2" />
           Logout
         </button>
-
-        
       </div>
     </div>
   );

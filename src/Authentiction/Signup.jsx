@@ -104,7 +104,7 @@ const Signup = () => {
             className="w-full h-[50px] bg-[#a6603a] rounded-[30px] flex items-center justify-center mt-4"
             onClick={handleSignup}
           >
-            <span className="[font-family:'Inter-ExtraBold',Helvetica] font-extrabold text-black text-[16px]">
+            <span className="[font-family:'Inter-ExtraBold',Helvetica] font-extrabold text-white text-[16px]">
               Sign Up
             </span>
           </button>

@@ -1,8 +1,6 @@
-import { useState, useEffect, useContext } from "react";
-import { ThemeContext } from "../../Components/User/ThemeContext";
+import { useState, useEffect } from "react";
 
-export const Customer = () => {
-  const { darkTheme, toggleTheme } = useContext(ThemeContext);
+export const AdminCustomer = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -15,7 +13,7 @@ export const Customer = () => {
 
     console.log("Using token:", token);
 
-    fetch(" http://127.0.0.1:5555/user", {
+    fetch("https://beautyshop-backend-1.onrender.com/user", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -33,11 +31,8 @@ export const Customer = () => {
       .then((data) => {
         console.log("Fetched data:", data);
 
-        if (data && data.users) {
-          const filteredUsers = data.users.filter(
-            (user) => user.role === "user"
-          );
-          setUsers(filteredUsers);
+        if (Array.isArray(data)) {
+          setUsers(data);
         } else {
           console.error("Unexpected data format:", data);
         }
@@ -46,8 +41,7 @@ export const Customer = () => {
   }, []);
 
   return (
-    // <div className="bg-light-mode min-h-screen p-4">
-    <div className={`min-h-screen p-4 ${darkTheme ? 'bg-dark-mode' : 'bg-light-mode'}`}>
+    <div className="bg-light-mode ">
       <h1 className="text-Heading font-bold text-2xl text-center py-3">
         CUSTOMERS
       </h1>
@@ -55,15 +49,15 @@ export const Customer = () => {
         {users.map((user) => (
           <div
             key={user.id}
-            className=" dark:bg-variant1-dark p-2 shadow-md text-center"
+            className="bg-white dark:bg-variant1-dark p-2 shadow-md text-center"
           >
-            <div className="text-[18px] font-body bg-dark-mode dark:bg-variant1-dark text-secondary p-2 capitalize">
-              {user.username} {/* Use username instead of name */}
+            <div className="text-[18px] font-body bg-white dark:bg-variant1-dark text-secondary p-2 capitalize">
+              {user.email} {/* Display email if name is not available */}
             </div>
-            <div className="text-[14px] font-body bg-dark-mode dark:bg-variant1-dark text-Heading dark:text-primary-light p-2 capitalize">
+            <div className="text-[14px] font-body bg-white dark:bg-variant1-dark text-Heading dark:text-primary-light p-2 capitalize">
               {user.email}
             </div>
-            <div className="text-[14px] font-body bg-dark-mode dark:bg-variant1-dark text-Heading dark:text-primary-light p-2">
+            <div className="text-[14px] font-body bg-white dark:bg-variant1-dark text-Heading dark:text-primary-light p-2">
               {user.address}
             </div>
           </div>
@@ -72,16 +66,14 @@ export const Customer = () => {
       <div className="hidden md:block">
         <table className="w-full mx-auto text-left text-Heading">
           <thead className="text-[18px] font-body bg-secondary text-black">
-            <tr className=" border-dark-mode bg-dark-mode">
-              <th className="p-[10px]">Name</th>
+            <tr className="border-[6px] border-dark-mode bg-dark-mode">
               <th className="p-[10px]">Email</th>
               <th className="p-[10px]">Address</th>
             </tr>
           </thead>
           <tbody className="text-[16px] font-normal text-Heading">
             {users.map((user) => (
-              <tr key={user.id} className="">
-                <td className="p-[10px] capitalize">{user.username}</td>
+              <tr key={user.id} className=" border-[6px]">
                 <td className="p-[10px] capitalize">{user.email}</td>
                 <td className="p-[10px]">{user.address}</td>
               </tr>
