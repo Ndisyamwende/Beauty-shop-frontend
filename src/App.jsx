@@ -17,11 +17,13 @@ import Fragrances from './Pages/User/Fragrances';
 
 
 
+
 import Checkout from './Pages/User/Checkout';
 import CustomerContact from './Pages/User/Contact';
 import Messages from './Pages/Admin/Messages';
 import ProductList from './Pages/User/MakeUp';
 import Dashboard from './Pages/Admin/DashBoard';
+import ProductDetail from './Pages/Products/ProductDescription';
 // import SkinCare from './Pages/User/SkinCare';
 
 
@@ -137,6 +139,15 @@ function App() {
           element={
             <PrivateRoute role="user">
               <Checkout />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/products"
+          element={
+            <PrivateRoute role="user">
+              <ProductDetail />
             </PrivateRoute>
           }
         />

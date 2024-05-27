@@ -132,11 +132,11 @@ fetch("http://127.0.0.1:5555/category", {
       </div>
 
       <div className="flex flex-col md:flex-row justify-between mb-5">
-        <div className="bg-dark-mode p-1 rounded mb-2 md:mb-0 md:mr-2">
+        <div className="bg-light-mode p-1 rounded mb-2 md:mb-0 md:mr-2 border border-solid border-dark-mode">
           <h4 className="text-medium font-bold">Total Daily Sales</h4>
           <p className="text-xl font-bold">Kshs {dailySales.toFixed(2)}</p>
         </div>
-        <div className="bg-dark-mode p-1 rounded">
+        <div className="bg-light-mode p-1 rounded border border-solid border-dark-mode">
           <h4 className="text-medium font-bold">Total Monthly Sales</h4>
           <p className="text-xl font-bold">Kshs {monthlySales.toFixed(2)}</p>
         </div>
@@ -211,3 +211,8 @@ fetch("http://127.0.0.1:5555/category", {
 }
 
 export default Dashboard;
+
+
+
+
+

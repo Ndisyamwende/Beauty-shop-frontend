@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom"; // Import useParams
 import axios from "axios";
 
 const ProductDetail = () => {
@@ -29,16 +29,20 @@ const ProductDetail = () => {
     setMainImage(src);
   };
 
-  const handleAddToBag = async () => {
+  const handleAddToCart = async () => {
     try {
       await axios.post("http://127.0.0.1:5500/orderitem", {
         productId: id,
-        quantity,
+        quantity: 1, // Assuming you always add one product at a time
       });
-      alert("Added to bag successfully!");
+      alert("Added to cart successfully!");
     } catch (err) {
-      setError("Failed to add to bag");
+      setError("Failed to add to cart");
     }
+  };
+
+  const handleGoBack = () => {
+    window.history.back(); // Navigate back to the previous page
   };
 
   if (error) {
@@ -75,9 +79,15 @@ const ProductDetail = () => {
           <p className="text-black mb-8">{product.description}</p>
           <button
             className="w-full py-2 bg-dark-mode text-black rounded-full mt-8"
-            onClick={handleAddToBag}
+            onClick={handleAddToCart}
           >
-            Add to Bag
+            Add to Cart
+          </button>
+          <button
+            className="w-full py-2 bg-gray-400 text-black rounded-full mt-4"
+            onClick={handleGoBack}
+          >
+            Go Back
           </button>
         </div>
       </div>

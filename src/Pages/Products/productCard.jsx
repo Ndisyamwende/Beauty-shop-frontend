@@ -1,8 +1,18 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push(`/products/${product.id}`);
+  };
+
   return (
-    <div className="bg-white p-4 rounded shadow-md flex flex-col justify-between h-full">
+    <div
+      className="bg-white p-4 rounded shadow-md flex flex-col justify-between h-full cursor-pointer"
+      onClick={handleClick}
+    >
       <img
         src={product.image}
         alt={product.name}
