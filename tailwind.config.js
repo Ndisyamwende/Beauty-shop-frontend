@@ -8,11 +8,17 @@ export default {
         md: "0 0 10px rgba(0, 0, 0, 0.1)",
       },
       colors: {
+        // "dark-mode": "#A6603A",
+        // "light-mode": "#F0E68C",
+
         "dark-mode": "#A6603A",
         "light-mode": "#efe3b8",
+<<<<<<< HEAD
         "dark-text": "#FFF",
         "light-text": "#000"
         
+=======
+>>>>>>> 4a8fafa6f468f8ecd08f5ec6218a9537e6d0ed0f
       },
       fontFamily: {
         body: "Open Sans",

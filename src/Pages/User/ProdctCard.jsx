@@ -4,11 +4,16 @@ import { Link } from "react-router-dom";
 function ProductCard({ product, addToCart }) {
   const [showPopup, setShowPopup] = useState(false);
   const [error, setError] = useState(null);
+<<<<<<< HEAD
+=======
+  const token = "your-auth-token"; // Replace with your actual token retrieval logic
+>>>>>>> 4a8fafa6f468f8ecd08f5ec6218a9537e6d0ed0f
 
-  const handleAddToCartClick = () => {
+  const handleAddToCartClick = async () => {
     setShowPopup(true);
 
     try {
+<<<<<<< HEAD
       // Retrieve the current cart from local storage
       const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -25,11 +30,37 @@ function ProductCard({ product, addToCart }) {
 
       // Save the updated cart to local storage
       localStorage.setItem("cart", JSON.stringify(cart));
+=======
+      const response = await fetch("https://beautyshop-backend-1.onrender.com/orderitem", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          productId: product.id,
+          quantity: 1, // Assuming a quantity of 1 for simplicity
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+
+      // Update the cart state or perform any other necessary actions
+      if (addToCart) {
+        addToCart(product);
+      }
+>>>>>>> 4a8fafa6f468f8ecd08f5ec6218a9537e6d0ed0f
 
       // Show success popup or message
       alert("Added to cart successfully!");
     } catch (error) {
+<<<<<<< HEAD
       setError("Failed to add to cart");
+=======
+      setError(error.message);
+>>>>>>> 4a8fafa6f468f8ecd08f5ec6218a9537e6d0ed0f
     }
   };
 
@@ -45,8 +76,14 @@ function ProductCard({ product, addToCart }) {
           alt={product.name}
           className="w-full h-48 object-cover rounded mb-4"
         />
+<<<<<<< HEAD
         <h3 className="text-xl font-bold">{product.name}</h3>
         <p className="text-medium font-medium">KSHS {product.price}</p>
+=======
+        <h3 className="text-lg font-bold">{product.name}</h3>
+        <p>{product.description}</p>
+        <p className="text-xl font-medium">KSHS {product.price}</p>
+>>>>>>> 4a8fafa6f468f8ecd08f5ec6218a9537e6d0ed0f
       </Link>
       <button
         className="mt-2 px-4 py-2 bg-light-mode text-black rounded hover:bg-dark-mode order border-solid border-dark-mode"
@@ -68,10 +105,20 @@ function ProductCard({ product, addToCart }) {
                   className="w-full h-48 object-cover rounded mb-4"
                 />
                 <h3 className="text-xl font-semibold">{product.name}</h3>
+<<<<<<< HEAD
                 <p className="text-black ">KSHS {product.price}</p>
                 <button
                   className="mt-4 px-4 py-2 bg-dark-mode text-white rounded hover:bg-orange-950"
                   onClick={handleClosePopup}
+=======
+                <p className="text-black">KSHS {product.price}</p>
+                <button
+                  className="mt-4 px-4 py-2 bg-dark-mode text-white rounded hover:bg-orange-950"
+                  onClick={() => {
+                    addToCart(product);
+                    handleClosePopup();
+                  }}
+>>>>>>> 4a8fafa6f468f8ecd08f5ec6218a9537e6d0ed0f
                 >
                   Confirm
                 </button>

@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Modal from "react-modal";
+import { ThemeContext } from "../../Components/User/ThemeContext";
 
 Modal.setAppElement("#root");
 
 export const Inventory = () => {
+  const { darkTheme, toggleTheme } = useContext(ThemeContext);
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState("All");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -136,7 +138,12 @@ const handleEditProduct = async (id, updatedProduct) => {
   }
 };
   return (
+<<<<<<< HEAD
     <div className="bg-light-mode min-h-screen p-4">
+=======
+    // <div className="bg-light-mode min-h-screen p-4">
+    <div className={`min-h-screen p-4 ${darkTheme ? 'bg-dark-mode' : 'bg-light-mode'}`}>
+>>>>>>> 4a8fafa6f468f8ecd08f5ec6218a9537e6d0ed0f
       <h1 className="text-Heading font-bold text-2xl text-center py-3">
         INVENTORY
       </h1>
@@ -288,6 +295,7 @@ const handleEditProduct = async (id, updatedProduct) => {
 
 
 
+<<<<<<< HEAD
 // // create a model for edit and a button for it and put in the logic for it 
 // // does not get 
 
@@ -542,3 +550,6 @@ const handleEditProduct = async (id, updatedProduct) => {
 //     </div>
 //   );
 // };
+=======
+
+>>>>>>> 4a8fafa6f468f8ecd08f5ec6218a9537e6d0ed0f

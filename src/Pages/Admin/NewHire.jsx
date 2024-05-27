@@ -1,6 +1,10 @@
-import { useState } from "react";
+
+import { useState, useContext } from "react";
+import { ThemeContext } from "../../Components/User/ThemeContext";
+
 
 export const NewHire = () => {
+  const { darkTheme, toggleTheme } = useContext(ThemeContext);
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -55,7 +59,8 @@ export const NewHire = () => {
   };
 
   return (
-    <div className="flex justify-center items-center bg-light-mode min-h-screen border border-solid-dark-mode">
+    // <div className="flex justify-center items-center bg-light-mode min-h-screen border border-solid-dark-mode">
+    <div className={`min-h-screen p-4 ${darkTheme ? 'bg-dark-mode' : 'bg-light-mode'} flex justify-center items-center`}>
       <div className="max-w-md">
         <div className="flex items-center justify-center mb-5">
           <h1 className="text-xl font-bold text-Heading dark:text-primary-light">Hiring</h1>

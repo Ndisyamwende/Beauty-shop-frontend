@@ -11,7 +11,11 @@ const Signup = () => {
 
   const handleSignup = async () => {
     try {
+<<<<<<< HEAD
       const response = await axios.post(" http://127.0.0.1:5555/signup", {
+=======
+      const response = await axios.post("https://beautyshop-backend-1.onrender.com/signup", {
+>>>>>>> 4a8fafa6f468f8ecd08f5ec6218a9537e6d0ed0f
         username,
         email,
         password,
@@ -104,7 +108,7 @@ const Signup = () => {
             className="w-full h-[50px] bg-[#a6603a] rounded-[30px] flex items-center justify-center mt-4"
             onClick={handleSignup}
           >
-            <span className="[font-family:'Inter-ExtraBold',Helvetica] font-extrabold text-black text-[16px]">
+            <span className="[font-family:'Inter-ExtraBold',Helvetica] font-extrabold text-white text-[16px]">
               Sign Up
             </span>
           </button>

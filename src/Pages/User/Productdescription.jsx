@@ -7,14 +7,13 @@ const ProductDetail = () => {
   const [product, setProduct] = useState(null);
   const [mainImage, setMainImage] = useState("");
   const [error, setError] = useState(null);
-  const [quantity] = useState(1); // Assuming you want to add 1 item to the bag by default
 
   useEffect(() => {
     // Fetch product details from the backend
     const fetchProductDetails = async () => {
       try {
         const response = await axios.get(
-          ` http://127.0.0.1:5555/products/${id}`
+         ` http://127.0.0.1:5500/products/${id}`
         );
         setProduct(response.data);
         setMainImage(response.data.image); // Set the main image to the product image
