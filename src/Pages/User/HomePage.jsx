@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useContext} from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Footer from "../../Components/User/Footer";
 import Navbar from "../../Components/User/Navbar";
-import { ThemeContext } from "../../Components/User/ThemeContext";
 
 function Homepage() {
-  const { darkTheme } = useContext(ThemeContext);
   const [categories, setCategories] = useState([]);
   const [currentId, setCurrentId] = useState(0);
 
@@ -40,57 +38,60 @@ function Homepage() {
 
   return (
     <>
+      <div className="bg-light-mode py-4">
+        <Navbar />
 
-          <div className={darkTheme ? 'bg-[#A6603A] text-white' : 'bg-[#efe3b8] text-[#3A1C0E]'}>
-      <Navbar />
-
-        <section>
-          <h1 className="font-bold text-center text-4xl mt-4">WELCOME TO CELESTIAL SKINS</h1>
-          <h2 className=" text-center text-xl">The one stop shop for glowing skin</h2>
+        <section className="">
+          <h1 className="font-bold text-center text-4xl mt-4">
+            WELCOME TO CELESTIAL SKINS
+          </h1>
+          <h2 className=" text-center text-xl">
+            The one stop shop for glowing skin
+          </h2>
           <h3>Browse by categories</h3>
-        <div className="flex flex-wrap justify-center lg:justify-between items-center mt-5 mx-4">
-          <div className="flex flex-col items-center mb-4 lg:mb-0">
-            <Link to="/skincare">
-              <img
-                src="/src/assets/icons/Skincareicon.png"
-                alt="Skin Care"
-                className="max-w-full h-50 w-60"
-              />
-            </Link>
-            <h2 className="mt-5">Skin Care</h2>
+          <div className="flex flex-wrap justify-center lg:justify-between items-center mt-5 mx-4">
+            <div className="flex flex-col items-center mb-4 lg:mb-0">
+              <Link to="/skincare">
+                <img
+                  src="/src/assets/icons/Skincareicon.png"
+                  alt="Skin Care"
+                  className="max-w-full h-80 w-60 p-4 rounded shadow-md flex flex-col justify-between  cursor-pointer"
+                />
+              </Link>
+              <h2 className="mt-5">Skin Care</h2>
+            </div>
+            <div className="flex flex-col items-center mb-4 lg:mb-0">
+              <Link to="/makeup">
+                <img
+                  src="/src/assets/icons/makeupicon.png"
+                  alt="Make Up"
+                  className="max-w-full h-80 w-60 p-4 rounded shadow-md flex flex-col justify-between cursor-pointer"
+                />
+              </Link>
+              <h2 className="mt-7">Make Up</h2>
+            </div>
+            <div className="flex flex-col items-center">
+              <Link to="/fragrances">
+                <img
+                  src="/src/assets/icons/Fragrancesicon.png"
+                  alt="Fragrance"
+                  className="max-w-full h-80 w-60 p-4 rounded shadow-md flex flex-col justify-between cursor-pointer"
+                />
+              </Link>
+              <h2 className="mt-7">Fragrance</h2>
+            </div>
+            <div className="flex flex-col items-center">
+              <Link to="/beardgang">
+                <img
+                  src="/src/assets/icons/Beardgangicon.jpg"
+                  alt="beardgang"
+                  className="max-w-full h-50 w-60 p-4 rounded shadow-md flex flex-col justify-between cursor-pointer"
+                />
+              </Link>
+              <h2 className="mt-7">Beard Gang</h2>
+            </div>
           </div>
-          <div className="flex flex-col items-center mb-4 lg:mb-0">
-            <Link to="/makeup">
-              <img
-                src="/src/assets/icons/makeupicon.png"
-                alt="Make Up"
-                className="max-w-full h-50 w-60"
-              />
-            </Link>
-            <h2 className="mt-7">Make Up</h2>
-          </div>
-          <div className="flex flex-col items-center">
-            <Link to="/fragrances">
-              <img
-                src="/src/assets/icons/Fragrancesicon.png"
-                alt="Fragrance"
-                className="max-w-full h-50 w-60"
-              />
-            </Link>
-            <h2 className="mt-7">Fragrance</h2>
-          </div>
-          <div className="flex flex-col items-center">
-            <Link to="/beardgang">
-              <img
-                src="/src/assets/icons/Beardgangicon.jpg"
-                alt="beardgang"
-                className="max-w-full h-50 w-60"
-              />
-            </Link>
-            <h2 className="mt-7">Beard Gang</h2>
-          </div>
-          </div>
-          </section>
+        </section>
       </div>
 
       <Footer />

@@ -1,15 +1,18 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../../Components/User/Footer';
 import Navbar from '../../Components/User/Navbar';
 import Modal from './Modal';
-// import { ThemeContext } from '../../Components/User/ThemeContext';
-import { ThemeContext } from '../../Components/User/ThemeContext';
+
 const Checkout = () => {
-  const { darkTheme } = useContext(ThemeContext);
+  const [customerDetails, setCustomerDetails] = useState({
+    name: '',
+    address: '',
+    phone: ''
+  });
   const [deliveryDetails, setDeliveryDetails] = useState({
     method: 'Door Delivery',
-    dateRange: 'Delivery between 09 May and 25 May',
+    dateRange: 'Delivery between 09 May and 25 May'
   });
   const [paymentMethod, setPaymentMethod] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,12 +21,29 @@ const Checkout = () => {
   const [visaDetails, setVisaDetails] = useState({
     cardNumber: '',
     expiryDate: '',
-    cvv: '',
+    cvv: ''
   });
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
   const [formErrors, setFormErrors] = useState({});
+  const [isEditingCustomer, setIsEditingCustomer] = useState(true);
+  const [isEditingDelivery, setIsEditingDelivery] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
 
-  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    const fetchCartItems = () => {
+      try {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        setCartItems(cart);
+      } catch (error) {
+        console.error("Failed to fetch cart items", error);
+      }
+    };
+
+    fetchCartItems();
+  }, []);
+
   const totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const deliveryFee = 300;
   const customFee = 50;
@@ -73,6 +93,7 @@ const Checkout = () => {
     setTimeout(() => {
       setIsProcessingPayment(false);
       confirmOrder();
+      setSuccessMessage('Payment of Ksh ${finalTotal} was successful!');
     }, 2000);
   };
 
@@ -87,14 +108,15 @@ const Checkout = () => {
     setTimeout(() => {
       setIsProcessingPayment(false);
       confirmOrder();
+      setSuccessMessage('Payment of Ksh ${finalTotal} was successful!');
     }, 2000);
   };
 
   const confirmOrder = () => {
     const newOrderDetails = {
-      name: 'John Doe',
-      address: '1234 Elm Street, Nairobi',
-      phone: '+254 712345678',
+      name: customerDetails.name,
+      address: customerDetails.address,
+      phone: customerDetails.phone,
       deliveryDetails: deliveryDetails,
       paymentMethod: paymentMethod,
       items: cartItems,
@@ -125,188 +147,210 @@ const Checkout = () => {
     setIsModalOpen(false);
   };
 
+  const handleEditCustomerDetails = (e) => {
+    e.preventDefault();
+    setIsEditingCustomer(false);
+  };
+
+  const handleEditDeliveryDetails = (e) => {
+    e.preventDefault();
+    setIsEditingDelivery(false);
+  };
+
   return (
-    <div className={darkTheme ? 'bg-[#A6603A] text-white' : 'bg-[#efe3b8] text-black'}>
+    <div>
       <Navbar />
-      <div className="flex justify-center p-8 min-h-screen">
-        <div className="w-full max-w-5xl space-y-8">
-          <div className="p-6 shadow-md rounded-lg border border-gray-300">
-            <h1 className="text-2xl font-bold mb-6">Checkout</h1>
-            <div className="space-y-6">
-              <div className="p-4 border border-gray-300 rounded">
-                <h2 className="text-lg font-bold mb-2">1. CUSTOMER ADDRESS</h2>
-                <p>Auto-generated after order confirmation</p>
-                <button className="text-sm text-blue-500 mt-2">Change</button>
-              </div>
-              <div className="p-4 border border-gray-300 rounded">
-                <h2 className="text-lg font-bold mb-2">2. DELIVERY DETAILS</h2>
-                <p>{deliveryDetails.method}</p>
-                <p>{deliveryDetails.dateRange}</p>
-                <button className="text-sm text-blue-500 mt-2">Change</button>
-              </div>
-              <div className="p-4 border border-gray-300 rounded">
-                <h2 className="text-lg font-bold mb-2">3. PAYMENT METHOD</h2>
-                <div className="flex space-x-4">
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="payment"
-                      value="Mpesa"
-                      checked={paymentMethod === 'Mpesa'}
-                      onChange={handlePaymentMethodChange}
-                      className="mr-2 text-black"
-                    />
-                    Mpesa
-                  </label>
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="payment"
-                      value="Visa card"
-                      checked={paymentMethod === 'Visa card'}
-                      onChange={handlePaymentMethodChange}
-                      className="mr-2 text-black"
-                    />
-                    Visa card
-                  </label>
-                </div>
+      <div className="bg-[#efe3b8] p-5 min-h-screen">
+        <div className="max-w-5xl mx-auto bg-yellow-100 p-6 shadow-md rounded-lg border border-gray-300">
+          <h1 className="text-2xl font-bold mb-6 text-[#a87c3b]">Checkout</h1>
+          <div className="space-y-6">
+            <div className="p-4 border border-gray-300 rounded">
+              <h2 className="text-lg font-bold mb-2">1. CUSTOMER ADDRESS</h2>
+              {!isEditingCustomer ? (
+                <>
+                  <p>{customerDetails.name}</p>
+                  <p>{customerDetails.address}</p>
+                  <p>{customerDetails.phone}</p>
+                  <button onClick={() => setIsEditingCustomer(true)} className="text-sm text-blue-500 mt-2">Change</button>
+                </>
+              ) : (
+                <form onSubmit={handleEditCustomerDetails}>
+                  <input
+                    type="text"
+                    value={customerDetails.name}
+                    onChange={(e) => setCustomerDetails({ ...customerDetails, name: e.target.value })}
+                    placeholder="Name"
+                    className="w-full px-4 py-2 border rounded mb-2"
+                    required
+                  />
+                  <input
+                    type="text"
+                    value={customerDetails.address}
+                    onChange={(e) => setCustomerDetails({ ...customerDetails, address: e.target.value })}
+                    placeholder="Address"
+                    className="w-full px-4 py-2 border rounded mb-2"
+                    required
+                  />
+                  <input
+                    type="text"
+                    value={customerDetails.phone}
+                    onChange={(e) => setCustomerDetails({ ...customerDetails, phone: e.target.value })}
+                    placeholder="Phone"
+                    className="w-full px-4 py-2 border rounded mb-2"
+                    required
+                  />
+                  <button type="submit" className="mt-2 px-4 py-2 bg-green-500 text-white rounded">Save</button>
+                </form>
+              )}
+            </div>
+            <div className="p-4 border border-gray-300 rounded">
+              <h2 className="text-lg font-bold mb-2">2. DELIVERY DETAILS</h2>
+              {!isEditingDelivery ? (
+                <>
+                  <p>{deliveryDetails.method}</p>
+                  <p>{deliveryDetails.dateRange}</p>
+                  <button onClick={() => setIsEditingDelivery(true)} className="text-sm text-blue-500 mt-2">Change</button>
+                </>
+              ) : (
+                <form onSubmit={handleEditDeliveryDetails}>
+                  <input
+                    type="text"
+                    value={deliveryDetails.method}
+                    onChange={(e) => setDeliveryDetails({ ...deliveryDetails, method: e.target.value })}
+                    placeholder="Delivery Method"
+                    className="w-full px-4 py-2 border rounded mb-2"
+                  />
+                  <input
+                    type="text"
+                    value={deliveryDetails.dateRange}
+                    onChange={(e) => setDeliveryDetails({ ...deliveryDetails, dateRange: e.target.value })}
+                    placeholder="Date Range"
+                    className="w-full px-4 py-2 border rounded mb-2"
+                  />
+                  <button type="submit" className="mt-2 px-4 py-2 bg-green-500 text-white rounded">Save</button>
+                </form>
+              )}
+            </div>
+            <div className="p-4 border border-gray-300 rounded">
+              <h2 className="text-lg font-bold mb-2">3. PAYMENT METHOD</h2>
+              <div className="flex space-x-4">
+                <label className="flex items-center">
+                  <input
+                    type="radio"
+                    name="payment"
+                    value="Mpesa"
+                    checked={paymentMethod === 'Mpesa'}
+                    onChange={handlePaymentMethodChange}
+                    className="mr-2"
+                  />
+                  Mpesa
+                </label>
+                <label className="flex items-center">
+                  <input
+                    type="radio"
+                    name="payment"
+                    value="Visa card"
+                    checked={paymentMethod === 'Visa card'}
+                    onChange={handlePaymentMethodChange}
+                    className="mr-2"
+                  />
+                  Visa card
+                </label>
               </div>
               {paymentMethod === 'Mpesa' && (
-                <div className="p-4 border border-gray-300 rounded">
-                  <h3 className="text-lg font-bold mb-2">Mpesa Payment</h3>
+                <div className="mt-4">
                   <input
                     type="text"
                     value={mpesaNumber}
                     onChange={(e) => setMpesaNumber(e.target.value)}
-                    placeholder="Enter your Mpesa number"
-                    className="w-full px-4 py-2 border rounded text-black"
+                    placeholder="Mpesa Number"
+                    className="w-full px-4 py-2 border rounded mb-2"
                   />
-                  {formErrors.mpesaNumber && (
-                    <p className="text-red-500 text-sm">{formErrors.mpesaNumber}</p>
-                  )}
-                  <button
-                    onClick={handleMpesaPayment}
-                    className="mt-4 w-full py-2 bg-green-500 text-white font-semibold rounded-md hover:bg-green-600"
-                  >
-                    Pay with Mpesa
-                  </button>
+                  {formErrors.mpesaNumber && <p className="text-red-500 text-sm">{formErrors.mpesaNumber}</p>}
                 </div>
               )}
               {paymentMethod === 'Visa card' && (
-                <div className="p-4 border border-gray-300 rounded">
-                  <h3 className="text-lg font-bold mb-2">Visa Card Payment</h3>
+                <div className="mt-4 space-y-2">
                   <input
                     type="text"
                     value={visaDetails.cardNumber}
                     onChange={(e) => setVisaDetails({ ...visaDetails, cardNumber: e.target.value })}
                     placeholder="Card Number"
-                    className="w-full px-4 py-2 border rounded mb-2 text-black"
+                    className="w-full px-4 py-2 border rounded mb-2"
                   />
-                  {formErrors.cardNumber && (
-                    <p className="text-red-500 text-sm">{formErrors.cardNumber}</p>
-                  )}
+                  {formErrors.cardNumber && <p className="text-red-500 text-sm">{formErrors.cardNumber}</p>}
                   <input
                     type="text"
                     value={visaDetails.expiryDate}
                     onChange={(e) => setVisaDetails({ ...visaDetails, expiryDate: e.target.value })}
                     placeholder="Expiry Date"
-                    className="w-full px-4 py-2 border rounded mb-2 text-black"
+                    className="w-full px-4 py-2 border rounded mb-2"
                   />
-                  {formErrors.expiryDate && (
-                    <p className="text-red-500 text-sm">{formErrors.expiryDate}</p>
-                  )}
+                  {formErrors.expiryDate && <p className="text-red-500 text-sm">{formErrors.expiryDate}</p>}
                   <input
                     type="text"
                     value={visaDetails.cvv}
                     onChange={(e) => setVisaDetails({ ...visaDetails, cvv: e.target.value })}
                     placeholder="CVV"
-                    className="w-full px-4 py-2 border rounded mb-2 text-black"
+                    className="w-full px-4 py-2 border rounded mb-2"
                   />
-                  {formErrors.cvv && (
-                    <p className="text-red-500 text-sm">{formErrors.cvv}</p>
-                  )}
-                  <button
-                    onClick={handleVisaPayment}
-                    className="mt-4 w-full py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600"
-                  >
-                    Pay with Visa
-                  </button>
+                  {formErrors.cvv && <p className="text-red-500 text-sm">{formErrors.cvv}</p>}
                 </div>
               )}
-              <div className="p-6 shadow-md rounded-lg border border-gray-300 mt-4">
-                <h3 className="font-semibold">Order Summary</h3>
-                <div className="flex justify-between mt-2">
-                  <span>Item's total ({cartItems.length})</span>
-                  <span>KSHS {totalAmount}</span>
+            </div>
+          </div>
+          <div className="p-4 border border-gray-300 rounded mt-6">
+            <h2 className="text-lg font-bold mb-2">4. ORDER SUMMARY</h2>
+            <div className="space-y-2">
+              {cartItems.map((item, index) => (
+                <div key={index} className="flex justify-between items-center">
+                  <div className="flex items-center">
+                    <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded mr-4" />
+                    <span>{item.name} x {item.quantity}</span>
+                  </div>
+                  <span>Ksh {item.price * item.quantity}</span>
                 </div>
-                <div className="flex justify-between mt-2">
-                  <span>Delivery Fees</span>
-                  <span>KSHS {deliveryFee}</span>
-                </div>
-                <div className="flex justify-between mt-2">
-                  <span>Custom Fee</span>
-                  <span>KSHS {customFee}</span>
-                </div>
-                <div className="flex justify-between mt-2 font-bold">
-                  <span>TOTAL</span>
-                  <span>KSHS {finalTotal}</span>
-                </div>
-                <button
-                  onClick={handleConfirmOrder}
-                  disabled={isProcessingPayment}
-                  className="mt-4 w-full py-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 disabled:bg-gray-400"
-                >
-                  {isProcessingPayment ? 'Processing...' : 'CONFIRM ORDER'}
-                </button>
+              ))}
+              <div className="flex justify-between font-bold">
+                <span>Total Amount</span>
+                <span>Ksh {totalAmount}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Delivery Fee</span>
+                <span>Ksh {deliveryFee}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Custom Fee</span>
+                <span>Ksh {customFee}</span>
+              </div>
+              <div className="flex justify-between font-bold">
+                <span>Final Total</span>
+                <span>Ksh {finalTotal}</span>
               </div>
             </div>
           </div>
+          <button
+            onClick={handleConfirmOrder}
+            className="mt-4 px-4 py-2 bg-green-500 text-white rounded"
+            disabled={isProcessingPayment}
+          >
+            {isProcessingPayment ? 'Processing...' : 'Confirm Order'}
+          </button>
         </div>
       </div>
       <Footer />
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        {orderDetails && (
-          <>
-            <h2 className="text-xl font-bold mb-4">Order Confirmation</h2>
-            <div>
-              <h3 className="font-semibold">Customer Address</h3>
-              <p>{orderDetails.name}</p>
-              <p>{orderDetails.address}</p>
-              <p>{orderDetails.phone}</p>
-            </div>
-            <div className="mt-4">
-              <h3 className="font-semibold">Delivery Details</h3>
-              <p>{orderDetails.deliveryDetails.method}</p>
-              <p>{orderDetails.deliveryDetails.dateRange}</p>
-            </div>
-            <div className="mt-4">
-              <h3 className="font-semibold">Payment Method</h3>
-              <p>{orderDetails.paymentMethod}</p>
-            </div>
-            <div className="mt-4">
-              <h3 className="font-semibold">Order Summary</h3>
-              <div className="flex justify-between mt-2">
-                <span>Item's total ({orderDetails.items.length})</span>
-                <span>KSHS {orderDetails.totalAmount}</span>
-              </div>
-              <div className="flex justify-between mt-2">
-                <span>Delivery Fees</span>
-                <span>KSHS {orderDetails.deliveryFee}</span>
-              </div>
-              <div className="flex justify-between mt-2">
-                <span>Custom Fee</span>
-                <span>KSHS {orderDetails.customFee}</span>
-              </div>
-              <div className="flex justify-between mt-2 font-bold">
-                <span>TOTAL</span>
-                <span>KSHS {orderDetails.finalTotal}</span>
-              </div>
-            </div>
-          </>
-        )}
-      </Modal>
-    </div>
-  );
-};
+      {isModalOpen && (
+        <Modal onClose={handleCloseModal} orderDetails={orderDetails} />
+      )}
+     {successMessage && (
+        <div className="fixed inset-0 flex justify-center items-center z-50">
+          <div className="bg-green-500 text-white px-6 py-4 rounded-lg text-xl font-bold">
+             {successMessage}
+           </div>
+         </div>
+       )}
+     </div>
+   );
+ };
 
-export default Checkout;
+ export default Checkout;

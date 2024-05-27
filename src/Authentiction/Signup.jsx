@@ -11,7 +11,7 @@ const Signup = () => {
 
   const handleSignup = async () => {
     try {
-      const response = await axios.post("https://beautyshop-backend-1.onrender.com/signup", {
+      const response = await axios.post(" http://127.0.0.1:5555/signup", {
         username,
         email,
         password,

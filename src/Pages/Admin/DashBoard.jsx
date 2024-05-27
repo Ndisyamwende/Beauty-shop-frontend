@@ -7,9 +7,8 @@ import {
 import { ThemeContext } from "../../Components/User/ThemeContext";
 
 function Dashboard() {
-  const { darkTheme, toggleTheme } = useContext(ThemeContext);
-  const [productsCount, setProductsCount] = useState(36); // Replace with actual API logic
-  const [categoriesCount, setCategoriesCount] = useState(4); // Replace with actual API logic
+  const [productsCount, setProductsCount] = useState(0);
+  const [categoriesCount, setCategoriesCount] = useState(0); // Replace with actual API logic
   const [customersCount, setCustomersCount] = useState(0); // Initialize customers count
   const [latestOrders, setLatestOrders] = useState([]);
   const [dailySales, setDailySales] = useState(0);
@@ -24,7 +23,7 @@ function Dashboard() {
     }
 
     // Fetch latest orders
-    fetch("https://beautyshop-backend-1.onrender.com/orders", {
+    fetch("http://127.0.0.1:5555/orders", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -87,23 +86,61 @@ function Dashboard() {
         setCustomersCount(customerUsers.length);
       })
       .catch((error) => console.error("Error fetching users:", error));
+
+    // Fetch products to count the number of products
+    fetch("http://127.0.0.1:5555/product", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((products) => {
+        // Count the number of products
+        setProductsCount(products.length);
+      })
+      .catch((error) => console.error("Error fetching products:", error));
+    
+    //fetch categories 
+fetch("http://127.0.0.1:5555/category", {
+  method: "GET",
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+})
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    // Count the number of categories
+    setCategoriesCount(data.length);
+  })
+  .catch((error) => console.error("Error fetching categories:", error));
   }, []);
 
   return (
 
   
 
-    <main className={`min-h-screen p-4 ${darkTheme ? 'bg-dark-mode' : 'bg-light-mode'}`}>
+    <main className={`min-h-screen p-4 `}>
       <div className="flex justify-between items-center mb-5">
         <h3 className="text-xl font-bold">DASHBOARD</h3>
       </div>
 
       <div className="flex flex-col md:flex-row justify-between mb-5">
-        <div className="bg-dark-mode p-1 rounded mb-2 md:mb-0 md:mr-2">
+        <div className="bg-light-mode p-1 rounded mb-2 md:mb-0 md:mr-2 border border-solid border-dark-mode">
           <h4 className="text-medium font-bold">Total Daily Sales</h4>
           <p className="text-xl font-bold">Kshs {dailySales.toFixed(2)}</p>
         </div>
-        <div className="bg-dark-mode p-1 rounded">
+        <div className="bg-light-mode p-1 rounded border border-solid border-dark-mode">
           <h4 className="text-medium font-bold">Total Monthly Sales</h4>
           <p className="text-xl font-bold">Kshs {monthlySales.toFixed(2)}</p>
         </div>
@@ -179,3 +216,8 @@ function Dashboard() {
 }
 
 export default Dashboard;
+
+
+
+
+

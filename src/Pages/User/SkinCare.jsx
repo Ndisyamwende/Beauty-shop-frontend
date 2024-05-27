@@ -112,7 +112,9 @@ const SkinCare = ({ addToCart }) => {
   };
 
   const filteredProducts = sortGender
-    ? products.filter((product) => product.gender === sortGender)
+    ? products.filter(
+        (product) => product.gender.toLowerCase() === sortGender.toLowerCase()
+      )
     : products;
 
   return (
