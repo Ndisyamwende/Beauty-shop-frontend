@@ -56,6 +56,7 @@ const Fragrances = ({ addToCart }) => {
         <div>
           <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
             <h1 className="text-2xl font-bold text-black">Fragrances</h1>
+
             <div className="text-lg font-semibold text-black mt-2 sm:mt-0">
               Showing All: {filteredProducts.length} Results
             </div>
