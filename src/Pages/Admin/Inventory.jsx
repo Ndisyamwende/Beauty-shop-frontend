@@ -29,7 +29,7 @@ export const Inventory = () => {
       }
 
       try {
-        const response = await fetch("http://127.0.0.1:5555/product", {
+        const response = await fetch("http://127.0.0.1:8000/product", {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -59,7 +59,7 @@ export const Inventory = () => {
    const token = localStorage.getItem("token");
 
    try {
-     const response = await fetch("http://127.0.0.1:5555/product", {
+     const response = await fetch("http://127.0.0.1:8000/product", {
        method: "POST",
        headers: {
          "Content-Type": "application/json",
@@ -87,7 +87,7 @@ export const Inventory = () => {
     const token = localStorage.getItem("token");
 
     try {
-      const response = await fetch(`http://127.0.0.1:5555/products/${id}`, {
+      const response = await fetch(`http://127.0.0.1:8000/products/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -118,7 +118,7 @@ const handleEditProduct = async (id, updatedProduct) => {
 
   try {
     const token = localStorage.getItem("token");
-    const response = await fetch(`http://127.0.0.1:5555/products/${id}`, {
+    const response = await fetch(`http://127.0.0.1:8000/products/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
