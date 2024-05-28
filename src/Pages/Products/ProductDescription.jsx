@@ -18,7 +18,7 @@ const ProductDetail = () => {
       try {
         const response = await axios.get(
 <<<<<<< HEAD
-          `http://127.0.0.1:5500/products/${id}`
+          `http://127.0.0.1:8000/products/${id}`
 =======
           `https://beautyshop-backend-1.onrender.com/products/${id}`
 >>>>>>> 4a8fafa6f468f8ecd08f5ec6218a9537e6d0ed0f
