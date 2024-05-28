@@ -23,7 +23,7 @@ function Dashboard() {
     }
 
     // Fetch latest orders
-    fetch("http://127.0.0.1:5555/orders", {
+    fetch("http://127.0.0.1:8000/orders", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -66,7 +66,7 @@ function Dashboard() {
       .catch((error) => console.error("Error fetching orders:", error));
 
     // Fetch users to count customers who are users
-    fetch("http://127.0.0.1:5555/user", {
+    fetch("http://127.0.0.1:8000/user", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -88,7 +88,7 @@ function Dashboard() {
       .catch((error) => console.error("Error fetching users:", error));
 
     // Fetch products to count the number of products
-    fetch("http://127.0.0.1:5555/product", {
+    fetch("http://127.0.0.1:8000/product", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -107,7 +107,7 @@ function Dashboard() {
       .catch((error) => console.error("Error fetching products:", error));
     
     //fetch categories 
-fetch("http://127.0.0.1:5555/category", {
+fetch("http://127.0.0.1:8000/category", {
   method: "GET",
   headers: {
     Authorization: `Bearer ${token}`,
