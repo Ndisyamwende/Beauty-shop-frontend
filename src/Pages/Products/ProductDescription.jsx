@@ -40,7 +40,7 @@ const ProductDetail = () => {
 <<<<<<< HEAD
   const handleAddToCart = async () => {
     try {
-      await axios.post("http://127.0.0.1:5500/orderitem", {
+      await axios.post("http://127.0.0.1:8000/orderitem", {
         productId: id,
         quantity: 1, // Assuming you always add one product at a time
       });
