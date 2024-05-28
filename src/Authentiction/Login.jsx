@@ -39,7 +39,7 @@ const Login = () => {
   return (
     <div className="bg-[#efe3b8] min-h-screen flex justify-center items-center">
       <div className="max-w-lg w-full p-8">
-        <img className="w-16 h-16 mx-auto mb-8" alt="Celestial skins high" src='/src/assets/logo.png' />
+      
         <div className="mb-8 text-center">
           <p className="text-3xl font-black text-black">Welcome back</p>
           <p className="text-base">Don’t have an account yet?{' '}

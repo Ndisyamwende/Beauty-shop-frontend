@@ -13,7 +13,7 @@ const products = [
       "A nourishing cream that provides deep hydration and smooths skin texture.",
     price: 3500,
     quantity_available: 100,
-    image: "/src/assets/Skincare/skincare1.jpg",
+    image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categoryId: 1,
   },
   {
@@ -24,7 +24,7 @@ const products = [
       "An anti-aging serum that reduces the appearance of fine lines and wrinkles.",
     price: 4500,
     quantity_available: 50,
-    image: "/src/assets/Skincare/skincare2.jpg",
+    image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categoryId: 1,
   },
   {
@@ -35,7 +35,7 @@ const products = [
       "A gentle cleanser that removes impurities and refreshes the skin.",
     price: 4300,
     quantity_available: 75,
-    image: "/src/assets/Skincare/skincare3.jpg",
+    image: "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categoryId: 1,
   },
   {
@@ -46,7 +46,7 @@ const products = [
       "A calming toner that balances the skin's pH and reduces redness.",
     price: 2000,
     quantity_available: 80,
-    image: "/src/assets/Skincare/skincare4.jpg",
+    image: "https://images.unsplash.com/photo-1556229010-aa3f7ff66b24?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categoryId: 1,
   },
   {
@@ -57,7 +57,7 @@ const products = [
       "An eye cream that brightens dark circles and reduces puffiness.",
     price: 5000,
     quantity_available: 60,
-    image: "/src/assets/Skincare/skincare5.jpg",
+    image: "https://images.unsplash.com/photo-1584949514123-474cfa705dfe?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categoryId: 1,
   },
   {
@@ -77,7 +77,7 @@ const products = [
     description: "A face mask that deeply hydrates and revitalizes the skin.",
     price: 2304,
     quantity_available: 70,
-    image: "/src/assets/Skincare/skincare7.jpg",
+    image: "https://images.unsplash.com/photo-1620756236308-65c3ef5d25f3?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categoryId: 1,
   },
   {
@@ -88,7 +88,7 @@ const products = [
       "A cream that reduces signs of aging and improves skin elasticity.",
     price: 3200,
     quantity_available: 40,
-    image: "/src/assets/Skincare/skincare8.jpg",
+    image: "https://plus.unsplash.com/premium_photo-1670584258172-102db20b1da3?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categoryId: 1,
   },
   {
@@ -98,7 +98,7 @@ const products = [
     description: "A lightweight lotion that provides long-lasting moisture.",
     price: 1700,
     quantity_available: 110,
-    image: "/src/assets/Skincare/skincare9.jpg",
+    image: "https://images.unsplash.com/photo-1585232350744-974fc9804d65?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categoryId: 1,
   },
 ];

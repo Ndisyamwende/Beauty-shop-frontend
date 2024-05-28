@@ -13,7 +13,7 @@ const products = [
       "A nourishing beard oil that softens and conditions facial hair.",
     price: 2500,
     quantity_available: 100,
-    image: "/src/assets/Beardgang/beard1.jpg",
+    image: "https://images.unsplash.com/photo-1655557937610-32eee4f6c5df?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categoryId: 4,
   },
   {
@@ -23,7 +23,7 @@ const products = [
     description: "A styling balm that tames and shapes your beard.",
     price: 2200,
     quantity_available: 80,
-    image: "/src/assets/Beardgang/beard2.jpg",
+    image: "https://images.unsplash.com/photo-1655557937609-4657ba5c7f7c?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categoryId: 4,
   },
   {
@@ -33,7 +33,7 @@ const products = [
     description: "A gentle wash that cleanses and refreshes your beard.",
     price: 1800,
     quantity_available: 90,
-    image: "/src/assets/Beardgang/beard3.jpg",
+    image: "https://plus.unsplash.com/premium_photo-1673329319294-cb70fb0cba60?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categoryId: 4,
   },
   {
@@ -43,7 +43,7 @@ const products = [
     description: "A conditioner that hydrates and detangles beard hair.",
     price: 2000,
     quantity_available: 70,
-    image: "/src/assets/Beardgang/beard4.jpg",
+    image: "https://images.unsplash.com/photo-1655504482030-617124e60f42?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categoryId: 4,
   },
   {
@@ -53,7 +53,7 @@ const products = [
     description: "A wooden comb designed specifically for beards.",
     price: 1200,
     quantity_available: 150,
-    image: "/src/assets/Beardgang/beard5.jpg",
+    image: "https://images.unsplash.com/photo-1596362601603-b74f6ef166e4?q=80&w=1926&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categoryId: 4,
   },
   {
@@ -64,7 +64,7 @@ const products = [
       "A boar bristle brush that evenly distributes oils through your beard.",
     price: 1500,
     quantity_available: 120,
-    image: "/src/assets/Beardgang/beard6.jpg",
+    image: "https://images.unsplash.com/photo-1621607505833-616916c46a25?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categoryId: 4,
   },
   {
@@ -74,7 +74,7 @@ const products = [
     description: "A serum that promotes healthy beard growth.",
     price: 2800,
     quantity_available: 60,
-    image: "/src/assets/Beardgang/beard7.jpg",
+    image: "https://images.unsplash.com/photo-1655565637811-4949e2a6361a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE3fHx8ZW58MHx8fHx8",
     categoryId: 4,
   },
   {
@@ -84,7 +84,7 @@ const products = [
     description: "Precision scissors for trimming your beard.",
     price: 1900,
     quantity_available: 110,
-    image: "/src/assets/Beardgang/beard8.jpg",
+    image: "https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categoryId: 4,
   },
   {
@@ -94,7 +94,7 @@ const products = [
     description: "A tool that helps shape and style your beard.",
     price: 1400,
     quantity_available: 130,
-    image: "/src/assets/Beardgang/beard9.jpg",
+    image: "https://images.unsplash.com/photo-1621607511490-c15010fe989c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categoryId: 4,
   },
 ];

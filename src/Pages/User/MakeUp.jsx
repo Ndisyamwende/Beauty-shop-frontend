@@ -13,7 +13,7 @@ const products = [
       "A lightweight foundation that offers full coverage and a natural finish.",
     price: 2700,
     quantity_available: 95,
-    image: "/src/assets/Makeup/Makeup1.jpg",
+    image: "https://images.unsplash.com/photo-1557205465-f3762edea6d3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlxdWlkJTIwZm91bmRhdGlvbnxlbnwwfHwwfHx8MA%3D%3D",
     categoryId: 2,
   },
   {
@@ -24,7 +24,7 @@ const products = [
       "A long-lasting lipstick with a matte finish available in various shades.",
     price: 1900,
     quantity_available: 120,
-    image: "/src/assets/Makeup/Makeup2.jpg",
+    image: "https://plus.unsplash.com/premium_photo-1677172236682-e46a1ad8870c?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categoryId: 2,
   },
   {
@@ -35,7 +35,7 @@ const products = [
       "A mascara that lengthens and volumizes lashes without smudging.",
     price: 3200,
     quantity_available: 85,
-    image: "/src/assets/Makeup/Makeup3.jpg",
+    image: "https://images.unsplash.com/photo-1619406266880-7e130b6c65c0?q=80&w=1885&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categoryId: 2,
   },
   {
@@ -46,7 +46,7 @@ const products = [
       "A palette with a range of blush shades for a natural, healthy glow.",
     price: 4230,
     quantity_available: 55,
-    image: "/src/assets/Makeup/Makeup4.jpg",
+    image: "https://images.unsplash.com/photo-1547887538-047f814bfb64?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categoryId: 2,
   },
   {
@@ -56,7 +56,7 @@ const products = [
     description: "A creamy highlighter that adds a radiant glow to the skin.",
     price: 2000,
     quantity_available: 70,
-    image: "/src/assets/Makeup/Makeup5.jpg",
+    image: "https://images.unsplash.com/photo-1633902657691-d78ea042b34f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDJ8fHxlbnwwfHx8fHw%3D",
     categoryId: 2,
   },
   {
@@ -66,7 +66,7 @@ const products = [
     description: "A precise pencil that shapes and defines eyebrows.",
     price: 3200,
     quantity_available: 100,
-    image: "/src/assets/Makeup/Makeup6.jpg",
+    image: "https://images.unsplash.com/photo-1512207159096-c2c91b1dfadd?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categoryId: 2,
   },
   {
@@ -77,7 +77,7 @@ const products = [
       "A palette with a variety of eyeshadow colors for any occasion.",
     price: 2130,
     quantity_available: 65,
-    image: "/src/assets/Makeup/Makeup7.jpg",
+    image: "https://images.unsplash.com/photo-1533562389935-457b1ae48a39?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categoryId: 2,
   },
   {
@@ -88,7 +88,7 @@ const products = [
       "A high-coverage concealer that hides imperfections and brightens.",
     price: 3200,
     quantity_available: 90,
-    image: "/src/assets/Makeup/Makeup8.jpg",
+    image: "https://images.unsplash.com/photo-1643168343047-f1056f97e555?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categoryId: 2,
   },
   {
@@ -98,7 +98,7 @@ const products = [
     description: "A spray that sets makeup and keeps it in place all day.",
     price: 1899,
     quantity_available: 80,
-    image: "/src/assets/Makeup/Makeup9.jpg",
+    image: "https://images.unsplash.com/photo-1584806900719-56884735e1e9?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     categoryId: 2,
   },
 ];
