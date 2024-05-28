@@ -20,7 +20,7 @@ const MakeUp = ({ addToCart }) => {
 
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:5555/product", {
+        const response = await fetch("http://127.0.0.1:8000/product", {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
