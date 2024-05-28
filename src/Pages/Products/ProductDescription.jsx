@@ -57,7 +57,7 @@ const ProductDetail = () => {
 =======
   const handleAddToBag = async () => {
     try {
-      await axios.post("http://127.0.0.1:5500/orderitem", {
+      await axios.post("http://127.0.0.1:8000/orderitem", {
         productId: id,
         quantity,
       });
