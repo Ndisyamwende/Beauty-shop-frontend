@@ -14,11 +14,13 @@ export const Customer = () => {
     }
 
     console.log("Using token:", token);
-
-    fetch(" http://127.0.0.1:5555/user", {
+ feature/layout
+    fetch("https://beautyshop-backend-1.onrender.com/user", {
+=====
+ dev
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`, // Corrected syntax for template literals
       },
     })
       .then((response) => {
@@ -26,7 +28,7 @@ export const Customer = () => {
         console.log("Response headers:", response.headers);
 
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          throw new Error(`HTTP error! status: ${response.status}`); // Corrected syntax for template literals
         }
         return response.json();
       })
@@ -46,8 +48,7 @@ export const Customer = () => {
   }, []);
 
   return (
-    // <div className="bg-light-mode min-h-screen p-4">
-    <div className={`min-h-screen p-4 ${darkTheme ? 'bg-dark-mode' : 'bg-light-mode'}`}>
+    <div className={`min-h-screen p-4 ${darkTheme ? 'bg-dark-mode' : 'bg-light-mode'}`}> {/* Corrected syntax for template literals */}
       <h1 className="text-Heading font-bold text-2xl text-center py-3">
         CUSTOMERS
       </h1>
@@ -55,7 +56,7 @@ export const Customer = () => {
         {users.map((user) => (
           <div
             key={user.id}
-            className=" dark:bg-variant1-dark p-2 shadow-md text-center"
+            className="dark:bg-variant1-dark p-2 shadow-md text-center"
           >
             <div className="text-[18px] font-body bg-dark-mode dark:bg-variant1-dark text-secondary p-2 capitalize">
               {user.username} {/* Use username instead of name */}

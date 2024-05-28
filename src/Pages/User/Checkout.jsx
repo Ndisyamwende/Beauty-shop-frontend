@@ -160,40 +160,86 @@ const Checkout = () => {
   return (
     <div>
       <Navbar />
-      <div className="bg-[#efe3b8] p-5 min-h-screen">
-        <div className="max-w-5xl mx-auto bg-yellow-100 p-6 shadow-md rounded-lg border border-gray-300">
-          <h1 className="text-2xl font-bold mb-6 text-[#a87c3b]">Checkout</h1>
+feature/layout
+      <div className="bg-light-mode p-5 min-h-screen">
+        <div className="max-w-5xl mx-auto bg-light-mode p-6 shadow-md rounded-lg border border-solid border-dark-mode">
+          <h1 className="text-2xl font-bold mb-6 text-black">Checkout</h1>
           <div className="space-y-6">
-            <div className="p-4 border border-gray-300 rounded">
+            <div className="p-4 border border-solid border-dark-mode  rounded">
+dev
               <h2 className="text-lg font-bold mb-2">1. CUSTOMER ADDRESS</h2>
               {!isEditingCustomer ? (
                 <>
                   <p>{customerDetails.name}</p>
                   <p>{customerDetails.address}</p>
                   <p>{customerDetails.phone}</p>
-                  <button onClick={() => setIsEditingCustomer(true)} className="text-sm text-blue-500 mt-2">Change</button>
+ feature/layout
+                  <button
+                    onClick={() => setIsEditingCustomer(true)}
+                    className="text-sm text-red-500 mt-2"
+                  >
+                    Change
+                  </button>
+ dev
                 </>
               ) : (
                 <form onSubmit={handleEditCustomerDetails}>
                   <input
                     type="text"
                     value={customerDetails.name}
-                    onChange={(e) => setCustomerDetails({ ...customerDetails, name: e.target.value })}
+feature/layout
+                    onChange={(e) =>
+                      setCustomerDetails({
+                        ...customerDetails,
+                        name: e.target.value,
+                      })
+                    }
                     placeholder="Name"
-                    className="w-full px-4 py-2 border rounded mb-2"
+                    className="w-full px-4 py-2 border border-solid border-dark-mode rounded mb-2"
+
+                    dev
                     required
                   />
                   <input
                     type="text"
                     value={customerDetails.address}
-                    onChange={(e) => setCustomerDetails({ ...customerDetails, address: e.target.value })}
+feature/layout
+                    onChange={(e) =>
+                      setCustomerDetails({
+                        ...customerDetails,
+                        address: e.target.value,
+                      })
+                    }
                     placeholder="Address"
-                    className="w-full px-4 py-2 border rounded mb-2"
+                    className="w-full px-4 py-2 border border-solid border-dark-mode rounded mb-2"
+ dev
                     required
                   />
                   <input
                     type="text"
                     value={customerDetails.phone}
+ feature/layout
+                    onChange={(e) =>
+                      setCustomerDetails({
+                        ...customerDetails,
+                        phone: e.target.value,
+                      })
+                    }
+                    placeholder="Phone"
+                    className="w-full px-4 py-2 border border-solid border-dark-mode rounded mb-2"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    className="mt-2 px-4 py-2 bg-dark-mode text-white rounded"
+                  >
+                    Save
+                  </button>
+                </form>
+              )}
+            </div>
+            <div className="p-4 border border-solid border-dark-mode rounded">
+=======
                     onChange={(e) => setCustomerDetails({ ...customerDetails, phone: e.target.value })}
                     placeholder="Phone"
                     className="w-full px-4 py-2 border rounded mb-2"
@@ -204,34 +250,61 @@ const Checkout = () => {
               )}
             </div>
             <div className="p-4 border border-gray-300 rounded">
+dev
               <h2 className="text-lg font-bold mb-2">2. DELIVERY DETAILS</h2>
               {!isEditingDelivery ? (
                 <>
                   <p>{deliveryDetails.method}</p>
                   <p>{deliveryDetails.dateRange}</p>
-                  <button onClick={() => setIsEditingDelivery(true)} className="text-sm text-blue-500 mt-2">Change</button>
+ feature/layout
+                  <button
+                    onClick={() => setIsEditingDelivery(true)}
+                    className="text-sm text-red-500 mt-2"
+                  >
+                    Change
+                  </button>
+ dev
                 </>
               ) : (
                 <form onSubmit={handleEditDeliveryDetails}>
                   <input
                     type="text"
                     value={deliveryDetails.method}
-                    onChange={(e) => setDeliveryDetails({ ...deliveryDetails, method: e.target.value })}
+< feature/layout
+                    onChange={(e) =>
+                      setDeliveryDetails({
+                        ...deliveryDetails,
+                        method: e.target.value,
+                      })
+                    }
                     placeholder="Delivery Method"
-                    className="w-full px-4 py-2 border rounded mb-2"
+                    className="w-full px-4 py-2 border border-solid border-dark-mode rounded mb-2"
+dev
                   />
                   <input
                     type="text"
                     value={deliveryDetails.dateRange}
-                    onChange={(e) => setDeliveryDetails({ ...deliveryDetails, dateRange: e.target.value })}
+feature/layout
+                    onChange={(e) =>
+                      setDeliveryDetails({
+                        ...deliveryDetails,
+                        dateRange: e.target.value,
+                      })
+                    }
                     placeholder="Date Range"
-                    className="w-full px-4 py-2 border rounded mb-2"
+                    className="w-full px-4 py-2 border border-solid border-dark-mode rounded mb-2"
                   />
-                  <button type="submit" className="mt-2 px-4 py-2 bg-green-500 text-white rounded">Save</button>
+                  <button
+                    type="submit"
+                    className="mt-2 px-4 py-2 bg-light-mode text-white rounded"
+                  >
+                    Save
+                  </button>
                 </form>
               )}
             </div>
-            <div className="p-4 border border-gray-300 rounded">
+            <div className="p-4 border border-solid border-dark-mode rounded">
+ dev
               <h2 className="text-lg font-bold mb-2">3. PAYMENT METHOD</h2>
               <div className="flex space-x-4">
                 <label className="flex items-center">
@@ -239,7 +312,9 @@ const Checkout = () => {
                     type="radio"
                     name="payment"
                     value="Mpesa"
-                    checked={paymentMethod === 'Mpesa'}
+ feature/layout
+                    checked={paymentMethod === "Mpesa"}
+ dev
                     onChange={handlePaymentMethodChange}
                     className="mr-2"
                   />
@@ -250,14 +325,18 @@ const Checkout = () => {
                     type="radio"
                     name="payment"
                     value="Visa card"
-                    checked={paymentMethod === 'Visa card'}
+ feature/layout
+                    checked={paymentMethod === "Visa card"}
+ dev
                     onChange={handlePaymentMethodChange}
                     className="mr-2"
                   />
                   Visa card
                 </label>
               </div>
-              {paymentMethod === 'Mpesa' && (
+ feature/layout
+              {paymentMethod === "Mpesa" && (
+ dev
                 <div className="mt-4">
                   <input
                     type="text"
@@ -266,47 +345,91 @@ const Checkout = () => {
                     placeholder="Mpesa Number"
                     className="w-full px-4 py-2 border rounded mb-2"
                   />
-                  {formErrors.mpesaNumber && <p className="text-red-500 text-sm">{formErrors.mpesaNumber}</p>}
+ feature/layout
+                  {formErrors.mpesaNumber && (
+                    <p className="text-red-500 text-sm">
+                      {formErrors.mpesaNumber}
+                    </p>
+                  )}
                 </div>
               )}
-              {paymentMethod === 'Visa card' && (
+              {paymentMethod === "Visa card" && (
+ dev
                 <div className="mt-4 space-y-2">
                   <input
                     type="text"
                     value={visaDetails.cardNumber}
-                    onChange={(e) => setVisaDetails({ ...visaDetails, cardNumber: e.target.value })}
+                    onChange={(e) =>
+                      setVisaDetails({
+                        ...visaDetails,
+                        cardNumber: e.target.value,
+                      })
+                    }
                     placeholder="Card Number"
                     className="w-full px-4 py-2 border rounded mb-2"
                   />
-                  {formErrors.cardNumber && <p className="text-red-500 text-sm">{formErrors.cardNumber}</p>}
+ feature/layout
+                  {formErrors.cardNumber && (
+                    <p className="text-red-500 text-sm">
+                      {formErrors.cardNumber}
+                    </p>
+                  )}
+
                   <input
                     type="text"
                     value={visaDetails.expiryDate}
-                    onChange={(e) => setVisaDetails({ ...visaDetails, expiryDate: e.target.value })}
+                    onChange={(e) =>
+                      setVisaDetails({
+                        ...visaDetails,
+                        expiryDate: e.target.value,
+                      })
+                    }
                     placeholder="Expiry Date"
                     className="w-full px-4 py-2 border rounded mb-2"
                   />
-                  {formErrors.expiryDate && <p className="text-red-500 text-sm">{formErrors.expiryDate}</p>}
+ feature/layout
+                  {formErrors.expiryDate && (
+                    <p className="text-red-500 text-sm">
+                      {formErrors.expiryDate}
+                    </p>
+                  )}
+dev
                   <input
                     type="text"
                     value={visaDetails.cvv}
-                    onChange={(e) => setVisaDetails({ ...visaDetails, cvv: e.target.value })}
+                    onChange={(e) =>
+                      setVisaDetails({ ...visaDetails, cvv: e.target.value })
+                    }
                     placeholder="CVV"
                     className="w-full px-4 py-2 border rounded mb-2"
                   />
-                  {formErrors.cvv && <p className="text-red-500 text-sm">{formErrors.cvv}</p>}
+ feature/layout
+                  {formErrors.cvv && (
+                    <p className="text-red-500 text-sm">{formErrors.cvv}</p>
+                  )}
+ dev
                 </div>
               )}
             </div>
           </div>
-          <div className="p-4 border border-gray-300 rounded mt-6">
+ feature/layout
+          <div className="p-4 border border-solid border-dark-mode rounded mt-6">
+ dev
             <h2 className="text-lg font-bold mb-2">4. ORDER SUMMARY</h2>
             <div className="space-y-2">
               {cartItems.map((item, index) => (
                 <div key={index} className="flex justify-between items-center">
                   <div className="flex items-center">
-                    <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded mr-4" />
-                    <span>{item.name} x {item.quantity}</span>
+ feature/layout
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-16 h-16 object-cover rounded mr-4"
+                    />
+                    <span>
+                      {item.name} x {item.quantity}
+                    </span>
+dev
                   </div>
                   <span>Ksh {item.price * item.quantity}</span>
                 </div>
@@ -331,10 +454,12 @@ const Checkout = () => {
           </div>
           <button
             onClick={handleConfirmOrder}
-            className="mt-4 px-4 py-2 bg-green-500 text-white rounded"
+ feature/layout
+            className="mt-4 px-4 py-2 bg-dark-mode text-white rounded"
             disabled={isProcessingPayment}
           >
-            {isProcessingPayment ? 'Processing...' : 'Confirm Order'}
+            {isProcessingPayment ? "Processing..." : "Confirm Order"}
+dev
           </button>
         </div>
       </div>
@@ -342,15 +467,17 @@ const Checkout = () => {
       {isModalOpen && (
         <Modal onClose={handleCloseModal} orderDetails={orderDetails} />
       )}
-     {successMessage && (
+ feature/layout
+      {successMessage && (
         <div className="fixed inset-0 flex justify-center items-center z-50">
           <div className="bg-green-500 text-white px-6 py-4 rounded-lg text-xl font-bold">
-             {successMessage}
-           </div>
-         </div>
-       )}
-     </div>
-   );
+            {successMessage}
+          </div>
+        </div>
+      )}
+    </div>
+  );
  };
 
  export default Checkout;
+dev

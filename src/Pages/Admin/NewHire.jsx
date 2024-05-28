@@ -59,11 +59,12 @@ export const NewHire = () => {
   };
 
   return (
-    // <div className="flex justify-center items-center bg-light-mode min-h-screen border border-solid-dark-mode">
-    <div className={`min-h-screen p-4 ${darkTheme ? 'bg-dark-mode' : 'bg-light-mode'} flex justify-center items-center`}>
-      <div className="max-w-md">
-        <div className="flex items-center justify-center mb-5">
-          <h1 className="text-xl font-bold text-Heading dark:text-primary-light">Hiring</h1>
+    <div className="flex justify-center items-center bg-light-mode min-h-screen border border-solid-dark-mode">
+      <div className=" max-w-md">
+        <div className="flex items-center justify-center mb-[20px]">
+          <h1 className="text-xl font-bold text-Heading dark:text-primary-light">
+            Hiring
+          </h1>
         </div>
         <form onSubmit={handleSubmit} className="bg-light-mode shadow-md rounded p-5 w-[350px]">
           <h3 className="text-lg text-center font-bold mb-2 text-Heading dark:text-secondary">Add new hire</h3>

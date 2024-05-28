@@ -78,7 +78,3 @@ const MakeUp = ({ addToCart }) => {
 };
 
 export default MakeUp;
-
-
-
-
