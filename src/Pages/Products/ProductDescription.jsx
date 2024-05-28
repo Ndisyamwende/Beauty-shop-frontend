@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
+<<<<<<< HEAD
+import { useParams } from "react-router-dom"; // Import useParams
+=======
 import { useParams } from "react-router-dom";
+>>>>>>> 4a8fafa6f468f8ecd08f5ec6218a9537e6d0ed0f
 import axios from "axios";
 
 const ProductDetail = () => {
@@ -13,7 +17,11 @@ const ProductDetail = () => {
     const fetchProductDetails = async () => {
       try {
         const response = await axios.get(
+<<<<<<< HEAD
+          `http://127.0.0.1:5500/products/${id}`
+=======
           `https://beautyshop-backend-1.onrender.com/products/${id}`
+>>>>>>> 4a8fafa6f468f8ecd08f5ec6218a9537e6d0ed0f
         );
         setProduct(response.data);
         setMainImage(response.data.image); // Set the main image to the product image
@@ -29,6 +37,24 @@ const ProductDetail = () => {
     setMainImage(src);
   };
 
+<<<<<<< HEAD
+  const handleAddToCart = async () => {
+    try {
+      await axios.post("http://127.0.0.1:5500/orderitem", {
+        productId: id,
+        quantity: 1, // Assuming you always add one product at a time
+      });
+      alert("Added to cart successfully!");
+    } catch (err) {
+      setError("Failed to add to cart");
+    }
+  };
+
+  const handleGoBack = () => {
+    window.history.back(); // Navigate back to the previous page
+  };
+
+=======
   const handleAddToBag = async () => {
     try {
       await axios.post("http://127.0.0.1:5500/orderitem", {
@@ -41,6 +67,7 @@ const ProductDetail = () => {
     }
   };
 
+>>>>>>> 4a8fafa6f468f8ecd08f5ec6218a9537e6d0ed0f
   if (error) {
     return <div className="text-red-500">{error}</div>;
   }
@@ -75,9 +102,21 @@ const ProductDetail = () => {
           <p className="text-black mb-8">{product.description}</p>
           <button
             className="w-full py-2 bg-dark-mode text-black rounded-full mt-8"
+<<<<<<< HEAD
+            onClick={handleAddToCart}
+          >
+            Add to Cart
+          </button>
+          <button
+            className="w-full py-2 bg-gray-400 text-black rounded-full mt-4"
+            onClick={handleGoBack}
+          >
+            Go Back
+=======
             onClick={handleAddToBag}
           >
             Add to Bag
+>>>>>>> 4a8fafa6f468f8ecd08f5ec6218a9537e6d0ed0f
           </button>
         </div>
       </div>

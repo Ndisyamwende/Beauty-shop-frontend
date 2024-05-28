@@ -6,7 +6,7 @@ const Footer = () => {
   const { darkTheme } = useContext(ThemeContext);
 
   return (
-    <footer style={{ backgroundColor: darkTheme ? "#c0ad68" : "#A6603A", minHeight: "5vh" }}>
+    <footer style={{ backgroundColor: "#A6603A", minHeight: "5vh" }}>
       <div className="container mx-auto flex flex-col md:flex-row justify-around items-start p-4">
         <div className="mb-4 md:mb-0">
           <h1 className={`text-3xl font-bold ${darkTheme ? 'text-white' : 'text-black'}`}>Celestial Skins</h1>
@@ -16,14 +16,10 @@ const Footer = () => {
           <h3 className={`font-bold mb-2 ${darkTheme ? 'text-white' : 'text-black'}`}>ABOUT US</h3>
           <ul>
             <li>
-              <Link to="/home" className={darkTheme ? 'text-white hover:underline' : 'text-black hover:underline'}>
-                Home
-              </Link>
+              <Link to="/home">Home</Link>
             </li>
             <li>
-              <Link to="/contactus" className={darkTheme ? 'text-white hover:underline' : 'text-black hover:underline'}>
-                Contact Us
-              </Link>
+              <Link to="/contactus">Contact Us</Link>
             </li>
           </ul>
         </div>
@@ -31,22 +27,22 @@ const Footer = () => {
           <h3 className={`font-bold mb-2 ${darkTheme ? 'text-white' : 'text-black'}`}>SHOP</h3>
           <ul>
             <li className="mb-1">
-              <Link to="/fragrances" className={`${darkTheme ? 'text-white hover:underline' : 'text-black hover:underline'}`}>
+              <Link to="/fragrances" className="hover:underline">
                 Fragrances
               </Link>
             </li>
             <li className="mb-1">
-              <Link to="/makeup" className={`${darkTheme ? 'text-white hover:underline' : 'text-black hover:underline'}`}>
+              <Link to="/makeup" className="hover:underline">
                 Makeup
               </Link>
             </li>
             <li>
-              <Link to="/skincare" className={`${darkTheme ? 'text-white hover:underline' : 'text-black hover:underline'}`}>
+              <Link to="/skincare" className="hover:underline">
                 Skin Care
               </Link>
             </li>
             <li>
-              <Link to="/beardgang" className={`${darkTheme ? 'text-white hover:underline' : 'text-black hover:underline'}`}>
+              <Link to="/beardgang" className="hover:underline">
                 Beard Gang
               </Link>
             </li>

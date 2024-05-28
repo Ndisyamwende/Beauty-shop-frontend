@@ -223,8 +223,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ThemeContext } from '../../Components/User/ThemeContext';
 
+
 const Messages = () => {
+ feature/layout
   const { darkTheme } = useContext(ThemeContext);
+   dev
   const [contacts, setContacts] = useState([]);
   const [viewContact, setViewContact] = useState(null);
 
@@ -233,30 +236,44 @@ const Messages = () => {
     const sampleContacts = [
       {
         id: 1,
+ feature/layout
         name: 'James',
         email: 'james@gmail.com',
         message: 'Thankyou.',
+        
+ dev
         replied: false,
       },
       {
         id: 2,
+ feature/layout
         name: 'Ian',
         email: 'ian@gmail.com',
         message: 'Can you provide more details on your pricing?',
+       
+dev
         replied: true,
       },
       {
         id: 3,
+ feature/layout
         name: 'sharon',
         email: 'sharon@gmail.com',
         message: 'I love your products.',
+
+        
+ dev
         replied: false,
       },
       {
         id: 4,
+ feature/layout
         name: 'Francis',
         email: 'francis@gmail.com',
         message: 'Nice services',
+
+       
+ dev
         replied: true,
       },
     ];
@@ -267,7 +284,9 @@ const Messages = () => {
         await new Promise((resolve) => setTimeout(resolve, 500));
         setContacts(sampleContacts);
       } catch (error) {
+ feature/layout
         console.error('Error fetching contacts:', error);
+        dev
       }
     };
 
@@ -289,7 +308,10 @@ const Messages = () => {
   };
 
   return (
+ feature/layout
     <div className={`min-h-screen p-4 ${darkTheme ? 'bg-dark-mode' : 'bg-light-mode'}`}>
+
+    dev
       <h1 className="text-Heading font-bold text-2xl text-center py-3">
         Customer Messages
       </h1>
@@ -299,9 +321,7 @@ const Messages = () => {
             key={contact.id}
             className="dark:bg-variant1-dark p-2 shadow-md text-center mb-4"
           >
-            <div className="text-[18px] font-body bg-white dark:bg-variant1-dark text-secondary p-2 capitalize">
-              {contact.name}
-            </div>
+            <div className="text-[18px] font-body">{contact.name}</div>
             <div className="text-[14px] font-body bg-white dark:bg-variant1-dark text-Heading dark:text-primary-light p-2 capitalize">
               {contact.email}
             </div>
@@ -311,13 +331,19 @@ const Messages = () => {
             <div className="flex justify-center">
               <button
                 onClick={() => handleView(contact)}
+ feature/layout
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded mt-2 text-sm"
+               
+ dev
               >
                 View
               </button>
               <button
                 onClick={() => handleDelete(contact.id)}
+ feature/layout
                 className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded mt-2 text-sm"
+
+                dev
               >
                 Delete
               </button>
@@ -379,7 +405,9 @@ const Messages = () => {
             <div className="mt-4 flex justify-end">
               <button
                 onClick={() => handleDelete(viewContact.id)}
+ feature/layout
                 className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded mr-2 text-sm"
+ dev
               >
                 Delete
               </button>

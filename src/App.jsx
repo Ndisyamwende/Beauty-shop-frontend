@@ -14,7 +14,9 @@ import Beardgang from './Pages/User/Beard';
 import Fragrances from './Pages/User/Fragrances';
 import { ThemeProvider } from './Components/User/ThemeContext';
 
-import CheckoutForm from './Pages/User/Checkout';
+
+
+import Checkout from './Pages/User/Checkout';
 import CustomerContact from './Pages/User/Contact';
 import Messages from './Pages/Admin/Messages';
 import Dashboard from './Pages/Admin/DashBoard';
@@ -66,8 +68,10 @@ function App() {
                 <div style={layoutStyle}>
                   <Sidebar />
                   <div style={contentStyle}>
-                    <Routes>
+                    <Routes>feature/layout
                     <Route path="/" element={<Dashboard />} />
+=======
+              dev
                       <Route path="dashboard" element={<Dashboard />} />
                       <Route path="inventory" element={<Inventory />} />
                       <Route path="customers" element={<Customer />} />
@@ -147,7 +151,7 @@ function App() {
             path="/checkout"
             element={
               <PrivateRoute role="user">
-                <CheckoutForm />
+                <Checkout />
               </PrivateRoute>
             }
           />

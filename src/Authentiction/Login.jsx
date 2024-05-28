@@ -12,7 +12,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post(" https://beautyshop-backend-1.onrender.com/login", {
+      const response = await axios.post(" http://127.0.0.1:5555/login", {
         email,
         password,
       });
