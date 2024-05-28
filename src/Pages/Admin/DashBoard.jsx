@@ -22,7 +22,7 @@ function Dashboard() {
     }
 
     // Fetch latest orders
-    fetch("http://127.0.0.1:8000/orders", {
+    fetch("https://beautyshop-backend-1.onrender.com/orders", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
